@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/arsudsandesh97.github.io/static/css/main.bf538fe7.css",
-    "main.js": "/arsudsandesh97.github.io/static/js/main.e8af2fb4.js",
+    "main.js": "/arsudsandesh97.github.io/static/js/main.8e33e336.js",
     "static/media/pp1.jpg": "/arsudsandesh97.github.io/static/media/pp1.9b24623ad840db40b274.jpg",
     "index.html": "/arsudsandesh97.github.io/index.html",
     "main.bf538fe7.css.map": "/arsudsandesh97.github.io/static/css/main.bf538fe7.css.map",
-    "main.e8af2fb4.js.map": "/arsudsandesh97.github.io/static/js/main.e8af2fb4.js.map"
+    "main.8e33e336.js.map": "/arsudsandesh97.github.io/static/js/main.8e33e336.js.map"
   },
   "entrypoints": [
     "static/css/main.bf538fe7.css",
-    "static/js/main.e8af2fb4.js"
+    "static/js/main.8e33e336.js"
   ]
 }
