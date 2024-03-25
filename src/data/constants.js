@@ -179,7 +179,7 @@ export const Bio = {
         "Designed a power bi dashboard of Walmart."
         ,
       image:
-        "https://raw.githubusercontent.com/arsudsandesh97/assets/main/Walmart%20Sales%20Dashboard.gif?token=GHSAT0AAAAAACQCMOEQ2DXA4ILY5PQNR2TIZQBPC2A",
+        "https://github.com/arsudsandesh97/arsudsandesh97.github.io/blob/main/src/images/Walmart%20Sales%20Dashboard.gif",
       tags: [
         "Microsoft Power Bi",
         "Figma",
