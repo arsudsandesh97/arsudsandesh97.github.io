@@ -195,7 +195,7 @@ export const Bio = {
       description:
         "Designed a power bi dashboard of Netflix Movies & TV Shows.",
       image:
-        "https://raw.githubusercontent.com/arsudsandesh97/assets/main/Netflix%20Movies%20%26%20TV%20Shows%20Dashboard.jpg?token=GHSAT0AAAAAACQCMOERTYICKK4VMSX3UL4SZQBQNMA",
+        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Netflix%20Movies%20%26%20TV%20Shows%20Dashboard.gif?alt=media&token=5a7c252b-b344-46af-aced-fa80c5f17e88",
       tags: ["Microsoft Power Bi","Figma",],
       category: "Power Bi Dashboard",
       // github: "",
