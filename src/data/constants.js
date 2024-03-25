@@ -179,7 +179,7 @@ export const Bio = {
         "Designed a power bi dashboard of Walmart."
         ,
       image:
-        "https://github.com/arsudsandesh97/arsudsandesh97.github.io/blob/main/src/images/Walmart%20Sales%20Dashboard.gif",
+        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard.gif?alt=media&token=5a5872e8-e47d-425e-9f4b-576d3b26bdd8",
       tags: [
         "Microsoft Power Bi",
         "Figma",
@@ -208,7 +208,7 @@ export const Bio = {
       description:
         "Designed a excel dashboard of Global Superstore Dashboard to analyze the sales data.",
       image:
-        "https://raw.githubusercontent.com/arsudsandesh97/assets/main/Global%20Superstore%20Dashboard.jpg?token=GHSAT0AAAAAACQCMOERTIIWK7M35RMIPM5WZQBPHYA",
+        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Global%20Superstore%20Dashboard%20-%20Made%20with%20Clipchamp.gif?alt=media&token=7664c41f-5896-4b7c-b0a9-cd7d79ef3b28",
       tags: [
         "Microsoft Excel",
         "Figma",
@@ -257,7 +257,7 @@ export const Bio = {
       description:
         "crafted a real-time Power BI Atliq Presence Insights dashboard, leveraging the HR Data Analytics from Codebasics YouTube channel",
       image:
-        "https://raw.githubusercontent.com/arsudsandesh97/assets/main/Atliq%20Presence%20Insights.png?token=GHSAT0AAAAAACQCMOERS6YAMZT6LAUS3RUUZQBORXQ",
+        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Atliq%20Presence%20Insights.gif?alt=media&token=45c7385d-be1a-4c04-99dd-34f390c2adcd",
       tags: ["Microsoft Powerbi", "Dax"],
       category: "Power Bi Dashboard",
       // github: "",
