@@ -200,12 +200,21 @@ const index = ({ openModal, setOpenModal }) => {
                     <Image src={project?.image} />
                     <Title>{project?.title}</Title>
                     <Date>{project.date}</Date>
+                    <Desc>{project?.association}</Desc>
                     <Tags>
                         {project?.tags.map((tag) => (
                             <Tag>{tag}</Tag>
                         ))}
                     </Tags>
-                    <Desc>{project?.description}</Desc>
+                    <Desc>
+                        {project?.description}
+                        <br />
+                        <br />
+                        {project?.description2}
+                        <br />
+                        <br />
+                        {project?.description3}
+                    </Desc>
                     {project.member && (
                         <>
                             <Label>Members</Label>

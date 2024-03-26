@@ -155,7 +155,7 @@ export const Bio = {
       img: "https://media.licdn.com/dms/image/C510BAQHiOK4s2d-KWQ/company-logo_200_200/0/1630612940758?e=2147483647&v=beta&t=P3UXsjl8l0k4xTz1XwRMIIdK9zlZw_jy9djqFDjqXeU",
       school: "INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT",
       date: "Oct 2021 - Present",
-      grade: "NA",
+      grade: "74.00%",
       desc: "I am currently pursuing a Bachelor's degree in Electrical and Electronics Engineering at INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT.",
       degree: "Bachelor of Engineering - BE, Electrical and Electronics Engineering",
     },
@@ -176,10 +176,13 @@ export const Bio = {
       title: "Walmart Sales Dashboard",
       // date: "",
       description:
-        "Designed a power bi dashboard of Walmart."
-        ,
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard.gif?alt=media&token=5a5872e8-e47d-425e-9f4b-576d3b26bdd8",
+        "• Formulated an effective Sales Dashboard that drove profit margins to soar by 118.78% from 2011 to 2014, resulting in an outstanding net profit increase of 23,834.93 over three years.",
+      description2:
+        "• Achieved a remarkable 1,904.07% increase in sales for Chairs, resulting in the category becoming Walmart’s highest sales generator with a total sales figure of 1,01,781.33.",
+      description3:
+        "• Implemented effective management strategies for Accessories, accounting for 18.62% of Walmart’s overall profit with a total profit of 9,198.75.",
+
+      image: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard.gif?alt=media&token=5a5872e8-e47d-425e-9f4b-576d3b26bdd8",
       tags: [
         "Microsoft Power Bi",
         "Figma",
@@ -206,7 +209,11 @@ export const Bio = {
       title: "Global Superstore Dashboard",
       // date: "",
       description:
-        "Designed a excel dashboard of Global Superstore Dashboard to analyze the sales data.",
+        "• Leveraged pivot tables, charts, formatting, and VLOOKUP for a 408.75% sales boost (Jan 2012-Dec 2015) and 102.52% profit growth (2012-2015).",
+      description2:
+        "• Spearheaded a remarkable sales surge, elevating revenue from 2,58,705.68 to 5,03,143.69 during the steep incline from July 2015 to December 2015",
+      description3:
+        "• Orchestrated sales excellence in the Phones category, securing the highest sales at 17,06,824.14, surpassing Labels by 2,226.95%.", 
       image:
         "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Global%20Superstore%20Dashboard%20-%20Made%20with%20Clipchamp.gif?alt=media&token=7664c41f-5896-4b7c-b0a9-cd7d79ef3b28",
       tags: [
@@ -221,10 +228,13 @@ export const Bio = {
       id: 2,
       title: "EDA PROJECT ON GLOBAL TERRORISM ANALYSIS",
       date: "Nov-2022",
+      association:"Associated With Almabetter",
       description:
-        "Associated With Almabetter Conducted comprehensive analysis of 47 years of global terrorism data (1970-2017) to unearth key trends.• Analyzed data to pinpoint critical trends, highlighting the peak yearin 2014 and identifying the least active years (2008, 2010, 2011).",
+      "• Conducted comprehensive analysis of 47 years of global terrorism data (1970-2017) to unearth key trends.",
+      description2:
+      "• Analyzed data to pinpoint critical trends, highlighting the peak yearin 2014 and identifying the least active years (2008, 2010, 2011).",
       image:
-        "data:image/png;base64,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",
+        "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/EDA%20PROJECT%20ON%20GLOBAL%20TERRORISM%20ANALYSIS.png?alt=media&token=bdd0dcd3-ae27-4448-9d7e-8e7d5444fbd0",
       tags: ["Python", "Google Colab", "Microsoft Powerpoint", "Microsoft Word"],
       category: "Exploratory Data Analysis Using Python",
       github: "https://github.com/arsudsandesh97/Global_Terrorism_Analysis_Capstone_Project.",
