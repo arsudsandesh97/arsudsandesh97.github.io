@@ -19,6 +19,7 @@ import { AnimatePresence } from "framer-motion";
 import { BrowserRouter } from "react-router-dom";
 
 
+
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
   width: 100%;

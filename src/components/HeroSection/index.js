@@ -15,7 +15,7 @@ import {
 
 const HeroSection = () => {
     return (
-        <div id="About">
+        <div id="about">
           <HeroContainer>
             <HeroBg>
               <StarCanvas />
