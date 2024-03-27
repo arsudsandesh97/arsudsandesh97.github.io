@@ -157,8 +157,28 @@ const ExperienceCard = ({ experience }) => {
             </Top>
             <Description>
                 {experience?.desc &&
-                    <Span>{experience?.desc}</Span>
-
+                    <>
+                    <br />
+                    <Span>
+                        • {experience?.desc}
+                    </Span>
+                    </>
+                }
+                {experience?.desc &&
+                    <>
+                    <br />
+                    <Span>
+                        • {experience?.desc2}
+                    </Span>
+                    </>
+                }
+                {experience?.desc &&
+                    <>
+                    <br />
+                    <Span>
+                        • {experience?.desc3}
+                    </Span>
+                    </>
                 }
                 {experience?.skills &&
                     <>

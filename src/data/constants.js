@@ -77,7 +77,7 @@ export const Bio = {
         {
           name: "Git",
           image:
-            "https://camo.githubusercontent.com/fbfcb9e3dc648adc93bef37c718db16c52f617ad055a26de6dc3c21865c3321d/68747470733a2f2f7777772e766563746f726c6f676f2e7a6f6e652f6c6f676f732f6769742d73636d2f6769742d73636d2d69636f6e2e737667",
+            "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png",
         },
         {
           name: "GitHub",
@@ -125,7 +125,9 @@ export const Bio = {
       role: "Data Science And Business Analytics Intern",
       company: "THE SPARKS FOUNDATION",
       date: "February 2023 - March 2023",
-      desc: "Experienced data analyst adept at driving profit growth through data-driven insights and engaging dashboard design",
+      desc: "Optimized data-driven decision-making with exceptional data cleaning and visualization skills. Executed exploratory analysis on 756 IPL cricket match records using Python during The Sparks Foundation internship.",
+      desc2: "Designed an engaging sales data dashboard for Superstore,resulting in a remarkable 187.44% profit increase in the Office Supplies category",
+      desc3: "Initiated a substantial increase in the Technology category’s profits, elevating the total from 1,322.88 to 3,802.47.",
       skills: [
         "Exploratory Data Analysis",
         "Power Bi",
@@ -139,7 +141,10 @@ export const Bio = {
       role: "Data Science Trainee",
       company: "Almabetter",
       date: "October 2022 - October 2023",
-      // desc: "",
+      desc: "Conducted thorough Exploratory Data Analysis (EDA) on global terrorism data, collaborating with team members to extract actionable insights and patterns.",
+      desc2: "Leveraged Python and SQL to manipulate and analyze datasets, facilitating informed decision-making processes.",
+      desc3: "Mastered advanced data visualization and manipulation techniques using a comprehensive toolkit including Microsoft Excel, NumPy, Pandas, and Matplotlib",
+
       skills: [
         "Python",
         "SQL",
@@ -236,7 +241,7 @@ export const Bio = {
       image:
         "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/EDA%20PROJECT%20ON%20GLOBAL%20TERRORISM%20ANALYSIS.png?alt=media&token=bdd0dcd3-ae27-4448-9d7e-8e7d5444fbd0",
       tags: ["Python", "Google Colab", "Microsoft Powerpoint", "Microsoft Word"],
-      category: "Exploratory Data Analysis Using Python",
+      category: "EDA Using Python",
       github: "https://github.com/arsudsandesh97/Global_Terrorism_Analysis_Capstone_Project.",
       // dashboard: "",
       member: [

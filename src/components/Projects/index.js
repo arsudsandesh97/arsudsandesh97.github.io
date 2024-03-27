@@ -24,10 +24,10 @@ const Projects = ({openModal,setOpenModal}) => {
             <ToggleButton value="Power Bi Dashboard" onClick={() => setToggle('Power Bi Dashboard')}>Power Bi Dashboard</ToggleButton>
           }
           <Divider />
-          {toggle === 'Exploratory Data Analysis Using Python' ?
-            <ToggleButton active value="Exploratory Data Analysis Using Python" onClick={() => setToggle('Exploratory Data Analysis Using Python')}>Exploratory Data Analysis Using Python</ToggleButton>
+          {toggle === 'EDA Using Python' ?
+            <ToggleButton active value="EDA Using Python" onClick={() => setToggle('EDA Using Python')}>EDA Using Python</ToggleButton>
             :
-            <ToggleButton value="Exploratory Data Analysis Using Python" onClick={() => setToggle('Exploratory Data Analysis Using Python')}>Exploratory Data Analysis Using Python</ToggleButton>
+            <ToggleButton value="EDA Using Python" onClick={() => setToggle('EDA Using Python')}>EDA Using Python</ToggleButton>
           }
           <Divider />
           {toggle === 'Excel Dashboard' ?
