@@ -233,7 +233,12 @@ export const Bio = {
       id: 2,
       title: "EDA PROJECT ON GLOBAL TERRORISM ANALYSIS",
       date: "Nov-2022",
-      association:"Associated With Almabetter",
+      ascdetails:[
+        {
+          name:"Almabetter",
+          img :"https://media.licdn.com/dms/image/D560BAQELN71l0Md_HQ/company-logo_100_100/0/1681992257852/almabetter_logo?e=1719446400&v=beta&t=mPAg2tcr42RYSLp-8JMPiGKG1aFFyTftgmHUn5BL3aI",
+        }
+      ], 
       description:
       "• Conducted comprehensive analysis of 47 years of global terrorism data (1970-2017) to unearth key trends.",
       description2:
