@@ -80,6 +80,13 @@ const index = () => {
             <EducationCard key={`education-${index}`} education={education} />
           ))}
         </VerticalTimeline>
+      </Wrapper>
+    </Container>
+  );
+};
+
+export default index;
+
         {/* <TimelineSection>
                     <Timeline>
                         {education.map((education,index) => (
@@ -96,9 +103,3 @@ const index = () => {
                     </Timeline>
 
                 </TimelineSection> */}
-      </Wrapper>
-    </Container>
-  );
-};
-
-export default index;
