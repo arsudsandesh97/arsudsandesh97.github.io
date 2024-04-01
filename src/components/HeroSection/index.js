@@ -73,7 +73,7 @@ const HeroSection = () => {
             </HeroRightContainer>
           </HeroInnerContainer>
         </motion.div>
-      </HeroContainer>
+      </HeroContainer> 
     </div>
   );
 };
