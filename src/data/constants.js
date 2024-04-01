@@ -10,7 +10,7 @@ export const Bio = {
       "Passionate about merging engineering expertise with data science skills, I excel in exploratory data analysis and visualization. My internship at The Sparks Foundation showcased my ability to optimize decision-making through data-driven insights. Proficient in Python, SQL, and various data manipulation tools.",
     github: "https://github.com/arsudsandesh97",
     resume:
-      "https://drive.google.com/drive/folders/1LpSHiYXAif5cAp1tdQtUJIW_hlCRevRe?usp=sharing",
+      "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Resume%2FSandesh_Resume.pdf?alt=media&token=1033f8de-9a87-4c64-9fa5-d722f9de7ab8",
     linkedin: "https://www.linkedin.com/in/sandesharsud/",
     twitter: "https://twitter.com/sandesharsud",
     insta: "https://www.instagram.com/sandesh_arsud/",
