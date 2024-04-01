@@ -3,7 +3,7 @@ export const Bio = {
     roles: [
       "Data Science Enthusiast", 
       "Engineer",
-      "Tech Enthusiast",
+      "Tech Enthusiast",  
     ],
     description:
       "Passionate about merging engineering expertise with data science skills, I excel in exploratory data analysis and visualization. My internship at The Sparks Foundation showcased my ability to optimize decision-making through data-driven insights. Proficient in Python, SQL, and various data manipulation tools.",
