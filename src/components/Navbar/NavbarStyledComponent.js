@@ -67,6 +67,7 @@ export const NavLink = styled.a`
       color: ${({ theme }) => theme.primary};
     }
 
+
     &.active {
       border-bottom: 2px solid ${({ theme }) => theme.primary};
     }
