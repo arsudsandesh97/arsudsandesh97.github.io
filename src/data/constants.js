@@ -5,7 +5,7 @@ export const Bio = {
     "a passionate Data Science enthusiast dedicated to leveraging data-driven decision-making and delivering impactful results through my expertise in data analysis and visualization.",
   github: "https://github.com/arsudsandesh97",
   resume:
-    "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Resume%2FSandesh_Resume.pdf?alt=media&token=6fd7d53f-f5d2-4f66-9b0a-c2f15e46c2e8",
+    "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Resume%2FSandesh_Resume.pdf?alt=media&token=91345643-87cd-4842-a918-376516b6d6a6",
   linkedin: "https://www.linkedin.com/in/sandesharsud/",
   twitter: "https://twitter.com/sandesharsud",
   insta: "https://www.instagram.com/sandesh_arsud/",
@@ -43,7 +43,7 @@ export const skills = [
       {
         name: "Power Query Editor",
         image:
-          "https://powerquery.microsoft.com/pictures/shared/social/social-default-image.png",
+          "https://powerbi.microsoft.com/pictures/shared/social/social-default-image.png",
       },
     ],
   },
@@ -115,7 +115,7 @@ export const skills = [
 export const experiences = [
   {
     id: 0,
-    img: "https://media.licdn.com/dms/image/C560BAQFgHU3sTF4LfQ/company-logo_100_100/0/1631365213896?e=1719446400&v=beta&t=74TD9o2pLOu15wt36StLN7pgTUn9hIXlLT5-cGCs-Pw",
+    img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/sf.jpeg?alt=media&token=f6c04933-c72d-4843-a2f2-8c393a29893f",
     role: "Data Science And Business Analytics Intern",
     company: "THE SPARKS FOUNDATION",
     date: "February 2023 - March 2023",
@@ -125,11 +125,11 @@ export const experiences = [
     desc3:
       "Initiated a substantial increase in the Technology category’s profits, elevating the total from 1,322.88 to 3,802.47.",
     skills: ["Exploratory Data Analysis", "Power Bi", "Python"],
-    doc: "https://media.licdn.com/dms/image/C562DAQH5cKXBAjXqkw/profile-treasury-image-shrink_800_800/0/1679745446258?e=1711918800&v=beta&t=8Q6qj-slWHvXVrLKN9aJh3NW82vR2Fi78B7SBhoRdsc",
+    doc: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d",
   },
   {
     id: 1,
-    img: "https://media.licdn.com/dms/image/D560BAQELN71l0Md_HQ/company-logo_100_100/0/1681992257852/almabetter_logo?e=1719446400&v=beta&t=mPAg2tcr42RYSLp-8JMPiGKG1aFFyTftgmHUn5BL3aI",
+    img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/almabetter.png?alt=media&token=f177331b-4528-40a0-9f0e-6c59dadf1db8",
     role: "Data Science Trainee",
     company: "Almabetter",
     date: "October 2022 - October 2023",
@@ -171,42 +171,42 @@ export const projects = [
     title: "Walmart Sales Dashboard",
     // date: "",
     description:
-      "• Formulated an effective Sales Dashboard that drove profit margins to soar by 118.78% from 2011 to 2014, resulting in an outstanding net profit increase of 23,834.93 over three years.",
+      "• Increased profitability by 34% in 2014, generating $251k in profit from a total revenue of $725.46k, achieving the highest profit year-to-date.",
     description2:
-      "• Achieved a remarkable 1,904.07% increase in sales for Chairs, resulting in the category becoming Walmart’s highest sales generator with a total sales figure of 1,01,781.33.",
+      "• Led product category optimization, boosting profits in Binders to $16.1k, while maintaining Phones as the top-selling category with 35% of total sales.",
     description3:
-      "• Implemented effective management strategies for Accessories, accounting for 18.62% of Walmart’s overall profit with a total profit of 9,198.75.",
+      "• Maximized seasonal performance, driving December profits to $13.26k, the highest monthly profitability, contributing significantly to overallrevenue.",
 
     image:
-      "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard.gif?alt=media&token=5a5872e8-e47d-425e-9f4b-576d3b26bdd8",
+      "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard%202.0.jpg?alt=media&token=08986a7d-3d53-4814-9b70-d2c637ff4739",
     tags: ["Microsoft Power Bi", "Figma"],
     category: "Power Bi Dashboard",
     github: "https://github.com/arsudsandesh97/Walmart-Sales-Dashboard",
     dashboard: "https://www.novypro.com/project/walmart-sales-dashboard",
   },
-  {
-    id: 0,
-    title: "Netflix Movies & TV Shows Dashboard",
-    // date: "",
-    description: "Designed a power bi dashboard of Netflix Movies & TV Shows.",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Netflix%20Movies%20%26%20TV%20Shows%20Dashboard.gif?alt=media&token=5a7c252b-b344-46af-aced-fa80c5f17e88",
-    tags: ["Microsoft Power Bi", "Figma"],
-    category: "Power Bi Dashboard",
-    github: "https://github.com/arsudsandesh97/Netflix-Movies-TV-Shows-Dashboard",
-    dashboard:
-      "https://www.novypro.com/project/netflix-movies-and-tv-shows-dashboard",
-  },
+  // {
+  //   id: 0,
+  //   title: "Netflix Movies & TV Shows Dashboard",
+  //   // date: "",
+  //   description: "Designed a power bi dashboard of Netflix Movies & TV Shows.",
+  //   image:
+  //     "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Netflix%20Movies%20%26%20TV%20Shows%20Dashboard.gif?alt=media&token=5a7c252b-b344-46af-aced-fa80c5f17e88",
+  //   tags: ["Microsoft Power Bi", "Figma"],
+  //   category: "Power Bi Dashboard",
+  //   github: "https://github.com/arsudsandesh97/Netflix-Movies-TV-Shows-Dashboard",
+  //   dashboard:
+  //     "https://www.novypro.com/project/netflix-movies-and-tv-shows-dashboard",
+  // },
   {
     id: 1,
     title: "Global Superstore Dashboard",
     // date: "",
     description:
-      "• Leveraged pivot tables, charts, formatting, and VLOOKUP for a 408.75% sales boost (Jan 2012-Dec 2015) and 102.52% profit growth (2012-2015).",
+      "• Utilized advanced Excel tools such as Pivot Tables, VLOOKUPs, custom formatting, and charts to effectively analyze and present Superstore sales data",
     description2:
-      "• Spearheaded a remarkable sales surge, elevating revenue from 2,58,705.68 to 5,03,143.69 during the steep incline from July 2015 to December 2015",
+      "• Discovered technology as the highest selling category (1.4% of total sales), with phones leading the subcategory at $176.8k in sales.",
     description3:
-      "• Orchestrated sales excellence in the Phones category, securing the highest sales at 17,06,824.14, surpassing Labels by 2,226.95%.",
+      "• Identified 2015 as the most profitable year with $504.2k profit, and office supplies as the category with the highestreturns, totaling 533.",
     image:
       "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Global%20Superstore%20Dashboard%20-%20Made%20with%20Clipchamp.gif?alt=media&token=7664c41f-5896-4b7c-b0a9-cd7d79ef3b28",
     tags: ["Microsoft Excel", "Figma"],
@@ -221,7 +221,7 @@ export const projects = [
     ascdetails: [
       {
         name: "Almabetter",
-        img: "https://media.licdn.com/dms/image/D560BAQELN71l0Md_HQ/company-logo_100_100/0/1681992257852/almabetter_logo?e=1719446400&v=beta&t=mPAg2tcr42RYSLp-8JMPiGKG1aFFyTftgmHUn5BL3aI",
+        img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/almabetter.png?alt=media&token=f177331b-4528-40a0-9f0e-6c59dadf1db8",
       },
     ],
     description:
@@ -238,19 +238,19 @@ export const projects = [
     member: [
       {
         name: "Sandesh Arsud",
-        img: "https://media.licdn.com/dms/image/D4D03AQGz7jeFlrzqrw/profile-displayphoto-shrink_800_800/0/1708800382429?e=1717027200&v=beta&t=Bbupw9oZaGllee4NBBC_M9LJd1ptxc_3BVie_C4SMUU",
+        img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/a_photo_of_sandesh%20(19).jpg?alt=media&token=e13992df-c210-46df-ac47-b962754b6005",
         linkedin: "https://www.linkedin.com/in/sandesharsud/",
         github: "https://github.com/arsudsandesh97",
       },
       {
         name: "Vishal Pagare",
-        img: "https://media.licdn.com/dms/image/D4D03AQHfmH02q-33eQ/profile-displayphoto-shrink_800_800/0/1692708223308?e=1717027200&v=beta&t=4xMXUJORPMbs6kOHvWy_sluL2nUsIrqrGcjFffH4Gds",
+        img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/pp1.jpg?alt=media&token=a1ac4d5b-548b-424c-9e05-dc7f0077ea36",
         linkedin: "https://www.linkedin.com/in/vishal-pagare/",
         github: "https://github.com/vishal120700",
       },
       {
         name: "Sachin Gavande",
-        img: "https://media.licdn.com/dms/image/D5603AQGcJ-DDSF58JA/profile-displayphoto-shrink_800_800/0/1692001453948?e=1717027200&v=beta&t=N3nEoegxXLkjOFOyfa5EsAzTaBuHJXUWMuPdSSdrfmY",
+        img: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/sachin.jpeg?alt=media&token=814b859b-d9e6-4e13-bcbf-769e984a09a6",
         linkedin: "https://www.linkedin.com/in/sachingavande/",
         github: "https://github.com/sachingavande4599",
       },
