@@ -119,11 +119,11 @@ export const experiences = [
     role: "Data Science And Business Analytics Intern",
     company: "THE SPARKS FOUNDATION",
     date: "February 2023 - March 2023",
-    desc: "Optimized data-driven decision-making with exceptional data cleaning and visualization skills. Executed exploratory analysis on 756 IPL cricket match records using Python during The Sparks Foundation internship.",
+    desc: "Optimized data-driven decision-making with exceptional data cleaning and visualization skills. Executed exploratory analysis on 756 IPL cricket match records using Python during The Sparks Foundation internship",
     desc2:
-      "Designed an engaging sales data dashboard for Superstore,resulting in a remarkable 187.44% profit increase in the Office Supplies category",
+      "Developed an interactive Superstore sales dashboard, identifying corporate as the highest selling segment 48% of total sales and consumer as the most profitable 47% of total profit.",
     desc3:
-      "Initiated a substantial increase in the Technology category’s profits, elevating the total from 1,322.88 to 3,802.47.",
+      "Evaluated top categories, with office supplies leading in both sales 44% and profit 54%, utilizing Power BI for data visualization.",
     skills: ["Exploratory Data Analysis", "Power Bi", "Python"],
     doc: "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d",
   },
