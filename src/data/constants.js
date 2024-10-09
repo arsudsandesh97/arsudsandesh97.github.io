@@ -5,7 +5,7 @@ export const Bio = {
     "a passionate Data Science enthusiast dedicated to leveraging data-driven decision-making and delivering impactful results through my expertise in data analysis and visualization.",
   github: "https://github.com/arsudsandesh97",
   resume:
-    "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Resume%2FSandesh_Resume.pdf?alt=media&token=91345643-87cd-4842-a918-376516b6d6a6",
+    "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Resume%2FSandesh_Resume.pdf?alt=media&token=af5c0446-2194-4751-802f-4c4dd18dfdfa",
   linkedin: "https://www.linkedin.com/in/sandesharsud/",
   twitter: "https://twitter.com/sandesharsud",
   insta: "https://www.instagram.com/sandesh_arsud/",
