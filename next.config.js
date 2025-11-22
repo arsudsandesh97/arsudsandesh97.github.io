@@ -9,7 +9,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    unoptimized: true, // Required: Next.js Image optimization doesn't work on static sites
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -49,9 +49,8 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
-  // Enable SWC minification for better performance
   swcMinify: true,
+  basePath: '/webtest',
 }
 
 module.exports = nextConfig
-
