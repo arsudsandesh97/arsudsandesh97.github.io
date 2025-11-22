@@ -1,0 +1,13 @@
+export const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+export const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+export const EMAILJS_USER_ID = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+// Add validation
+if (typeof window !== "undefined" && (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_USER_ID)) {
+  console.error("Missing EmailJS configuration:", {
+    serviceId: !!EMAILJS_SERVICE_ID,
+    templateId: !!EMAILJS_TEMPLATE_ID,
+    userId: !!EMAILJS_USER_ID,
+  });
+}
+
