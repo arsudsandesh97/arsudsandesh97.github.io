@@ -63,9 +63,10 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   // GitHub Pages configuration - only apply in production
+  // For User Pages (username.github.io), basePath should be empty
   ...(isProd && {
-    basePath: '/arsudsandesh97.github.io',
-    assetPrefix: '/arsudsandesh97.github.io/',
+    // basePath: '',
+    // assetPrefix: '',
   }),
   trailingSlash: true,
 }
