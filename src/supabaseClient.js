@@ -1,10 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/['"]/g, "");
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.replace(/['"]/g, "");
-
-console.warn("Supabase URL:", supabaseUrl);
-console.warn("Supabase Key:", supabaseAnonKey ? "Present" : "Missing");
+const supabaseUrl = "https://ogcljpmtozblkwdvycro.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9nY2xqcG10b3pibGt3ZHZ5Y3JvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1NzM5NzMsImV4cCI6MjA1NDE0OTk3M30.jKXDi0ybPkG6t781PftO6JQKxLelsP23GZNaWTHOx2o";
 
 let supabase;
 
