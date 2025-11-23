@@ -72,7 +72,7 @@ const categoryVariants = {
 // Update the CardContainer styling
 const CardContainer = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 32px;
   padding: 20px;
   max-width: 1350px;
@@ -178,9 +178,7 @@ const Projects = ({ openModal, setOpenModal }) => {
   const toggleGroupRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 768 : false
-  );
+  const [isMobile, setIsMobile] = useState(false);
 
   // Add this handleMobileNavigation function
   const handleMobileNavigation = (direction) => {
@@ -260,6 +258,9 @@ const Projects = ({ openModal, setOpenModal }) => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+
+    // Check initial size
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

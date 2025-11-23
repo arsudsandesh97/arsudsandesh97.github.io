@@ -20,8 +20,13 @@ const Container = styled.div`
     display: none; /* Chrome, Safari, Opera */
   }
   
-  @media (max-width: 960px) {
+  @media (max-width: 768px) {
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 16px;
+    width: 100%;
+    margin-top: 20px;
   }
 `;
 

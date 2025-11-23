@@ -137,6 +137,10 @@ const ButtonContainer = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 8px;
+  
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 const ContactButton = styled.button`
@@ -312,16 +316,22 @@ const Contact = () => {
           console.error("EmailJS Response:", emailResult);
           throw new Error(`Failed to send email: ${emailResult.text}`);
         }
+        
+        // Increment the counter only after successful send
+        incrementEmailCount();
+        
+        toast.success(`Message sent successfully! 🎉`, {
+          id: loadingToast,
+          duration: 4000,
+        });
+      } else {
+        // EmailJS not configured - still save to Supabase but notify user
+        console.warn("EmailJS not configured. Message saved to database only.");
+        toast.success(`Message saved! Email notification not sent (EmailJS not configured)`, {
+          id: loadingToast,
+          duration: 5000,
+        });
       }
-
-      // Increment the counter only after successful send
-      incrementEmailCount();
-
-      // Update success toast message in the try block
-      toast.success(`Message sent successfully! 🎉`, {
-        id: loadingToast,
-        duration: 4000,
-      });
 
       form.reset();
     } catch (err) {

@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -50,7 +52,12 @@ const nextConfig = {
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
   },
   swcMinify: true,
-  basePath: '/webtest',
+  // GitHub Pages configuration - only apply in production
+  ...(isProd && {
+    basePath: '/webtest',
+    assetPrefix: '/webtest/',
+  }),
+  trailingSlash: true,
 }
 
 module.exports = nextConfig

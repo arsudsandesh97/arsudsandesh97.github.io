@@ -4,7 +4,8 @@ import React, { memo, useState, useCallback } from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
-  width: 330px;
+  width: 100%;
+  max-width: 330px;
   height: 490px;
   background: ${({ theme }) => theme.card_light + "50"};
   backdrop-filter: blur(10px);

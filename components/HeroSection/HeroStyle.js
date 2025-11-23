@@ -21,11 +21,16 @@ export const HeroContainer = styled.div`
     padding: 66px 16px;
   }
   @media (max-width: 640px) {
-    padding: 32px 16px;
+    padding: 32px 16px 80px 16px;
   }
   z-index: 1;
 
   clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
+  
+  @media (max-width: 640px) {
+    clip-path: none;
+    padding: 32px 16px 40px 16px;
+  }
 `;
 
 export const HeroBg = styled.div`
@@ -59,6 +64,7 @@ export const HeroInnerContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 1100px;
+  z-index: 2;
 
   @media (max-width: 960px) {
     flex-direction: column;
@@ -82,6 +88,9 @@ export const HeroLeftContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
   }
 `;
 
@@ -148,9 +157,14 @@ export const Title = styled.div`
   }
 
   @media (max-width: 640px) {
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 32px;
+    line-height: 40px;
     margin-bottom: 8px;
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 4px;
   }
 `;
 
@@ -179,12 +193,15 @@ export const TextLoop = styled.div`
   gap: 12px;
   color: ${({ theme }) => theme.text_primary};
   line-height: 68px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   @media (max-width: 960px) {
     text-align: center;
+    justify-content: center;
   }
   @media (max-width: 640px) {
-    font-size: 22px;
-    line-height: 48px;
+    font-size: 20px;
+    line-height: 40px;
     margin-bottom: 16px;
   }
 `;
@@ -207,7 +224,21 @@ export const SubTitle = styled.div`
 
   @media (max-width: 640px) {
     font-size: 16px;
-    line-height: 32px;
+    line-height: 26px;
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 8px;
+    text-align: center;
+    color: ${({ theme }) => theme.text_primary + "CC"};
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 15px;
+    line-height: 24px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -226,8 +257,11 @@ export const CTAContainer = styled.div`
   @media (max-width: 640px) {
     flex-direction: column;
     gap: 12px;
-    padding: 0 20px;
+    padding: 0 8px;
+    width: 100%;
     max-width: 100%;
+    margin-top: 24px;
+    align-items: stretch;
   }
 `;
 

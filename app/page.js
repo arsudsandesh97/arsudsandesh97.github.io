@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -13,6 +13,8 @@ import Education from "@/components/Education";
 import ProjectDetails from "@/components/ProjectDetails";
 import StarCanvas from "@/components/canvas/Stars";
 import { AnimatePresence } from "framer-motion";
+
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -46,9 +48,24 @@ const Wrapper = styled.div`
 export default function Home() {
   const [openModal, setOpenModal] = useState({ state: false, project: null });
 
+  useEffect(() => {
+    // Handle initial scroll based on path
+    const path = window.location.pathname;
+    const section = path.substring(1); // remove leading slash
+    if (section && ["about", "skills", "experience", "projects", "education", "contact"].includes(section)) {
+      const element = document.getElementById(section);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, []);
+
   return (
     <Body>
       <Navbar />
+      <MobileBottomNav />
       <StarCanvas />
       <AnimatePresence>
         <div>

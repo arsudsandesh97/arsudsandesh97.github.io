@@ -22,6 +22,10 @@ const Card = styled.div`
     transform: translateY(-4px);
     background: ${({ theme }) => theme.card_light + '80'};
   }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const Top = styled.div`

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Nav,
   NavLink,
@@ -23,6 +25,7 @@ const Navbar = () => {
   const [bioData, setBioData] = useState(null);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
+  const pathname = usePathname();
 
   useEffect(() => {
     const getBioData = async () => {
@@ -41,10 +44,24 @@ const Navbar = () => {
     getBioData();
   }, []);
 
+  // Handle navigation click
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `/${targetId}`);
+    }
+  };
+
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo>
+        <NavLogo as={Link} href="/" onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.history.pushState(null, "", "/");
+        }}>
           <h3 style={{ color: `white` }}>
             {loading ? "Loading..." : bioData?.name || "Portfolio"}
           </h3>
@@ -53,11 +70,11 @@ const Navbar = () => {
           <FaBars onClick={() => setIsOpen(!isOpen)} />
         </MobileIcon>
         <NavItems>
-          <NavLink href="#about">About</NavLink>
-          <NavLink href="#skills">Skills</NavLink>
-          <NavLink href="#experience">Experience</NavLink>
-          <NavLink href="#projects">Projects</NavLink>
-          <NavLink href="#education">Education</NavLink>
+          <NavLink as={Link} href="/about" onClick={(e) => handleNavClick(e, "about")}>About</NavLink>
+          <NavLink as={Link} href="/skills" onClick={(e) => handleNavClick(e, "skills")}>Skills</NavLink>
+          <NavLink as={Link} href="/experience" onClick={(e) => handleNavClick(e, "experience")}>Experience</NavLink>
+          <NavLink as={Link} href="/projects" onClick={(e) => handleNavClick(e, "projects")}>Projects</NavLink>
+          <NavLink as={Link} href="/education" onClick={(e) => handleNavClick(e, "education")}>Education</NavLink>
         </NavItems>
         <ButtonContainer>
           <GitHubButton
@@ -71,19 +88,19 @@ const Navbar = () => {
         </ButtonContainer>
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <MobileLink href="#about" onClick={() => setIsOpen(false)}>
+            <MobileLink as={Link} href="/about" onClick={(e) => { handleNavClick(e, "about"); setIsOpen(false); }}>
               About
             </MobileLink>
-            <MobileLink href="#skills" onClick={() => setIsOpen(false)}>
+            <MobileLink as={Link} href="/skills" onClick={(e) => { handleNavClick(e, "skills"); setIsOpen(false); }}>
               Skills
             </MobileLink>
-            <MobileLink href="#experience" onClick={() => setIsOpen(false)}>
+            <MobileLink as={Link} href="/experience" onClick={(e) => { handleNavClick(e, "experience"); setIsOpen(false); }}>
               Experience
             </MobileLink>
-            <MobileLink href="#projects" onClick={() => setIsOpen(false)}>
+            <MobileLink as={Link} href="/projects" onClick={(e) => { handleNavClick(e, "projects"); setIsOpen(false); }}>
               Projects
             </MobileLink>
-            <MobileLink href="#education" onClick={() => setIsOpen(false)}>
+            <MobileLink as={Link} href="/education" onClick={(e) => { handleNavClick(e, "education"); setIsOpen(false); }}>
               Education
             </MobileLink>
             <GitHubButton

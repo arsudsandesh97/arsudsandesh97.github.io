@@ -14,6 +14,9 @@ export const Nav = styled.div`
     @media (max-width: 960px) {
         transition: 0.8s all ease;
     }
+    @media (max-width: 640px) {
+        height: 60px;
+    }
 `;
 
 export const NavbarContainer = styled.div`
@@ -25,6 +28,9 @@ export const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 24px;
   max-width: 1200px;
+  @media (max-width: 640px) {
+      padding: 0 16px;
+  }
 `;
 
 export const NavLogo = styled.div`
@@ -111,6 +117,7 @@ export const ButtonContainer = styled.div`
 
 export const MobileIcon = styled.div`
   display: none;
+  /* 
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
@@ -121,6 +128,7 @@ export const MobileIcon = styled.div`
     cursor: pointer;
     color: ${({ theme }) => theme.text_primary};
   }
+  */
 `;
 
 export const MobileMenu = styled.div`
