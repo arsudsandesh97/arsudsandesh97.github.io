@@ -38,9 +38,25 @@ const Stars = (props) => {
 };
 
 const StyledStarsCanvas = () => {
+  const [isWebGLSupported, setIsWebGLSupported] = useState(true);
+
+  React.useEffect(() => {
+    try {
+      const canvas = document.createElement("canvas");
+      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+      if (!gl) {
+        setIsWebGLSupported(false);
+      }
+    } catch (e) {
+      setIsWebGLSupported(false);
+    }
+  }, []);
+
+  if (!isWebGLSupported) return null;
+
   return (
     <StyledCanvasWrapper>
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas camera={{ position: [0, 0, 1] }} gl={{ preserveDrawingBuffer: true }}>
         <Suspense fallback={null}>
           <Stars />
         </Suspense>

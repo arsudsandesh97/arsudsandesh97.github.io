@@ -82,7 +82,7 @@ export default function Home() {
     <Body>
       <Navbar />
       <MobileBottomNav />
-      {/* <StarCanvas /> */}
+      <StarCanvas />
       <AnimatePresence>
         <div>
           <HeroSection />

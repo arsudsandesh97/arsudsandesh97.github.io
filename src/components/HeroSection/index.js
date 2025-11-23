@@ -99,7 +99,7 @@ const HeroSection = () => {
         <HeroContainer>
           <HeroBg>
             <Suspense fallback={null}>
-              {/* <StarCanvas /> */}
+              <StarCanvas />
               <HeroBgAnimation />
             </Suspense>
           </HeroBg>
