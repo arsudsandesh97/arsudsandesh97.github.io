@@ -38,17 +38,17 @@ const Stars = (props) => {
 };
 
 const StyledStarsCanvas = () => {
-  const [isWebGLSupported, setIsWebGLSupported] = useState(true);
+  const [isWebGLSupported, setIsWebGLSupported] = useState(false);
 
   React.useEffect(() => {
     try {
       const canvas = document.createElement("canvas");
       const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-      if (!gl) {
-        setIsWebGLSupported(false);
+      if (gl) {
+        setIsWebGLSupported(true);
       }
     } catch (e) {
-      setIsWebGLSupported(false);
+      console.warn("WebGL check failed:", e);
     }
   }, []);
 
