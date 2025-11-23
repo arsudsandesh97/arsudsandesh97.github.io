@@ -46,7 +46,7 @@ const Tilt = React.lazy(() =>
   import("react-tilt").then((mod) => ({ default: mod.Tilt }))
 );
 const HeroBgAnimation = React.lazy(() => import("../HeroBgAnimation"));
-const StarCanvas = React.lazy(() => import("../canvas/Stars"));
+// const StarCanvas = React.lazy(() => import("../canvas/Stars"));
 
 const HeroSection = () => {
   const [bioData, setBioData] = useState({});
@@ -99,7 +99,7 @@ const HeroSection = () => {
         <HeroContainer>
           <HeroBg>
             <Suspense fallback={null}>
-              <StarCanvas />
+              {/* <StarCanvas /> - Disabled due to WebGL compatibility issues */}
               <HeroBgAnimation />
             </Suspense>
           </HeroBg>

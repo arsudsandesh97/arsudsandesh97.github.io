@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import ProjectDetails from "@/components/ProjectDetails";
-import StarCanvas from "@/components/canvas/Stars";
+// import StarCanvas from "@/components/canvas/Stars";
 import { AnimatePresence } from "framer-motion";
 
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -82,7 +82,7 @@ export default function Home() {
     <Body>
       <Navbar />
       <MobileBottomNav />
-      <StarCanvas />
+      {/* <StarCanvas /> - Disabled due to WebGL compatibility issues */}
       <AnimatePresence>
         <div>
           <HeroSection />
