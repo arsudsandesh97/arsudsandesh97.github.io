@@ -68,17 +68,7 @@ export const metadata = {
     },
   },
   manifest: "/manifest.json",
-  icons: {
-    icon: [
-      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    shortcut: "/favicon/favicon.ico",
-    apple: [
-      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-  },
+  // Icons are automatically handled by the file in /app/favicon.ico
   verification: {
     google: "B6nmRq9pR4Ds1JxT4l5CuZDT5dKzq8rtjdwUB8XcFMg",
   },
