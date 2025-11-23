@@ -207,7 +207,35 @@ const Skills = () => {
       <Container id="skills">
         <Wrapper>
           <Title>Skills</Title>
-          <Desc>Loading skills...</Desc>
+          <SkillsContainer>
+            {[1, 2, 3, 4].map((i) => (
+              <Skill key={i}>
+                <SkillTitle>
+                  <div style={{ 
+                    height: "24px", 
+                    width: "60%", 
+                    margin: "0 auto",
+                    background: "linear-gradient(90deg, rgba(133, 76, 230, 0.2) 0%, rgba(133, 76, 230, 0.4) 50%, rgba(133, 76, 230, 0.2) 100%)",
+                    backgroundSize: "200% 100%",
+                    animation: "shimmer 2s infinite linear",
+                    borderRadius: "4px"
+                  }} />
+                </SkillTitle>
+                <SkillList>
+                  {[1, 2, 3, 4, 5].map((j) => (
+                    <div key={j} style={{
+                      height: "36px",
+                      width: "80px",
+                      background: "linear-gradient(90deg, rgba(133, 76, 230, 0.1) 0%, rgba(133, 76, 230, 0.2) 50%, rgba(133, 76, 230, 0.1) 100%)",
+                      backgroundSize: "200% 100%",
+                      animation: "shimmer 2s infinite linear",
+                      borderRadius: "50px"
+                    }} />
+                  ))}
+                </SkillList>
+              </Skill>
+            ))}
+          </SkillsContainer>
         </Wrapper>
       </Container>
     );
@@ -217,7 +245,7 @@ const Skills = () => {
       <Container id="skills">
         <Wrapper>
           <Title>Skills</Title>
-          <Desc>Error: {error}</Desc>
+          <Desc>Unable to load skills. Please try again later.</Desc>
         </Wrapper>
       </Container>
     );

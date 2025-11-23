@@ -172,9 +172,37 @@ const Divider = styled.div`
   }
 `;
 
+// Skeleton components for loading state
+const SkeletonCard = styled.div`
+  background: ${({ theme }) => theme.card_light}50;
+  border: 1px solid ${({ theme }) => theme.primary}15;
+  border-radius: 16px;
+  padding: 20px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const SkeletonElement = styled.div`
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.card_light}40 0%,
+    ${({ theme }) => theme.card_light}60 50%,
+    ${({ theme }) => theme.card_light}40 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: ${({ radius }) => radius || "8px"};
+  width: ${({ width }) => width || "100%"};
+  height: ${({ height }) => height || "20px"};
+`;
+
+
 const Projects = ({ openModal, setOpenModal }) => {
   const [toggle, setToggle] = useState("All");
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const toggleGroupRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -198,6 +226,16 @@ const Projects = ({ openModal, setOpenModal }) => {
 
     setToggle(categories[newIndex]);
   };
+
+  // Debug: Monitor loading state changes
+  useEffect(() => {
+    console.log("Loading state changed to:", loading);
+  }, [loading]);
+
+  // Debug: Monitor projects state changes
+  useEffect(() => {
+    console.log("Projects state changed, count:", projects.length);
+  }, [projects]);
 
   // Update the containerVariants
   const containerVariants = {
@@ -226,12 +264,24 @@ const Projects = ({ openModal, setOpenModal }) => {
 
   useEffect(() => {
     const fetchProjectsData = async () => {
-      const { data, error } = await fetchProjectsClient();
-      if (error) {
-        console.error("Error fetching projects:", error);
-      } else {
-        console.log("Project data:", data);
-        setProjects(data);
+      try {
+        console.log("Starting to fetch projects, setting loading to true");
+        setLoading(true);
+        const { data, error } = await fetchProjectsClient();
+        if (error) {
+          console.error("Error fetching projects:", error);
+          setProjects([]);
+        } else {
+          console.log("Project data:", data);
+          console.log("Number of projects:", data?.length);
+          setProjects(data || []);
+        }
+      } catch (err) {
+        console.error("Exception fetching projects:", err);
+        setProjects([]);
+      } finally {
+        console.log("Setting loading to false");
+        setLoading(false);
       }
     };
     fetchProjectsData();
@@ -265,6 +315,39 @@ const Projects = ({ openModal, setOpenModal }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // TEMPORARILY DISABLED FOR DEBUGGING
+  // if (loading) {
+  //   return (
+  //     <Container id="projects">
+  //       <Wrapper>
+  //         <Title>Projects</Title>
+  //         <ToggleButtonGroup>
+  //           <SkeletonElement width="80px" height="40px" radius="12px" />
+  //           <Divider />
+  //           <SkeletonElement width="100px" height="40px" radius="12px" />
+  //           <Divider />
+  //           <SkeletonElement width="90px" height="40px" radius="12px" />
+  //         </ToggleButtonGroup>
+  //         <CardContainer>
+  //           {[1, 2, 3, 4, 5, 6].map((i) => (
+  //             <SkeletonCard key={i}>
+  //               <SkeletonElement height="200px" radius="12px" />
+  //               <SkeletonElement width="80%" height="24px" />
+  //               <SkeletonElement width="100%" height="16px" />
+  //               <SkeletonElement width="90%" height="16px" />
+  //               <div style={{ display: "flex", gap: "8px", marginTop: "auto" }}>
+  //                 <SkeletonElement width="60px" height="28px" radius="50px" />
+  //                 <SkeletonElement width="70px" height="28px" radius="50px" />
+  //                 <SkeletonElement width="65px" height="28px" radius="50px" />
+  //               </div>
+  //             </SkeletonCard>
+  //           ))}
+  //         </CardContainer>
+  //       </Wrapper>
+  //     </Container>
+  //   );
+  // }
 
   return (
     <Container id="projects">

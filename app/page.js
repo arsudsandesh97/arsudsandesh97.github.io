@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import styled from "styled-components";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -47,20 +48,35 @@ const Wrapper = styled.div`
 
 export default function Home() {
   const [openModal, setOpenModal] = useState({ state: false, project: null });
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Handle initial scroll based on path
-    const path = window.location.pathname;
-    const section = path.substring(1); // remove leading slash
-    if (section && ["about", "skills", "experience", "projects", "education", "contact"].includes(section)) {
-      const element = document.getElementById(section);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+    // Handle scroll based on pathname
+    const scrollToSection = () => {
+      // Remove leading and trailing slashes
+      const section = pathname.replace(/^\/|\/$/g, '');
+      
+      // Valid sections to scroll to
+      const validSections = ["about", "skills", "experience", "projects", "education", "contact"];
+      
+      if (section && validSections.includes(section)) {
+        // Wait for content to load before scrolling
+        const timeoutId = setTimeout(() => {
+          const element = document.getElementById(section);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 300); // Increased timeout to ensure content is loaded
+        
+        return () => clearTimeout(timeoutId);
+      } else if (!section || section === '') {
+        // If on home route, scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    }
-  }, []);
+    };
+
+    scrollToSection();
+  }, [pathname]); // Re-run when pathname changes
 
   return (
     <Body>

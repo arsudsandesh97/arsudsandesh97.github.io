@@ -5,6 +5,9 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
   },
   output: 'export',
   eslint: {
@@ -49,9 +52,16 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
-    optimizePackageImports: ['@mui/material', '@mui/icons-material'],
+    optimizePackageImports: [
+      '@mui/material', 
+      '@mui/icons-material',
+      'framer-motion',
+      'react-icons',
+    ],
   },
   swcMinify: true,
+  compress: true,
+  poweredByHeader: false,
   // GitHub Pages configuration - only apply in production
   ...(isProd && {
     basePath: '/webtest',
