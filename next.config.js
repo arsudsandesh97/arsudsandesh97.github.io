@@ -64,8 +64,8 @@ const nextConfig = {
   poweredByHeader: false,
   // GitHub Pages configuration - only apply in production
   ...(isProd && {
-    basePath: '/webtest',
-    assetPrefix: '/webtest/',
+    basePath: '/arsudsandesh97.github.io',
+    assetPrefix: '/arsudsandesh97.github.io/',
   }),
   trailingSlash: true,
 }

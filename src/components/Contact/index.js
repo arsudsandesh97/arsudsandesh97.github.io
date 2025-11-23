@@ -166,7 +166,7 @@ const Contact = () => {
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
-    init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+    init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   }, []);
 
   const sendEmailManually = async () => {
