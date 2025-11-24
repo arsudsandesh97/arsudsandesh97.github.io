@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaArrowUp, FaCopy, FaCheck } from "react-icons/fa";
+import { fetchSingleProjectClient, fetchProjectExplanationClient } from "@/lib/api/supabase-client";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { toast } from 'react-hot-toast';
@@ -586,8 +587,28 @@ const ErrorContainer = styled(motion.div)`
   }
 `;
 
-export default function ProjectExplanationContent({ project, markdownContent, error }) {
+const LoadingContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Spinner = styled(motion.div)`
+  width: 60px;
+  height: 60px;
+  border: 4px solid ${({ theme }) => theme.primary}20;
+  border-top-color: ${({ theme }) => theme.primary};
+  border-radius: 50%;
+`;
+
+export default function ProjectExplanationContent({ id }) {
   const router = useRouter();
+  const [project, setProject] = useState(null);
+  const [markdownContent, setMarkdownContent] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const contentRef = useRef(null);
@@ -606,6 +627,42 @@ export default function ProjectExplanationContent({ project, markdownContent, er
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        const [projectResult, explanationResult] = await Promise.all([
+          fetchSingleProjectClient(id),
+          fetchProjectExplanationClient(id)
+        ]);
+        
+        if (projectResult.error || !projectResult.data) {
+          setError("Project not found");
+          return;
+        }
+        
+        setProject(projectResult.data);
+        
+        if (explanationResult.error || !explanationResult.data) {
+          setError("No detailed explanation available for this project yet");
+          return;
+        }
+        
+        setMarkdownContent(explanationResult.data.markdown_content);
+        
+      } catch (err) {
+        setError(err.message || "An error occurred");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -642,6 +699,20 @@ export default function ProjectExplanationContent({ project, markdownContent, er
       </pre>
     );
   };
+
+  if (loading) {
+    return (
+      <Container>
+        <LoadingContainer>
+          <Spinner
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+          <h3 style={{ marginTop: 20 }}>Loading project details...</h3>
+        </LoadingContainer>
+      </Container>
+    );
+  }
 
   if (error) {
     return (
