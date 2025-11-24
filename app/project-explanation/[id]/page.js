@@ -1,7 +1,12 @@
-import { fetchSingleProject, fetchProjectExplanation } from "@/lib/api/supabase";
+import { fetchSingleProject, fetchProjectExplanation, fetchProjectIds } from "@/lib/api/supabase";
 import ProjectExplanationContent from "./ProjectExplanationContent";
 
-export const dynamic = 'force-dynamic';
+export async function generateStaticParams() {
+  const { data: projects } = await fetchProjectIds();
+  return (projects || []).map((project) => ({
+    id: project.id,
+  }));
+}
 
 export default async function ProjectExplanationPage({ params }) {
   const { id } = params;

@@ -649,7 +649,7 @@ export default function ProjectExplanationContent({ project, markdownContent, er
         <Header>
           <HeaderLeft>
             <BackButton
-              onClick={() => router.push("/#projects")}
+              onClick={() => router.push("/projects")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -669,7 +669,7 @@ export default function ProjectExplanationContent({ project, markdownContent, er
           <p>{error}</p>
           <ActionBtn
             as="button"
-            onClick={() => router.push("/#projects")}
+            onClick={() => router.push("/projects")}
             $primary
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -691,7 +691,7 @@ export default function ProjectExplanationContent({ project, markdownContent, er
       <Header>
         <HeaderLeft>
           <BackButton
-            onClick={() => router.push("/#projects")}
+            onClick={() => router.push("/projects")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
