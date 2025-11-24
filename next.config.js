@@ -9,7 +9,9 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  output: 'export',
+  // Only use 'export' for production builds (GitHub Pages)
+  // In dev, use default server rendering for dynamic routes
+  ...(isProd && { output: 'export' }),
   eslint: {
     ignoreDuringBuilds: true,
   },

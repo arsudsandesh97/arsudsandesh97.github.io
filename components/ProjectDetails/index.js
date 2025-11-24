@@ -1,6 +1,6 @@
 "use client";
 
-import { CloseRounded, GitHub, LinkedIn, Launch } from "@mui/icons-material";
+import { CloseRounded, GitHub, LinkedIn, Launch, Visibility } from "@mui/icons-material";
 import { Modal } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
@@ -109,7 +109,7 @@ const ActionButton = styled.a`
   transition: all 0.3s ease;
   cursor: pointer;
   
-  ${({ primary, theme }) => primary ? `
+  ${({ $primary, theme }) => $primary ? `
     background: ${theme.primary};
     color: white;
     box-shadow: 0 4px 15px ${theme.primary}40;
@@ -283,15 +283,18 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
                   </ActionButton>
                 )}
                 {project?.webapp && (
-                  <ActionButton primary href={project?.webapp} target="_blank" rel="noopener noreferrer">
+                  <ActionButton $primary href={project?.webapp} target="_blank" rel="noopener noreferrer">
                     <Launch fontSize="small" /> Live Demo
                   </ActionButton>
                 )}
                 {project?.dashboard && (
-                  <ActionButton primary href={project?.dashboard} target="_blank" rel="noopener noreferrer">
+                  <ActionButton $primary href={project?.dashboard} target="_blank" rel="noopener noreferrer">
                     <Launch fontSize="small" /> View Dashboard
                   </ActionButton>
                 )}
+                <ActionButton $primary href={`/project-explanation/${project?.id}`}>
+                  <Visibility fontSize="small" /> View Project
+                </ActionButton>
               </ButtonGroup>
             </Header>
 
@@ -304,6 +307,23 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
               </Tags>
             </Section>
 
+            {project?.associations?.length > 0 && (
+              <Section>
+                <SectionTitle>Associated with</SectionTitle>
+                <TeamGrid>
+                  {project.associations.map((assoc) => (
+                    <MemberCard key={assoc.id}>
+                      <MemberImage src={assoc.img} alt={assoc.name} />
+                      <MemberInfo>
+                        <MemberName>{assoc.name}</MemberName>
+                        <span style={{ fontSize: '12px', color: '#b1b2b3' }}>Association</span>
+                      </MemberInfo>
+                    </MemberCard>
+                  ))}
+                </TeamGrid>
+              </Section>
+            )}
+
             <Section>
               <SectionTitle>Overview</SectionTitle>
               <Description>
@@ -313,20 +333,11 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
               </Description>
             </Section>
 
-            {(project?.members?.length > 0 || project?.associations?.length > 0) && (
+            {project?.members?.length > 0 && (
               <Section>
-                <SectionTitle>Team & Associations</SectionTitle>
+                <SectionTitle>Team Members</SectionTitle>
                 <TeamGrid>
-                  {project?.associations?.map((assoc) => (
-                    <MemberCard key={assoc.id}>
-                      <MemberImage src={assoc.img} alt={assoc.name} />
-                      <MemberInfo>
-                        <MemberName>{assoc.name}</MemberName>
-                        <span style={{ fontSize: '12px', color: '#b1b2b3' }}>Association</span>
-                      </MemberInfo>
-                    </MemberCard>
-                  ))}
-                  {project?.members?.map((member) => (
+                  {project.members.map((member) => (
                     <MemberCard key={member.id}>
                       <MemberImage src={member.img} alt={member.name} />
                       <MemberInfo>

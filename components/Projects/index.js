@@ -72,16 +72,23 @@ const categoryVariants = {
 // Update the CardContainer styling
 const CardContainer = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 330px));
   gap: 32px;
   padding: 20px;
-  max-width: 1350px;
+  max-width: 1400px;
   margin: 0 auto;
+  justify-content: center;
+  align-items: start;
+
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 330px));
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 24px;
     padding: 16px;
+    justify-items: center;
   }
 `;
 
@@ -436,6 +443,11 @@ const Projects = ({ openModal, setOpenModal }) => {
                 whileHover={{
                   y: -8,
                   transition: { type: "spring", stiffness: 300 },
+                }}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'center',
                 }}
               >
                 <ProjectCard

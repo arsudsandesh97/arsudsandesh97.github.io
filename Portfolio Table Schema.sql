@@ -101,3 +101,43 @@ CREATE TABLE contacts (
     message TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT now()
 );
+
+CREATE TABLE project_explanations (
+    project_id UUID PRIMARY KEY REFERENCES Projects(id) ON DELETE CASCADE,
+    markdown_content TEXT NOT NULL
+);
+
+-- Create index for faster lookups
+CREATE INDEX idx_project_explanations_project_id ON project_explanations(project_id);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE project_explanations ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policy: Allow public read access (anyone can view project explanations)
+CREATE POLICY "Allow public read access"
+ON project_explanations
+FOR SELECT
+TO public
+USING (true);
+
+-- RLS Policy: Allow authenticated users to insert
+CREATE POLICY "Allow authenticated users to insert"
+ON project_explanations
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+-- RLS Policy: Allow authenticated users to update
+CREATE POLICY "Allow authenticated users to update"
+ON project_explanations
+FOR UPDATE
+TO authenticated
+USING (true)
+WITH CHECK (true);
+
+-- RLS Policy: Allow authenticated users to delete
+CREATE POLICY "Allow authenticated users to delete"
+ON project_explanations
+FOR DELETE
+TO authenticated
+USING (true);

@@ -29,17 +29,46 @@ const Wrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 42px;
+  font-size: 52px;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 20px;
-  margin-bottom: 40px;
-  color: ${({ theme }) => theme.text_primary};
-  
+  margin-bottom: 8px;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.text_primary} 0%,
+    ${({ theme }) => theme.primary} 50%,
+    ${({ theme }) => theme.text_primary} 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  letter-spacing: -1px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, ${({ theme }) => theme.primary}, transparent);
+    border-radius: 2px;
+  }
+
   @media (max-width: 768px) {
-    margin-top: 12px;
-    margin-bottom: 32px;
-    font-size: 32px;
+      margin-top: 16px;
+      font-size: 38px;
+      letter-spacing: -0.5px;
+
+      &::after {
+        bottom: -8px;
+        width: 60px;
+        height: 3px;
+      }
   }
 `;
 
