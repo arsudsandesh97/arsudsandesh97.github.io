@@ -2,6 +2,7 @@ import StyledComponentsRegistry from "./registry";
 import ThemeProviderWrapper from "@/components/ThemeProvider";
 import { Poppins, Space_Mono } from "next/font/google";
 import "./globals.css";
+import "./skeleton.css";
 
 // Optimize font loading with Next.js
 const poppins = Poppins({
@@ -126,6 +127,11 @@ export default function RootLayout({ children }) {
         
         {/* Preconnect to external domains for faster loading */}
         <link rel="preconnect" href="https://ogcljpmtozblkwdvycro.supabase.co" />
+        <link rel="dns-prefetch" href="https://ogcljpmtozblkwdvycro.supabase.co" />
+        
+        {/* Preload critical resources for faster initial render */}
+        <link rel="preload" as="script" href="/_next/static/chunks/main-app.js" />
+        <link rel="modulepreload" href="/_next/static/chunks/webpack.js" />
         
         {/* Structured Data for SEO */}
         <script
@@ -137,11 +143,45 @@ export default function RootLayout({ children }) {
         <meta name="google-site-verification" content="B6nmRq9pR4Ds1JxT4l5CuZDT5dKzq8rtjdwUB8XcFMg" />
       </head>
       <body>
+        {/* Loading skeleton - Shows instantly before JS loads */}
+        <div id="app-skeleton">
+          <div className="skeleton-header">
+            <div className="skeleton-logo"></div>
+            <div className="skeleton-nav">
+              <div className="skeleton-nav-item"></div>
+              <div className="skeleton-nav-item"></div>
+              <div className="skeleton-nav-item"></div>
+              <div className="skeleton-nav-item"></div>
+              <div className="skeleton-nav-item"></div>
+            </div>
+          </div>
+          <div className="skeleton-hero">
+            <div className="skeleton-hero-content">
+              <div className="skeleton-title"></div>
+              <div className="skeleton-subtitle"></div>
+              <div className="skeleton-text"></div>
+              <div className="skeleton-buttons">
+                <div className="skeleton-button"></div>
+                <div className="skeleton-button"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <StyledComponentsRegistry>
           <ThemeProviderWrapper>
             {children}
           </ThemeProviderWrapper>
         </StyledComponentsRegistry>
+        
+        {/* Hide skeleton when React hydrates */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.addEventListener('load', function() {
+              document.documentElement.classList.add('hydrated');
+            });
+          `
+        }} />
       </body>
     </html>
   );
