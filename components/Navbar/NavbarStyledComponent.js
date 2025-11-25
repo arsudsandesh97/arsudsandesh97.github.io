@@ -71,12 +71,34 @@ export const NavLink = styled.a`
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     text-decoration: none;
-    :hover {
+    position: relative;
+    
+    &:hover {
       color: ${({ theme }) => theme.primary};
+      transform: scale(1.05);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 50%;
+      background-color: ${({ theme }) => theme.primary};
+      transition: all 0.3s ease-in-out;
+      transform: translateX(-50%);
+    }
+
+    &:hover::after {
+      width: 100%;
     }
 
     &.active {
-      border-bottom: 2px solid ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.primary};
+      &::after {
+        width: 100%;
+      }
     }
 `;
 
@@ -156,12 +178,35 @@ export const MobileLink = styled.a`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  :hover {
+  position: relative;
+  display: inline-block;
+
+  &:hover {
     color: ${({ theme }) => theme.primary};
+    transform: scale(1.05);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: ${({ theme }) => theme.primary};
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+  }
+
+  &:hover::after {
+    width: 100%;
   }
 
   &.active {
-    border-bottom: 2px solid ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primary};
+    &::after {
+      width: 100%;
+    }
   }
 `;
 

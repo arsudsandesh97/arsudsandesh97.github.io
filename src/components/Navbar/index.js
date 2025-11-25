@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Nav,
   NavLink,
   NavbarContainer,
-  Span,
   NavLogo,
   NavItems,
   GitHubButton,
   ButtonContainer,
   MobileIcon,
   MobileMenu,
-  MobileNavLogo,
   MobileLink,
 } from "./NavbarStyledComponent";
 import { FaBars } from "react-icons/fa";
-import { Close, CloseRounded } from "@mui/icons-material";
+import { Close, CloseRounded, OpenInNew, Person, Code, Work, Apps, School, Article } from "@mui/icons-material";
 import { useTheme } from "styled-components";
-import { fetchBioData } from "../../api/supabase";
+import { fetchBioDataClient } from "@/lib/api/supabase-client";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [bioData, setBioData] = useState(null);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
+  const pathname = usePathname();
 
   useEffect(() => {
     const getBioData = async () => {
       try {
         setLoading(true);
-        const { data, error } = await fetchBioData();
+        const { data, error } = await fetchBioDataClient();
         if (!error && data) {
           setBioData(data);
         }
@@ -41,10 +44,24 @@ const Navbar = () => {
     getBioData();
   }, []);
 
+  // Handle navigation click
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `/${targetId}`);
+    }
+  };
+
   return (
     <Nav>
       <NavbarContainer>
-        <NavLogo>
+        <NavLogo as={Link} href="/" onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          window.history.pushState(null, "", "/");
+        }}>
           <h3 style={{ color: `white` }}>
             {loading ? "Loading..." : bioData?.name || "Portfolio"}
           </h3>
@@ -53,11 +70,14 @@ const Navbar = () => {
           <FaBars onClick={() => setIsOpen(!isOpen)} />
         </MobileIcon>
         <NavItems>
-          <NavLink href="#about">About</NavLink>
-          <NavLink href="#skills">Skills</NavLink>
-          <NavLink href="#experience">Experience</NavLink>
-          <NavLink href="#projects">Projects</NavLink>
-          <NavLink href="#education">Education</NavLink>
+          <NavLink as={Link} href="/about" onClick={(e) => handleNavClick(e, "about")}>About</NavLink>
+          <NavLink as={Link} href="/skills" onClick={(e) => handleNavClick(e, "skills")}>Skills</NavLink>
+          <NavLink as={Link} href="/experience" onClick={(e) => handleNavClick(e, "experience")}>Experience</NavLink>
+          <NavLink as={Link} href="/projects" onClick={(e) => handleNavClick(e, "projects")}>Projects</NavLink>
+          <NavLink as={Link} href="/education" onClick={(e) => handleNavClick(e, "education")}>Education</NavLink>
+          <NavLink as={Link} href="/blog" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            Blog <OpenInNew style={{ fontSize: '16px' }} />
+          </NavLink>
         </NavItems>
         <ButtonContainer>
           <GitHubButton
@@ -71,20 +91,23 @@ const Navbar = () => {
         </ButtonContainer>
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <MobileLink href="#about" onClick={() => setIsOpen(false)}>
-              About
+            <MobileLink as={Link} href="/about" onClick={(e) => { handleNavClick(e, "about"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Person style={{ color: theme.primary, fontSize: '20px' }} /> About
             </MobileLink>
-            <MobileLink href="#skills" onClick={() => setIsOpen(false)}>
-              Skills
+            <MobileLink as={Link} href="/skills" onClick={(e) => { handleNavClick(e, "skills"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Code style={{ color: theme.primary, fontSize: '20px' }} /> Skills
             </MobileLink>
-            <MobileLink href="#experience" onClick={() => setIsOpen(false)}>
-              Experience
+            <MobileLink as={Link} href="/experience" onClick={(e) => { handleNavClick(e, "experience"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Work style={{ color: theme.primary, fontSize: '20px' }} /> Experience
             </MobileLink>
-            <MobileLink href="#projects" onClick={() => setIsOpen(false)}>
-              Projects
+            <MobileLink as={Link} href="/projects" onClick={(e) => { handleNavClick(e, "projects"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Apps style={{ color: theme.primary, fontSize: '20px' }} /> Projects
             </MobileLink>
-            <MobileLink href="#education" onClick={() => setIsOpen(false)}>
-              Education
+            <MobileLink as={Link} href="/education" onClick={(e) => { handleNavClick(e, "education"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <School style={{ color: theme.primary, fontSize: '20px' }} /> Education
+            </MobileLink>
+            <MobileLink as={Link} href="/blog" onClick={() => setIsOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Article style={{ color: theme.primary, fontSize: '20px' }} /> Blog
             </MobileLink>
             <GitHubButton
               style={{
@@ -92,6 +115,7 @@ const Navbar = () => {
                 background: `${theme.primary}`,
                 color: "white",
                 width: "max-content",
+                marginTop: "12px",
               }}
               href={bioData?.github}
               target="_blank"

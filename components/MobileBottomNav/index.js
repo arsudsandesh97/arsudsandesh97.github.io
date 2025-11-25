@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Nav, NavItems, NavLink } from "./MobileNavStyle";
-import { HomeRounded, PersonRounded, CodeRounded, WorkRounded, EmailRounded } from "@mui/icons-material";
+import { PersonRounded, CodeRounded, WorkRounded, AppsRounded, SchoolRounded, ArticleRounded, EmailRounded } from "@mui/icons-material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -58,19 +58,25 @@ const MobileBottomNav = () => {
     <Nav>
       <NavItems>
         <NavLink href="/about" className={activeSection === "about" ? "active" : ""} onClick={(e) => handleNavClick(e, "about")}>
-          <HomeRounded />
+          <PersonRounded />
         </NavLink>
         <NavLink href="/skills" className={activeSection === "skills" ? "active" : ""} onClick={(e) => handleNavClick(e, "skills")}>
-          <PersonRounded />
+          <CodeRounded />
         </NavLink>
         <NavLink href="/experience" className={activeSection === "experience" ? "active" : ""} onClick={(e) => handleNavClick(e, "experience")}>
           <WorkRounded />
         </NavLink>
         <NavLink href="/projects" className={activeSection === "projects" ? "active" : ""} onClick={(e) => handleNavClick(e, "projects")}>
-          <CodeRounded />
+          <AppsRounded />
+        </NavLink>
+        <NavLink href="/education" className={activeSection === "education" ? "active" : ""} onClick={(e) => handleNavClick(e, "education")}>
+          <SchoolRounded />
         </NavLink>
         <NavLink href="/contact" className={activeSection === "contact" ? "active" : ""} onClick={(e) => handleNavClick(e, "contact")}>
           <EmailRounded />
+        </NavLink>
+        <NavLink as={Link} href="/blog" className={activeSection === "blog" ? "active" : ""} onClick={() => setActiveSection("blog")}>
+          <ArticleRounded />
         </NavLink>
       </NavItems>
     </Nav>

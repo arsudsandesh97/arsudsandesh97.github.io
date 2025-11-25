@@ -16,7 +16,7 @@ import {
   MobileLink,
 } from "./NavbarStyledComponent";
 import { FaBars } from "react-icons/fa";
-import { Close, CloseRounded } from "@mui/icons-material";
+import { Close, CloseRounded, OpenInNew, Person, Code, Work, Apps, School, Article } from "@mui/icons-material";
 import { useTheme } from "styled-components";
 import { fetchBioDataClient } from "@/lib/api/supabase-client";
 
@@ -75,6 +75,9 @@ const Navbar = () => {
           <NavLink as={Link} href="/experience" onClick={(e) => handleNavClick(e, "experience")}>Experience</NavLink>
           <NavLink as={Link} href="/projects" onClick={(e) => handleNavClick(e, "projects")}>Projects</NavLink>
           <NavLink as={Link} href="/education" onClick={(e) => handleNavClick(e, "education")}>Education</NavLink>
+          <NavLink as={Link} href="/blog" style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            Blog <OpenInNew style={{ fontSize: '16px' }} />
+          </NavLink>
         </NavItems>
         <ButtonContainer>
           <GitHubButton
@@ -88,20 +91,23 @@ const Navbar = () => {
         </ButtonContainer>
         {isOpen && (
           <MobileMenu isOpen={isOpen}>
-            <MobileLink as={Link} href="/about" onClick={(e) => { handleNavClick(e, "about"); setIsOpen(false); }}>
-              About
+            <MobileLink as={Link} href="/about" onClick={(e) => { handleNavClick(e, "about"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Person style={{ color: theme.primary, fontSize: '20px' }} /> About
             </MobileLink>
-            <MobileLink as={Link} href="/skills" onClick={(e) => { handleNavClick(e, "skills"); setIsOpen(false); }}>
-              Skills
+            <MobileLink as={Link} href="/skills" onClick={(e) => { handleNavClick(e, "skills"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Code style={{ color: theme.primary, fontSize: '20px' }} /> Skills
             </MobileLink>
-            <MobileLink as={Link} href="/experience" onClick={(e) => { handleNavClick(e, "experience"); setIsOpen(false); }}>
-              Experience
+            <MobileLink as={Link} href="/experience" onClick={(e) => { handleNavClick(e, "experience"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Work style={{ color: theme.primary, fontSize: '20px' }} /> Experience
             </MobileLink>
-            <MobileLink as={Link} href="/projects" onClick={(e) => { handleNavClick(e, "projects"); setIsOpen(false); }}>
-              Projects
+            <MobileLink as={Link} href="/projects" onClick={(e) => { handleNavClick(e, "projects"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Apps style={{ color: theme.primary, fontSize: '20px' }} /> Projects
             </MobileLink>
-            <MobileLink as={Link} href="/education" onClick={(e) => { handleNavClick(e, "education"); setIsOpen(false); }}>
-              Education
+            <MobileLink as={Link} href="/education" onClick={(e) => { handleNavClick(e, "education"); setIsOpen(false); }} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <School style={{ color: theme.primary, fontSize: '20px' }} /> Education
+            </MobileLink>
+            <MobileLink as={Link} href="/blog" onClick={() => setIsOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Article style={{ color: theme.primary, fontSize: '20px' }} /> Blog
             </MobileLink>
             <GitHubButton
               style={{
@@ -109,6 +115,7 @@ const Navbar = () => {
                 background: `${theme.primary}`,
                 color: "white",
                 width: "max-content",
+                marginTop: "12px",
               }}
               href={bioData?.github}
               target="_blank"
@@ -125,4 +132,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
