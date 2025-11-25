@@ -1,7 +1,19 @@
-/** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
-
 const nextConfig = {
+  webpack(config, { isServer }) {
+    if (process.env.ANALYZE) {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          reportFilename: isServer
+            ? '../analyze/server.html'
+            : './analyze/client.html',
+          openAnalyzer: true,
+        })
+      );
+    }
+    return config;
+  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
@@ -11,7 +23,7 @@ const nextConfig = {
   },
   // Only use 'export' for production builds (GitHub Pages)
   // In dev, use default server rendering for dynamic routes
-  ...(isProd && { output: 'export' }),
+  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -66,7 +78,7 @@ const nextConfig = {
   poweredByHeader: false,
   // GitHub Pages configuration - only apply in production
   // For User Pages (username.github.io), basePath should be empty
-  ...(isProd && {
+  ...(process.env.NODE_ENV === 'production' && {
     // basePath: '',
     // assetPrefix: '',
   }),

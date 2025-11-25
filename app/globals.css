@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* Fonts are now loaded via Next.js font optimization in layout.js */
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
 }
 
 html {
@@ -14,7 +14,7 @@ html {
 body {
   margin: 0px !important;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
 }
 
 /* Scrollbar Styles */
@@ -70,5 +70,3 @@ img {
     scroll-behavior: auto !important;
   }
 }
-
-

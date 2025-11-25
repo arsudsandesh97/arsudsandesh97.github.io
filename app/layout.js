@@ -1,6 +1,23 @@
 import StyledComponentsRegistry from "./registry";
 import ThemeProviderWrapper from "@/components/ThemeProvider";
+import { Poppins, Space_Mono } from "next/font/google";
 import "./globals.css";
+
+// Optimize font loading with Next.js
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-space-mono',
+});
 
 export const metadata = {
   metadataBase: new URL('https://arsudsandesh97.github.io'),
@@ -101,26 +118,14 @@ export default function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${poppins.variable} ${spaceMono.variable}`}>
       <head>
         {/* Favicon links for better browser compatibility */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
         
         {/* Preconnect to external domains for faster loading */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://ogcljpmtozblkwdvycro.supabase.co" />
-        
-        {/* Optimized font loading with display=swap */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-        
-        {/* DNS Prefetch for external resources */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         
         {/* Structured Data for SEO */}
         <script

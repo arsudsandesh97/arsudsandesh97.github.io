@@ -1,21 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import ProjectDetails from "@/components/ProjectDetails";
 // import StarCanvas from "@/components/canvas/Stars";
 import { AnimatePresence } from "framer-motion";
 
 import MobileBottomNav from "@/components/MobileBottomNav";
+
+// Lazy load heavy components for better performance
+const ProjectDetails = lazy(() => import("@/components/ProjectDetails"));
+const Contact = lazy(() => import("@/components/Contact"));
+const Education = lazy(() => import("@/components/Education"));
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -92,20 +94,25 @@ export default function Home() {
           </Wrapper>
           <Projects openModal={openModal} setOpenModal={setOpenModal} />
           <Wrapper>
-            <Education />
-            <Contact />
+            <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+              <Education />
+            </Suspense>
+            <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+              <Contact />
+            </Suspense>
           </Wrapper>
           <Footer />
 
           {openModal.state && (
-            <ProjectDetails
-              openModal={openModal}
-              setOpenModal={setOpenModal}
-            />
+            <Suspense fallback={null}>
+              <ProjectDetails
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+              />
+            </Suspense>
           )}
         </div>
       </AnimatePresence>
     </Body>
   );
 }
-
