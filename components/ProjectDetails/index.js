@@ -95,6 +95,12 @@ const Date = styled.div`
 const ButtonGroup = styled.div`
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    gap: 8px;
+  }
 `;
 
 const ActionButton = styled.a`
@@ -108,6 +114,20 @@ const ActionButton = styled.a`
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    padding: 8px 14px;
+    font-size: 12px;
+    gap: 6px;
+    flex: 1 1 auto;
+    min-width: fit-content;
+    justify-content: center;
+    
+    svg {
+      font-size: 16px !important;
+    }
+  }
   
   ${({ $primary, theme }) => $primary ? `
     background: ${theme.primary};
