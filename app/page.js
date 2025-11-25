@@ -44,13 +44,27 @@ const Wrapper = styled.div`
       rgba(0, 70, 209, 0) 50%,
       rgba(0, 70, 209, 0.15) 100%
     );
-  width: 100%;
+  width: 100%,
   clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
 `;
 
 export default function Home() {
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   const pathname = usePathname();
+
+  // Register service worker for PWA support
+  useEffect(() => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          console.log('[SW] Registered successfully');
+        })
+        .catch((error) => {
+          console.error('[SW] Registration failed:', error);
+        });
+    }
+  }, []);
 
   useEffect(() => {
     // Handle scroll based on pathname
