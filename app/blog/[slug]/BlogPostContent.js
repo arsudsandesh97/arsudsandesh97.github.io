@@ -24,8 +24,8 @@ import {
   GitHub
 } from '@mui/icons-material';
 import BlogCard from '@/components/Blog/BlogCard';
-import { getBlogPostBySlug, incrementViews, getRelatedPosts } from '@/lib/supabase/blog';
-import { fetchBioDataClient } from '@/lib/api/supabase-client';
+import { incrementViews, getRelatedPosts } from '@/lib/supabase/blog';
+import { fetchBioDataClient, fetchBlogPostClient } from '@/lib/api/supabase-client';
 
 const AuthorSocials = styled.div`
   display: flex;
@@ -755,9 +755,9 @@ export default function BlogPostContent({ slug: propSlug }) {
       if (!slug) return;
       
       setLoading(true);
-      const fetchedPost = await getBlogPostBySlug(slug);
+      const { data: fetchedPost, error } = await fetchBlogPostClient(slug);
       
-      if (fetchedPost) {
+      if (fetchedPost && !error) {
         setPost(fetchedPost);
         
         // Increment views
