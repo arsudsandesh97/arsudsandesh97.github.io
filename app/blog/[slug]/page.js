@@ -2,6 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import BlogPostContent from './BlogPostContent';
 
+// Force static generation only - don't allow dynamic params at runtime
+// This is critical for static export (output: 'export' in next.config.js)
+export const dynamicParams = false;
+
 // This function generates static paths for all blog posts at build time
 export async function generateStaticParams() {
   console.log('=== Blog [slug] generateStaticParams START ===');
