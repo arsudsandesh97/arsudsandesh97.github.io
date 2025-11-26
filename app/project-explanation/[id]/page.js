@@ -10,8 +10,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   // Fetch the project data (not explanation) for metadata
-  const { fetchSingleProjectServer } = await import('@/lib/api/supabase');
-  const { data: project } = await fetchSingleProjectServer(params.id);
+  const { fetchSingleProject } = await import('@/lib/api/supabase');
+  const { data: project } = await fetchSingleProject(params.id);
 
   if (!project) {
     return {
