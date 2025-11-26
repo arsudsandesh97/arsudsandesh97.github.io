@@ -10,14 +10,32 @@ import { motion } from 'framer-motion';
 
 const Container = styled.div`
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.bg};
-  background-image: linear-gradient(
-    343.07deg,
-    rgba(132, 59, 206, 0.06) 5.71%,
-    rgba(132, 59, 206, 0) 64.83%
-  );
+  background: ${({ theme }) => theme.bg};
+  position: relative;
+  overflow-x: hidden;
   padding: 100px 0 60px 0;
   
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, ${({ theme }) => theme.primary}12 0%, transparent 60%),
+      radial-gradient(circle at 80% 70%, ${({ theme }) => theme.primary}08 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, ${({ theme }) => theme.primary}05 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: pulse 15s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
   @media (max-width: 768px) {
     padding: 80px 0 40px 0;
   }

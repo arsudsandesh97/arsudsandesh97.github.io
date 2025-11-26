@@ -4,6 +4,7 @@ import { CloseRounded, GitHub, LinkedIn, Launch, Visibility } from "@mui/icons-m
 import { Modal } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { slugify } from "@/lib/utils";
 
 const Container = styled.div`
   width: 100%;
@@ -312,7 +313,7 @@ const ProjectDetails = ({ openModal, setOpenModal }) => {
                     <Launch fontSize="small" /> View Dashboard
                   </ActionButton>
                 )}
-                <ActionButton $primary href={`/project-explanation/${project?.id}`}>
+                <ActionButton $primary href={`/project-explanation/${slugify(project?.title)}`}>
                   <Visibility fontSize="small" /> View Project
                 </ActionButton>
               </ButtonGroup>

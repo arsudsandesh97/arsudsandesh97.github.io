@@ -1,17 +1,19 @@
 import ProjectExplanationContent from "./ProjectExplanationContent";
-import { fetchProjectIds } from "@/lib/api/supabase";
+import { fetchProjectSlugs } from "@/lib/api/supabase";
 
 export async function generateStaticParams() {
-  const { data: projects } = await fetchProjectIds();
-  return (projects || []).map((project) => ({
-    id: project.id,
+  const { data: slugs } = await fetchProjectSlugs();
+  return (slugs || []).map((item) => ({
+    slug: item.slug,
   }));
 }
 
 export async function generateMetadata({ params }) {
   // Fetch the project data (not explanation) for metadata
-  const { fetchSingleProject } = await import('@/lib/api/supabase');
-  const { data: project } = await fetchSingleProject(params.id);
+  const { fetchProjectBySlug } = await import('@/lib/api/supabase');
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
+  const { data: project } = await fetchProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -40,21 +42,24 @@ export async function generateMetadata({ params }) {
 export default async function ProjectExplanationPage({ params }) {
   // Await params for Next.js 15+ compatibility
   const resolvedParams = await Promise.resolve(params);
-  const { id } = resolvedParams;
+  const { slug } = resolvedParams;
 
   // Fetch data server-side for instant loading
-  const { fetchSingleProject, fetchProjectExplanation } = await import('@/lib/api/supabase');
+  const { fetchProjectBySlug, fetchProjectExplanation } = await import('@/lib/api/supabase');
   
-  const [projectResult, explanationResult] = await Promise.all([
-    fetchSingleProject(id),
-    fetchProjectExplanation(id)
-  ]);
+  const { data: project } = await fetchProjectBySlug(slug);
+  
+  if (!project) {
+      return <div>Project not found</div>;
+  }
+
+  const { data: explanation } = await fetchProjectExplanation(project.id);
 
   return (
     <ProjectExplanationContent 
-      id={id} 
-      initialProject={projectResult.data}
-      initialExplanation={explanationResult.data}
+      id={project.id} 
+      initialProject={project}
+      initialExplanation={explanation}
     />
   );
 }

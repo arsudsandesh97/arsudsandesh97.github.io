@@ -3,6 +3,7 @@
 import React, { memo, useState, useCallback } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 const Card = styled.div`
   width: 100%;
@@ -468,7 +469,7 @@ const ProjectCards = memo(({ project, setOpenModal }) => {
                 Dashboard
               </ActionButton>
             )}
-            <Link href={`/project-explanation/${project.id}`} passHref legacyBehavior>
+            <Link href={`/project-explanation/${slugify(project.title)}`} passHref legacyBehavior>
               <ActionButton
                 $primary
                 onClick={(e) => e.stopPropagation()}

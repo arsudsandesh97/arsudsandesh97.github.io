@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaArrowUp, FaCopy, FaCheck } from "react-icons/fa";
+import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaArrowUp, FaCopy, FaCheck, FaListUl, FaTimes, FaSearchPlus } from "react-icons/fa";
 import { fetchSingleProjectClient, fetchProjectExplanationClient } from "@/lib/api/supabase-client";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -46,6 +46,77 @@ const ProgressBar = styled(motion.div)`
   background: linear-gradient(90deg, ${({ theme }) => theme.primary}, ${({ theme }) => theme.primary}80);
   z-index: 1000;
   box-shadow: 0 2px 10px ${({ theme }) => theme.primary}40;
+`;
+
+const HeroSection = styled.div`
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), ${({ theme }) => theme.bg});
+    z-index: 1;
+  }
+`;
+
+const HeroImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+  padding: 0 20px;
+  margin-top: 40px;
+`;
+
+const ProjectTitle = styled.h1`
+  font-size: 56px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 24px;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  line-height: 1.1;
+  
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+`;
+
+const ProjectTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+`;
+
+const ProjectTag = styled.span`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 `;
 
 const Header = styled.div`
@@ -148,21 +219,10 @@ const ActionBtn = styled(motion.a)`
 `;
 
 const MainContent = styled.div`
-  display: flex;
-  max-width: 1400px;
-  margin: 0 auto;
+  width: 100%;
   position: relative;
   z-index: 1;
-  padding: 40px;
-
-  @media (max-width: 1200px) {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
+  padding-bottom: 80px;
 `;
 
 const ArticleContainer = styled.div`
@@ -171,6 +231,8 @@ const ArticleContainer = styled.div`
 `;
 
 const MarkdownContainer = styled(motion.div)`
+  max-width: 1400px;
+  margin: -100px auto 0;
   background: ${({ theme }) => theme.card};
   border: 1px solid ${({ theme }) => theme.primary}18;
   border-radius: 28px;
@@ -181,10 +243,18 @@ const MarkdownContainer = styled(motion.div)`
     0 12px 48px rgba(0, 0, 0, 0.18),
     0 4px 16px rgba(0, 0, 0, 0.12),
     inset 0 1px 0 ${({ theme }) => theme.primary}12;
+  position: relative;
+  z-index: 10;
   
+  @media (max-width: 1400px) {
+    margin: -60px 20px 0;
+    padding: 60px;
+  }
+
   @media (max-width: 768px) {
-    padding: 24px 16px;
+    padding: 32px 20px;
     border-radius: 20px;
+    margin: -40px 16px 0;
   }
 
   /* Markdown Styling */
@@ -394,60 +464,72 @@ const MarkdownContainer = styled(motion.div)`
   }
 
   img {
+    width: 100%;
     max-width: 100%;
     height: auto;
-    border-radius: 20px;
+    max-height: 800px;
+    object-fit: contain;
+    border-radius: 12px;
     margin: 40px 0;
     box-shadow: 
       0 12px 48px rgba(0, 0, 0, 0.25),
       0 4px 16px rgba(0, 0, 0, 0.15);
+    background: ${({ theme }) => theme.bg};
+    border: 1px solid ${({ theme }) => theme.primary}20;
     
     @media (max-width: 768px) {
       margin: 24px 0;
-      border-radius: 12px;
+      border-radius: 8px;
     }
   }
 
   table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 36px 0;
-    font-size: 15.5px;
-    border-radius: 14px;
+    font-size: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    border: 1px solid ${({ theme }) => theme.primary}20;
 
     @media (max-width: 768px) {
       margin: 24px 0;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     th, td {
-      padding: 18px;
+      padding: 16px 20px;
       text-align: left;
-      border-bottom: 1px solid ${({ theme }) => theme.text_secondary}25;
-
+      border-bottom: 1px solid ${({ theme }) => theme.primary}15;
+      
       @media (max-width: 768px) {
-        padding: 12px;
+        padding: 12px 16px;
       }
     }
 
     th {
-      background: ${({ theme }) => theme.primary}22;
+      background: ${({ theme }) => theme.primary}15;
       color: ${({ theme }) => theme.text_primary};
       font-weight: 700;
-      font-size: 16px;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      position: sticky;
+      top: 0;
+    }
 
-      @media (max-width: 768px) {
-        font-size: 14px;
-      }
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:nth-child(even) {
+      background: ${({ theme }) => theme.primary}05;
     }
 
     tr:hover {
-      background: ${({ theme }) => theme.primary}08;
+      background: ${({ theme }) => theme.primary}10;
     }
   }
 
@@ -595,12 +677,101 @@ const LoadingContainer = styled.div`
   justify-content: center;
 `;
 
-const Spinner = styled(motion.div)`
-  width: 60px;
-  height: 60px;
-  border: 4px solid ${({ theme }) => theme.primary}20;
-  border-top-color: ${({ theme }) => theme.primary};
-  border-radius: 50%;
+const TocContainer = styled(motion.div)`
+  position: fixed;
+  top: 120px;
+  right: 40px;
+  width: 280px;
+  background: ${({ theme }) => theme.card}ee;
+  backdrop-filter: blur(20px);
+  border: 1px solid ${({ theme }) => theme.primary}20;
+  border-radius: 16px;
+  padding: 24px;
+  z-index: 90;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+
+  @media (max-width: 1600px) {
+    display: none;
+  }
+`;
+
+const TocTitle = styled.h4`
+  font-size: 16px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.text_primary};
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  svg { color: ${({ theme }) => theme.primary}; }
+`;
+
+const TocList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const TocItem = styled.li`
+  font-size: 14px;
+  color: ${({ theme, $active }) => $active ? theme.primary : theme.text_secondary};
+  cursor: pointer;
+  padding-left: ${({ $level }) => ($level - 1) * 12}px;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  font-weight: ${({ $active }) => $active ? 600 : 400};
+  border-left: 2px solid ${({ theme, $active }) => $active ? theme.primary : 'transparent'};
+  margin-left: -24px;
+  padding-left: ${({ $level }) => ($level - 1) * 12 + 22}px;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;
+
+const LightboxOverlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  padding: 40px;
+`;
+
+const LightboxImage = styled(motion.img)`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+`;
+
+const CodeHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: ${({ theme }) => theme.bg};
+  border-bottom: 1px solid ${({ theme }) => theme.primary}20;
+  border-radius: 16px 16px 0 0;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: ${({ theme }) => theme.text_secondary};
+`;
+
+const CodeLanguage = styled.span`
+  color: ${({ theme }) => theme.primary};
+  font-weight: 700;
+  text-transform: uppercase;
 `;
 
 export default function ProjectExplanationContent({ id, initialProject = null, initialExplanation = null }) {
@@ -681,19 +852,57 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const copyCode = (code) => {
-    navigator.clipboard.writeText(code);
-    toast.success('Code copied!', {
-      duration: 2000,
-      style: {
-        background: '#333',
-        color: '#fff',
+  const [toc, setToc] = useState([]);
+  const [activeId, setActiveId] = useState("");
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  // Generate TOC from markdown content
+  useEffect(() => {
+    if (!markdownContent) return;
+    
+    const headings = markdownContent.match(/^#{1,3} .+/gm);
+    if (headings) {
+      const tocItems = headings.map((heading, index) => {
+        const level = heading.match(/^#+/)[0].length;
+        const text = heading.replace(/^#+ /, '');
+        const id = text.toLowerCase().replace(/[^\w]+/g, '-');
+        return { id, text, level };
+      });
+      setToc(tocItems);
+    }
+  }, [markdownContent]);
+
+  // Intersection Observer for active TOC item
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
       },
-    });
+      { rootMargin: "-100px 0px -60% 0px" }
+    );
+
+    document.querySelectorAll('h1, h2, h3').forEach((elem) => observer.observe(elem));
+    return () => observer.disconnect();
+  }, [markdownContent]);
+
+  const scrollToHeading = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    }
   };
 
   // Custom renderer for code blocks with copy button
-  const CodeBlock = ({ children, ...props }) => {
+  const CodeBlock = ({ children, className, ...props }) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const language = match ? match[1] : 'text';
     const codeString = String(children).replace(/\n$/, '');
     const [copied, setCopied] = useState(false);
 
@@ -704,13 +913,56 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
     };
 
     return (
-      <pre>
-        <CopyButton onClick={handleCopy}>
-          {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
-        </CopyButton>
-        <code {...props}>{children}</code>
-      </pre>
+      <div style={{ position: 'relative', margin: '40px 0' }}>
+        <CodeHeader>
+          <CodeLanguage>{language}</CodeLanguage>
+          <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
+            {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
+          </CopyButton>
+        </CodeHeader>
+        <pre style={{ margin: 0, borderRadius: '0 0 16px 16px', borderTop: 'none' }}>
+          <code className={className} {...props}>
+            {children}
+          </code>
+        </pre>
+      </div>
     );
+  };
+
+  // Custom renderer for images with lightbox
+  const ImageRenderer = ({ src, alt }) => (
+    <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => setLightboxImage(src)}>
+      <img src={src} alt={alt} />
+      <div style={{ 
+        position: 'absolute', 
+        bottom: '20px', 
+        right: '20px', 
+        background: 'rgba(0,0,0,0.6)', 
+        color: 'white', 
+        padding: '8px', 
+        borderRadius: '8px',
+        pointerEvents: 'none'
+      }}>
+        <FaSearchPlus />
+      </div>
+    </div>
+  );
+
+  // Custom renderer for headings to add IDs
+  const HeadingRenderer = ({ level, children }) => {
+    const text = children?.[0] || '';
+    const id = typeof text === 'string' ? text.toLowerCase().replace(/[^\w]+/g, '-') : '';
+    const Tag = `h${level}`;
+    return <Tag id={id}>{children}</Tag>;
+  };
+
+  // Custom renderer for paragraphs to avoid <div> inside <p> (hydration error)
+  const ParagraphRenderer = ({ node, children, ...props }) => {
+    const hasImage = node?.children?.some((child) => child.type === "element" && child.tagName === "img");
+    if (hasImage) {
+      return <div {...props}>{children}</div>;
+    }
+    return <p {...props}>{children}</p>;
   };
 
   if (loading) {
@@ -808,6 +1060,20 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
         </HeaderActions>
       </Header>
 
+      {project && (
+        <HeroSection>
+          <HeroImage src={project.image} alt={project.title} />
+          <HeroContent>
+            <ProjectTitle>{project.title}</ProjectTitle>
+            <ProjectTags>
+              {project.tags?.map(tag => (
+                <ProjectTag key={tag}>{tag}</ProjectTag>
+              ))}
+            </ProjectTags>
+          </HeroContent>
+        </HeroSection>
+      )}
+
       <MainContent>
         <ArticleContainer ref={contentRef}>
           <MarkdownContainer
@@ -818,12 +1084,39 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                pre: CodeBlock,
+                code: CodeBlock,
+                img: ImageRenderer,
+                p: ParagraphRenderer,
+                h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
+                h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
+                h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
               }}
             >
               {markdownContent}
             </ReactMarkdown>
           </MarkdownContainer>
+
+          {toc.length > 0 && (
+            <TocContainer
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <TocTitle><FaListUl /> Contents</TocTitle>
+              <TocList>
+                {toc.map((item) => (
+                  <TocItem 
+                    key={item.id} 
+                    $level={item.level} 
+                    $active={activeId === item.id}
+                    onClick={() => scrollToHeading(item.id)}
+                  >
+                    {item.text}
+                  </TocItem>
+                ))}
+              </TocList>
+            </TocContainer>
+          )}
         </ArticleContainer>
       </MainContent>
 
@@ -838,6 +1131,39 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
           >
             <FaArrowUp />
           </ScrollToTop>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {lightboxImage && (
+          <LightboxOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxImage(null)}
+          >
+            <LightboxImage 
+              src={lightboxImage} 
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+            />
+            <button 
+              style={{ 
+                position: 'absolute', 
+                top: 40, 
+                right: 40, 
+                background: 'none', 
+                border: 'none', 
+                color: 'white', 
+                fontSize: 32, 
+                cursor: 'pointer' 
+              }}
+              onClick={() => setLightboxImage(null)}
+            >
+              <FaTimes />
+            </button>
+          </LightboxOverlay>
         )}
       </AnimatePresence>
     </Container>
