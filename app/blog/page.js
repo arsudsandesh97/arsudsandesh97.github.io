@@ -1,5 +1,5 @@
 import BlogClient from "./BlogClient";
-import { getAllBlogPosts, getAllTags, getFeaturedPosts } from "@/lib/supabase/blog";
+import { fetchAllBlogPosts, fetchAllTags, fetchFeaturedPosts } from "@/lib/api/supabase";
 
 export const metadata = {
   title: "Blog | Sandesh Arsud",
@@ -26,9 +26,9 @@ export const metadata = {
 export default async function BlogPage() {
   // Fetch data in parallel server-side
   const [allPostsData, tagsData, featuredData] = await Promise.all([
-    getAllBlogPosts(100, 0),
-    getAllTags(),
-    getFeaturedPosts(3)
+    fetchAllBlogPosts(100, 0),
+    fetchAllTags(),
+    fetchFeaturedPosts(3)
   ]);
 
   return (
