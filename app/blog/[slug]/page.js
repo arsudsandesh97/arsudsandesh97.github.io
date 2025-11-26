@@ -1,69 +1,58 @@
-import fs from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabase/client';
 import BlogPostContent from './BlogPostContent';
 
 // Force static generation only - don't allow dynamic params at runtime
 // This is critical for static export (output: 'export' in next.config.js)
 export const dynamicParams = false;
 
-// This function generates static paths for all blog posts at build time
+// Generate static paths for all published blog posts
 export async function generateStaticParams() {
-  console.log('=== Blog [slug] generateStaticParams START ===');
+  console.log('=== Blog [slug] generateStaticParams START (Supabase) ===');
   
   try {
-    // Read blogs data from the pre-generated JSON file
-    const blogsPath = path.join(process.cwd(), 'public', 'data', 'blogs.json');
-    console.log('Reading blogs from:', blogsPath);
-    console.log('File exists:', fs.existsSync(blogsPath));
-    
-    if (!fs.existsSync(blogsPath)) {
-      console.error('ERROR: blogs.json not found at:', blogsPath);
-      console.error('Make sure to run npm run generate-json before building');
+    // Fetch all published blog slugs directly from Supabase
+    // This avoids issues with local file system access in CI environments
+    const { data: posts, error } = await supabase
+      .from('blog_posts')
+      .select('slug')
+      .eq('published', true);
+
+    if (error) {
+      console.error('Error fetching slugs from Supabase:', error);
       return [];
     }
+
+    console.log(`Found ${posts?.length || 0} published posts`);
     
-    const blogsData = JSON.parse(fs.readFileSync(blogsPath, 'utf-8'));
-    const posts = blogsData.data || [];
+    const params = posts?.map((post) => ({
+      slug: post.slug,
+    })) || [];
     
-    console.log(`Found ${posts.length} blog post(s)`);
-    
-    // Filter only published posts
-    const publishedPosts = posts.filter(post => post.published === true);
-    console.log(`${publishedPosts.length} published post(s)`);
-    
-    // Generate params for each published post
-    const params = publishedPosts.map(post => {
-      console.log(`  - Generating static page for slug: "${post.slug}"`);
-      return {
-        slug: post.slug,
-      };
-    });
-    
-    console.log('Generated static params:', JSON.stringify(params, null, 2));
-    console.log('=== Blog [slug] generateStaticParams END ===');
-    
+    console.log('Generated params:', JSON.stringify(params, null, 2));
     return params;
   } catch (error) {
-    console.error('=== FATAL ERROR in generateStaticParams ===');
-    console.error('Error:', error.message);
-    console.error('Stack:', error.stack);
-    
-    // Return empty array to prevent build failure, but log the error
+    console.error('Exception in generateStaticParams:', error);
     return [];
   }
 }
 
-// Generate metadata for each blog post page
+// Generate metadata for each blog post
 export async function generateMetadata({ params }) {
   try {
-    // Import the getBlogPostBySlug function
-    const { getBlogPostBySlug } = await import('@/lib/supabase/blog');
-    
     // Await params for Next.js 15+ compatibility
     const resolvedParams = await Promise.resolve(params);
-    const post = await getBlogPostBySlug(resolvedParams.slug);
+    const slug = resolvedParams.slug;
+    
+    // Fetch post data directly from Supabase for metadata
+    const { data: post, error } = await supabase
+      .from('blog_posts')
+      .select('*')
+      .eq('slug', slug)
+      .eq('published', true)
+      .single();
 
-    if (!post) {
+    if (error || !post) {
+      console.error(`Error fetching post metadata for slug: ${slug}`, error);
       return {
         title: 'Post Not Found | Sandesh Arsud',
         description: 'The requested blog post was not found.',
@@ -73,7 +62,7 @@ export async function generateMetadata({ params }) {
     return {
       title: `${post.title} | Sandesh Arsud`,
       description: post.excerpt || post.title,
-      keywords: post.seo_keywords?.join(', ') || post.tags?.join(', ') || '',
+      keywords: post.seo_keywords || post.tags || [],
       authors: [{ name: post.author || 'Sandesh Arsud' }],
       openGraph: {
         title: post.title,
@@ -98,7 +87,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (error) {
-    console.error('Error generating metadata for blog post:', error);
+    console.error('Exception in generateMetadata:', error);
     return {
       title: 'Post Not Found | Sandesh Arsud',
       description: 'The requested blog post was not found.',
@@ -106,7 +95,6 @@ export async function generateMetadata({ params }) {
   }
 }
 
-// Main page component
 export default async function Page({ params }) {
   // Await params for Next.js 15+ compatibility and static generation
   const resolvedParams = await Promise.resolve(params);
