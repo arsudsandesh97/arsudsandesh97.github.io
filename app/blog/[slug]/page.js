@@ -2,18 +2,18 @@ import { getAllBlogPosts } from '@/lib/supabase/blog';
 import BlogPostContent from './BlogPostContent';
 
 export async function generateStaticParams() {
-  const fs = require('fs');
-  const path = require('path');
+  const { readFileSync, existsSync } = await import('fs');
+  const { join } = await import('path');
   
   console.log('=== generateStaticParams for blog posts STARTED ===');
   console.log('CWD:', process.cwd());
   
   try {
-    const filePath = path.join(process.cwd(), 'public', 'data', 'blogs.json');
+    const filePath = join(process.cwd(), 'public', 'data', 'blogs.json');
     console.log('Reading from:', filePath);
-    console.log('File exists?', fs.existsSync(filePath));
+    console.log('File exists?', existsSync(filePath));
     
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const fileContent = readFileSync(filePath, 'utf-8');
     const json = JSON.parse(fileContent);
     const posts = json.data || [];
     
