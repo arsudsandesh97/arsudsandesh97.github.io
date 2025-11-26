@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "a891953f-c722-4213-8086-90672073d034",
+      "title": "Power BI DAX Date and Time Cheatsheet For Reporting",
+      "slug": "power-bi-dax-date-and-time-cheatsheet",
+      "excerpt": "A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions",
+      "content": "# Power BI DAX Date and Time Cheatsheet: A Simple Guide for Faster, Accurate Reporting\n\nHave you ever missed a meeting or shown up late because you mixed up the date? It happens to all of us. In Power BI, those mistakes don’t just cause confusion. They break dashboards, distort KPIs, and slow down decision making.\n\nWhile working with DAX, I often found that **date and time functions** were the biggest source of errors. That’s what pushed me to create a clean, simple **DAX Date and Time Cheatsheet** that helps you get the right results without searching online for hours.\n\nThis cheatsheet is designed to be your quick reference for building reliable time intelligence in Power BI.\n\n---\n\n## What's inside\n\nBelow are some of the most useful DAX functions that every analyst should know. Each one in my cheatsheet includes syntax, an example using **21 Oct 2025**, and a practical use case so you can apply it immediately.\n\n### TODAY() and NOW()\nUse these to return the current date and current timestamp. Ideal for dynamic dashboards that need live updates.\n\n### YEAR(), MONTH(), DAY()\nExtract specific components from any date. Useful for grouping by year, filtering by month, or breaking down trends at the day level.\n\n### EOMONTH()\nInstantly get the last day of any month. Perfect for financial reporting and period end calculations.\n\n### DATEDIFF()\nCalculate the time difference between two dates in days, months, or years. Critical for age analysis, time-to-resolution metrics, and project tracking.\n\n### WEEKDAY() and WEEKNUM()\nFind the day of the week or the week number for scheduling, forecasting, or pattern analysis.\n\n### EDATE()\nMove forward or backward by a given number of months. Great for rolling forecasts and time comparisons like “same period last quarter.”\n\n---\n\n## Download the Cheatsheet\n\nWant to download the full DAX Date and Time Cheatsheet?  \nYou can get it directly from my LinkedIn post:\n\n**Download here:**  \nhttps://www.linkedin.com/posts/sandesharsud_dax-date-time-cheatsheet-sandesh-arsud-activity-7393487473726648320-g7fO\n\n---\n\n## Why I Built This Cheatsheet\n\nWhen I started learning DAX, I spent far too much time googling date formulas, reading scattered forums, and testing everything manually. Over time I realized that having a single, precise reference would save hours of effort and reduce reporting errors.\n\nSo I compiled all the essentials into one cheatsheet that helps me stay accurate, consistent, and fast while building dashboards.\n\nIt’s simple, practical, and something you can rely on whenever your date logic feels confusing.\n\n---\n\n## Final Tip\n\nSave this guide. You’ll find yourself using it every time you work with date and time in Power BI.\n\nIf you found this useful and want more content like this, feel free to follow my work and explore more projects on my portfolio\n",
+      "cover_image": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200",
+      "author": "Sandesh Arsud",
+      "published": true,
+      "published_at": "2025-11-25T10:16:29.187+00:00",
+      "created_at": "2025-11-25T06:55:15.520525+00:00",
+      "updated_at": "2025-11-25T10:17:05.299051+00:00",
+      "reading_time": 3,
+      "views": 0,
+      "tags": [
+        "Power BI DAX",
+        "Power BI"
+      ],
+      "category": "Power Bi",
+      "seo_title": "Power BI DAX Date and Time Cheatsheet | Essential Date and Time Functions Explained",
+      "seo_description": "Download a practical Power BI DAX Date and Time Cheatsheet that covers TODAY, NOW, EOMONTH, DATEDIFF, WEEKNUM, EDATE, and more. Learn how to use these functions with examples and real-world use cases to improve reporting accuracy.",
+      "seo_keywords": [
+        "Power BI DAX",
+        "DAX cheatsheet",
+        "date and time functions",
+        "Power BI date functions",
+        "DAX tutorial",
+        "business intelligence",
+        "Sandesh Arsud",
+        "data analytics",
+        "Power BI tips"
+      ],
+      "is_featured": false
+    }
+  ],
+  "generatedAt": "2025-11-26T07:03:42.411Z"
+}

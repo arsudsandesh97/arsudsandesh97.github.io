@@ -94,19 +94,20 @@ const Footer = () => {
     const getFooterData = async () => {
       try {
         setLoading(true);
-        // Fetch both bio and copyright data in parallel
-        const [bioResponse, copyrightResponse] = await Promise.all([
-          fetchBioData(),
-          fetchCopyrightData(),
-        ]);
-
-        if (!bioResponse.error && bioResponse.data) {
-          setFooterData(bioResponse.data);
+        
+        // 1. Fetch Bio Data (Uses CDN with Supabase fallback)
+        const { data } = await fetchBioData();
+        if (data) {
+          setFooterData(data);
+          console.log('✓ Loaded profile (footer) from CDN/Supabase');
         }
 
-        if (!copyrightResponse.error && copyrightResponse.data) {
-          setCopyrightData(copyrightResponse.data);
+        // 2. Fetch Copyright Data (Always Supabase for now)
+        const { data: copyright } = await fetchCopyrightData();
+        if (copyright) {
+          setCopyrightData(copyright);
         }
+
       } catch (error) {
         console.error("Error fetching footer data:", error);
       } finally {

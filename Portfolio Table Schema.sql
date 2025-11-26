@@ -290,31 +290,6 @@ Thanks for reading, and welcome to the journey!',
   true
 );
 
--- Verify the table was created successfully
-SELECT * FROM blog_posts LIMIT 5;
-
-
--- 1. Create the Subscribers Table
-create table if not exists public.subscribers (
-  id uuid default gen_random_uuid() primary key,
-  email text not null unique,
-  created_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-
--- 2. Enable Row Level Security (RLS) for Subscribers
-alter table public.subscribers enable row level security;
-
--- 3. Create RLS Policies for Subscribers
--- Allow anyone to insert (subscribe)
-create policy "Enable insert for everyone" 
-on public.subscribers for insert 
-with check (true);
-
--- Allow only service role (admin) to view subscribers
-create policy "Enable read for service role only" 
-on public.subscribers for select 
-using (auth.role() = 'service_role');
-
 -- 4. Add 'is_featured' column to 'blog_posts' table
 -- This allows you to mark specific posts as featured
 alter table public.blog_posts 

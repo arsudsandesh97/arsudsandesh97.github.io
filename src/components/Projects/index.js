@@ -226,11 +226,27 @@ const Projects = ({ openModal, setOpenModal }) => {
 
   useEffect(() => {
     const fetchProjectsData = async () => {
+      // Try loading from local JSON first
+      try {
+        const response = await fetch('/data/projects.json', {
+          cache: 'no-store',
+        });
+        
+        if (response.ok) {
+          const jsonData = await response.json();
+          console.log('✓ Loaded projects from local JSON');
+          setProjects(jsonData.data || []);
+          return;
+        }
+      } catch (error) {
+        console.warn('Local JSON not found, using Supabase');
+      }
+
+      // Fallback to Supabase
       const { data, error } = await fetchProjects();
       if (error) {
         console.error("Error fetching projects:", error);
       } else {
-        console.log("Project data:", data);
         setProjects(data);
       }
     };

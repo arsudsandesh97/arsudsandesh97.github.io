@@ -58,23 +58,33 @@ const HeroSection = () => {
     0
   ) || "?"}`;
 
-  // Prefetch and cache bio data
+  // Fetch bio data
   useEffect(() => {
-    const preFetchData = async () => {
-      const cachedData = sessionStorage.getItem("bioData");
-      if (cachedData) {
-        setBioData(JSON.parse(cachedData));
-        return;
+    const fetchBio = async () => {
+      // Try loading from local JSON first
+      try {
+        const response = await fetch('/data/profile.json', {
+          cache: 'no-store',
+        });
+        
+        if (response.ok) {
+          const jsonData = await response.json();
+          console.log('✓ Loaded profile from local JSON');
+          setBioData(jsonData.data || {});
+          return;
+        }
+      } catch (error) {
+        console.warn('Local JSON not found, using Supabase');
       }
 
+      // Fallback to Supabase
       const { data } = await fetchBioData();
       if (data) {
-        sessionStorage.setItem("bioData", JSON.stringify(data));
         setBioData(data);
       }
     };
 
-    preFetchData();
+    fetchBio();
   }, []);
 
   // Preload hero image

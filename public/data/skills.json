@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "id": "7e9dc64d-1c50-4386-968c-973f2cde6d78",
+      "title": "Languages",
+      "skills": [
+        {
+          "id": "4b27631a-c003-4a96-bcdf-c361bed30406",
+          "name": "SQL",
+          "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cg%20fill%3D%22%23FFDA44%22%3E%3Cpath%20d%3D%22M4.281%207.628A10.6%2010.6%200%200%200%208%208.225a10.6%2010.6%200%200%200%203.719-.597c.932-.364%201.263-.768%201.263-1V4.85a5.2%205.2%200%200%201-1.042.538A11.15%2011.15%200%200%201%208%206.039a11.2%2011.2%200%200%201-3.94-.65%205.15%205.15%200%200%201-1.04-.539v1.775c0%20.237.331.639%201.262%201.003Zm0%203.352c.422.161.857.285%201.3.371A12.5%2012.5%200%200%200%208%2011.577a12.5%2012.5%200%200%200%202.419-.226c.443-.085.878-.21%201.3-.37.932-.364%201.263-.768%201.263-1V8.286c-.27.162-.553.3-.846.412A11.75%2011.75%200%200%201%208%209.37a11.75%2011.75%200%200%201-4.136-.674%205.5%205.5%200%200%201-.845-.412V9.98c0%20.233.331.636%201.262%201ZM8%2015c2.75%200%204.982-.872%204.982-1.947v-1.419a5.25%205.25%200%200%201-.768.381l-.079.032c-1.326.471-2.727.7-4.135.675a11.7%2011.7%200%200%201-4.136-.675l-.078-.032a5.252%205.252%200%200%201-.768-.38v1.418C3.018%2014.128%205.25%2015%208%2015Z%22%2F%3E%3Cpath%20d%3D%22M8%204.894c2.751%200%204.982-.872%204.982-1.947C12.982%201.872%2010.752%201%208%201c-2.751%200-4.982.872-4.982%201.947%200%201.075%202.23%201.947%204.982%201.947Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+        },
+        {
+          "id": "bbb694e2-5bf2-4d1e-8c2e-c1d3efa0e8bd",
+          "name": "Python",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+        }
+      ]
+    },
+    {
+      "id": "4dd74129-791d-4de2-a935-e68f383172df",
+      "title": "Platforms And Tools",
+      "skills": [
+        {
+          "id": "0aecefac-62cb-4beb-8c54-d41bc3567bd0",
+          "name": "PyCharm",
+          "image": "https://resources.jetbrains.com/storage/logos/web/pycharm/pycharm.svg"
+        },
+        {
+          "id": "539ce735-ba2b-4b27-95e9-a3d26be19984",
+          "name": "Google Colab",
+          "image": "https://colab.research.google.com/img/colab_favicon_256px.png"
+        },
+        {
+          "id": "c546b683-02be-4b61-b582-6de2a78349ab",
+          "name": "Jupyter Notebook",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png"
+        }
+      ]
+    },
+    {
+      "id": "2b3b8000-f21b-4113-ae0c-d67be8730c0b",
+      "title": "Data Manipulation",
+      "skills": [
+        {
+          "id": "0ebee47b-92fb-4041-9fa9-a09926149401",
+          "name": "Power Query Editor",
+          "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2216%22%20height%3D%2221%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2021%22%3E%3Cg%20clip-path%3D%22url(%23a)%22%3E%3Cmask%20id%3D%22c%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23c)%22%3E%3Cpath%20fill%3D%22url(%23d)%22%20d%3D%22M16%200v20.959H8.889V0H16Z%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22e%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23e)%22%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%20d%3D%22M11.556%206.2v14.846H4.444V5.327h6.223c.49%200%20.889.391.889.873%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22f%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23f)%22%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.18%22%20d%3D%22M11.556%206.55v14.846H4.444V5.676h6.223c.49%200%20.889.391.889.874%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22g%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23g)%22%3E%3Cpath%20fill%3D%22url(%23h)%22%20d%3D%22M11.556%206.113V20.96H4.444V5.239h6.223c.49%200%20.889.392.889.874%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22i%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23i)%22%3E%3Cpath%20fill%3D%22url(%23j)%22%20d%3D%22M0%2010.48v10.479h7.111v-9.606a.881.881%200%200%200-.889-.873H0Z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22d%22%20x1%3D%22311.773%22%20x2%3D%221075.26%22%20y1%3D%220%22%20y2%3D%221647.27%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23E6AD10%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23C87E0E%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%22289.759%22%20x2%3D%22927.313%22%20y1%3D%225.24%22%20y2%3D%221263.83%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23F6D751%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23E6AD10%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22j%22%20x1%3D%22197.504%22%20x2%3D%22584.868%22%20y1%3D%2210.48%22%20y2%3D%22944.902%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23F9E589%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F6D751%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath%20id%3D%22a%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M0%200h16v21H0z%22%2F%3E%3C%2FclipPath%3E%3Csymbol%20id%3D%22b%22%20width%3D%2216%22%20height%3D%2221%22%20viewBox%3D%220%200%2016%2021%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M8.889.873c0-.482.398-.873.889-.873h5.333c.491%200%20.889.391.889.873v19.213a.881.881%200%200%201-.889.873H.89a.881.881%200%200%201-.89-.873v-8.733c0-.482.398-.873.889-.873h3.555V6.113c0-.482.398-.873.89-.873h3.555V.873Z%22%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3C%2Fsvg%3E"
+        },
+        {
+          "id": "2cac5ea6-57cf-4202-919c-e65cb048e82f",
+          "name": "Numpy",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg"
+        },
+        {
+          "id": "c9b057d1-ae38-49c1-b0cc-83a67b331b5e",
+          "name": "Pandas",
+          "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cg%20clip-path%3D%22url(%23a)%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M9.961.65v7.473h1.083V.649H9.961Zm-3.406.584v2.249h1.083V1.234H6.554Zm-1.74%201.849v7.474h1.083V3.083H4.815Zm3.443.003v2.248h1.083V3.086H8.258ZM6.555%204.139V5.2h1.083V4.14H6.554Zm0%201.714V8.1h1.083V5.853H6.554Zm1.703.138v1.06h1.083v-1.06H8.258Zm0%201.717v2.248h1.083V7.708H8.258Zm1.999%203.466v1.194a1.03%201.03%200%200%200-.81-.374c-.615%200-1.067.515-1.067%201.198%200%20.683.453%201.198%201.067%201.198.321%200%20.657-.147.846-.425l.022.363h.551v-3.153h-.61Zm4.855.815c-.615%200-.893.337-.893.693%200%20.32.2.615.756.736.31.074.484.131.484.294%200%20.19-.169.263-.41.263-.337%200-.615-.142-.8-.253l-.099.422c.275.166.589.255.91.258.582%200%20.94-.3.94-.787%200-.305-.242-.584-.84-.71-.242-.057-.4-.126-.4-.278%200-.137.12-.221.368-.221.232.004.458.07.656.19l.1-.402a1.704%201.704%200%200%200-.772-.206Zm-13.693.003c-.32%200-.657.147-.846.425l-.021-.36H0v3.294h.61v-1.335c.194.247.504.373.81.373.614%200%201.067-.515%201.067-1.198%200-.684-.453-1.199-1.068-1.199Zm2.5.002c-.616%200-1.068.515-1.068%201.198%200%20.683.453%201.198%201.067%201.198.32%200%20.657-.147.846-.426l.021.363h.552v-2.27h-.551l-.021.362a1.034%201.034%200%200%200-.846-.425Zm3.332%200c-.347%200-.688.194-.841.483l-.026-.42h-.559v2.269h.61v-1.267c0-.315.315-.577.604-.577.279%200%20.431.147.431.588v1.257h.611v-1.35c0-.563-.226-.983-.83-.983Zm5.039%200c-.616%200-1.068.516-1.068%201.199s.453%201.198%201.068%201.198c.32%200%20.657-.147.846-.426l.02.363h.554v-2.27h-.553l-.021.362a1.034%201.034%200%200%200-.846-.425Zm-11.06.451c.357%200%20.646.278.646.746%200%20.468-.289.746-.646.746-.357%200-.646-.278-.646-.746%200-.467.29-.746.646-.746Zm2.878%200c.357.002.646.28.646.747%200%20.467-.289.746-.646.746-.358%200-.646-.279-.646-.747%200-.467.29-.746.646-.746Zm5.53.002c.356%200%20.645.279.645.746%200%20.468-.288.747-.646.747-.357%200-.646-.279-.646-.747%200-.467.289-.746.646-.746Zm2.841%200c.358%200%20.647.279.647.746%200%20.468-.29.747-.647.747-.357%200-.646-.279-.646-.747%200-.467.289-.746.646-.746Z%22%2F%3E%3C%2Fg%3E%3Cdefs%3E%3CclipPath%20id%3D%22a%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M0%200h16v16H0z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3C%2Fsvg%3E"
+        }
+      ]
+    },
+    {
+      "id": "0b552937-8894-4be8-ac62-e4a2653cd390",
+      "title": "Data Analysis And Visualization Tools",
+      "skills": [
+        {
+          "id": "152ae9ea-fb74-4197-875d-ef790a5d5fb9",
+          "name": "Tableau",
+          "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAQlBMVEVHcExwmaVwmaVlgJtwmaXrkShwmaVah5vrkShah5vodizodizodixbZZFbZZFbZZFbZZHHIDYeRH7HIDYeRH4eRH76/o4UAAAAFXRSTlMAEPw7VXizePb2NP3ws1P8EHh49vNnJOVcAAAAr0lEQVR4AX3Q0RaFEBCF4Q1SCKT3f9WTuaE1R99FN/9iTHgRAmtSYkVpKbUCYwyATT42ANZitu/zyeNgccyco9mJodfCHsSyCIzIrnUOWM70nkdapQsBeK+iNgVgRKJOhU5LzWNMEYCQnYDzIQRPH4ecuvwZv6/9fhApZY61YnZd809o7V90jsVykQJSW7vv1iqLOY/Irk1pOVPFlKLikVY50+Nkq5BxkhkzV3LG7AcvlAr9NZNe3AAAAABJRU5ErkJggg=="
+        },
+        {
+          "id": "796f2253-0379-4054-8fcd-2d098af45d06",
+          "name": "Microsoft Excel",
+          "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20fill%3D%22%23185C37%22%20d%3D%22M9.79%207.675%204.256%206.7v7.205a.595.595%200%200%200%20.596.595h9.55a.595.595%200%200%200%20.598-.595V11.25L9.79%207.675Z%22%2F%3E%3Cpath%20fill%3D%22%2321A366%22%20d%3D%22M9.79%201.5H4.853a.595.595%200%200%200-.597.595V4.75L9.79%208l2.931.975L15%208V4.75L9.79%201.5Z%22%2F%3E%3Cpath%20fill%3D%22%23107C41%22%20d%3D%22M4.256%204.75H9.79V8H4.256V4.75Z%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M8.217%204.1H4.256v8.125h3.961a.6.6%200%200%200%20.597-.595V4.695a.6.6%200%200%200-.597-.595Z%22%20opacity%3D%22.1%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M7.891%204.425H4.256v8.125h3.635a.6.6%200%200%200%20.598-.596V5.02a.6.6%200%200%200-.598-.595Z%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M7.891%204.425H4.256V11.9h3.635a.6.6%200%200%200%20.598-.595V5.02a.6.6%200%200%200-.598-.596Z%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M7.566%204.425h-3.31V11.9h3.31a.6.6%200%200%200%20.597-.595V5.02a.6.6%200%200%200-.597-.596Z%22%20opacity%3D%22.2%22%2F%3E%3Cpath%20fill%3D%22url(%23a)%22%20d%3D%22M1.597%204.425h5.969a.597.597%200%200%201%20.597.596v5.958a.596.596%200%200%201-.597.596H1.597A.593.593%200%200%201%201%2010.98V5.02a.595.595%200%200%201%20.597-.595Z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22m2.85%209.937%201.256-1.942-1.15-1.931h.923L4.506%207.3c.058.117.1.204.12.262h.008a4.68%204.68%200%200%201%20.13-.273l.671-1.223h.85l-1.18%201.92%201.21%201.952H5.41l-.724-1.356A1.2%201.2%200%200%201%204.6%208.4h-.012a.85.85%200%200%201-.084.175l-.746%201.362H2.85Z%22%2F%3E%3Cpath%20fill%3D%22%2333C481%22%20d%3D%22M14.403%201.5H9.79v3.25H15V2.095a.594.594%200%200%200-.597-.595Z%22%2F%3E%3Cpath%20fill%3D%22%23107C41%22%20d%3D%22M9.79%208H15v3.25H9.79V8Z%22%2F%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%222.247%22%20x2%3D%226.916%22%20y1%3D%223.957%22%20y2%3D%2212.043%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%2318884F%22%2F%3E%3Cstop%20offset%3D%22.5%22%20stop-color%3D%22%23117E43%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230B6631%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3C%2Fsvg%3E"
+        },
+        {
+          "id": "eacefaf4-c783-42a8-ad4d-bad27924fb54",
+          "name": "Microsoft Power BI",
+          "image": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2216%22%20height%3D%2221%22%20fill%3D%22none%22%20viewBox%3D%220%200%2016%2021%22%3E%3Cg%20clip-path%3D%22url(%23a)%22%3E%3Cmask%20id%3D%22c%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23c)%22%3E%3Cpath%20fill%3D%22url(%23d)%22%20d%3D%22M16%200v20.959H8.889V0H16Z%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22e%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23e)%22%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.2%22%20d%3D%22M11.556%206.2v14.846H4.444V5.327h6.223c.49%200%20.889.391.889.873%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22f%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23f)%22%3E%3Cpath%20fill%3D%22%23000%22%20fill-opacity%3D%22.18%22%20d%3D%22M11.556%206.55v14.846H4.444V5.676h6.223c.49%200%20.889.391.889.874%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22g%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23g)%22%3E%3Cpath%20fill%3D%22url(%23h)%22%20d%3D%22M11.556%206.113V20.96H4.444V5.239h6.223c.49%200%20.889.392.889.874%22%2F%3E%3C%2Fg%3E%3Cmask%20id%3D%22i%22%20width%3D%2216%22%20height%3D%2221%22%20x%3D%220%22%20y%3D%220%22%20maskUnits%3D%22userSpaceOnUse%22%20style%3D%22mask-type%3Aluminance%22%3E%3Cuse%20xlink%3Ahref%3D%22%23b%22%2F%3E%3C%2Fmask%3E%3Cg%20mask%3D%22url(%23i)%22%3E%3Cpath%20fill%3D%22url(%23j)%22%20d%3D%22M0%2010.48v10.479h7.111v-9.606a.881.881%200%200%200-.889-.873H0Z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22d%22%20x1%3D%22311.773%22%20x2%3D%221075.26%22%20y1%3D%220%22%20y2%3D%221647.27%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23E6AD10%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23C87E0E%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22h%22%20x1%3D%22289.759%22%20x2%3D%22927.313%22%20y1%3D%225.24%22%20y2%3D%221263.83%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23F6D751%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23E6AD10%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22j%22%20x1%3D%22197.504%22%20x2%3D%22584.868%22%20y1%3D%2210.48%22%20y2%3D%22944.902%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20stop-color%3D%22%23F9E589%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23F6D751%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath%20id%3D%22a%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M0%200h16v21H0z%22%2F%3E%3C%2FclipPath%3E%3Csymbol%20id%3D%22b%22%20width%3D%2216%22%20height%3D%2221%22%20viewBox%3D%220%200%2016%2021%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M8.889.873c0-.482.398-.873.889-.873h5.333c.491%200%20.889.391.889.873v19.213a.881.881%200%200%201-.889.873H.89a.881.881%200%200%201-.89-.873v-8.733c0-.482.398-.873.889-.873h3.555V6.113c0-.482.398-.873.89-.873h3.555V.873Z%22%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3C%2Fsvg%3E"
+        }
+      ]
+    }
+  ],
+  "generatedAt": "2025-11-26T07:03:41.768Z"
+}

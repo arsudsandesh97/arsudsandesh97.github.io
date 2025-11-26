@@ -72,6 +72,23 @@ const Experience = () => {
 
   useEffect(() => {
     const getExperienceData = async () => {
+      // Try loading from local JSON first
+      try {
+        const response = await fetch('/data/experience.json', {
+          cache: 'no-store',
+        });
+        
+        if (response.ok) {
+          const jsonData = await response.json();
+          console.log('✓ Loaded experience from local JSON');
+          setExperiences(jsonData.data || []);
+          return;
+        }
+      } catch (error) {
+        console.warn('Local JSON not found, using Supabase');
+      }
+
+      // Fallback to Supabase
       const { data, error } = await fetchExperiences();
       if (!error && data) {
         setExperiences(data);
