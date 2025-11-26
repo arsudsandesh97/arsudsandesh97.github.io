@@ -9,8 +9,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const { getProjectExplanation } = await import('@/lib/api/server-fetch');
-  const project = await getProjectExplanation(params.id);
+  // Fetch the project data (not explanation) for metadata
+  const { fetchSingleProjectServer } = await import('@/lib/api/supabase');
+  const { data: project } = await fetchSingleProjectServer(params.id);
 
   if (!project) {
     return {
@@ -20,10 +21,10 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${project.title} | Project Explanation`,
-    description: project.short_description || `Detailed explanation of ${project.title}`,
+    description: project.description || `Detailed explanation of ${project.title}`,
     openGraph: {
       title: project.title,
-      description: project.short_description || `Detailed explanation of ${project.title}`,
+      description: project.description || `Detailed explanation of ${project.title}`,
       type: 'article',
       images: [
         {
