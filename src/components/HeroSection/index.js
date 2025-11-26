@@ -48,8 +48,8 @@ const Tilt = React.lazy(() =>
 const HeroBgAnimation = React.lazy(() => import("../HeroBgAnimation"));
 // const StarCanvas = React.lazy(() => import("../canvas/Stars"));
 
-const HeroSection = () => {
-  const [bioData, setBioData] = useState({});
+const HeroSection = ({ bioData: initialBioData }) => {
+  const [bioData, setBioData] = useState(initialBioData || {});
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const theme = useTheme();
@@ -58,8 +58,17 @@ const HeroSection = () => {
     0
   ) || "?"}`;
 
-  // Fetch bio data
+  // Update state if prop changes (though unlikely in static export)
   useEffect(() => {
+    if (initialBioData) {
+      setBioData(initialBioData);
+    }
+  }, [initialBioData]);
+
+  // Fetch bio data only if not provided via props
+  useEffect(() => {
+    if (initialBioData) return; // Skip if we have data
+
     const fetchBio = async () => {
       // Try loading from local JSON first
       try {
@@ -85,7 +94,7 @@ const HeroSection = () => {
     };
 
     fetchBio();
-  }, []);
+  }, [initialBioData]);
 
   // Preload hero image
   useEffect(() => {
