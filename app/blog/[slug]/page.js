@@ -66,6 +66,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function Page({ params }) {
-  return <BlogPostContent />;
+export default async function Page({ params }) {
+  // Await params for Next.js 15+ compatibility and static generation
+  const resolvedParams = await Promise.resolve(params);
+  return <BlogPostContent slug={resolvedParams.slug} />;
 }

@@ -713,7 +713,7 @@ const LoadingSkeleton = styled.div`
   }
 `;
 
-export default function BlogPostContent() {
+export default function BlogPostContent({ slug: propSlug }) {
   const params = useParams();
   const router = useRouter();
   const [post, setPost] = useState(null);
@@ -722,6 +722,9 @@ export default function BlogPostContent() {
   const [loading, setLoading] = useState(true);
   const [readingProgress, setReadingProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Use prop slug as fallback for static generation
+  const slug = propSlug || params?.slug;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -749,20 +752,20 @@ export default function BlogPostContent() {
 
   useEffect(() => {
     async function fetchPost() {
-      if (!params?.slug) return;
+      if (!slug) return;
       
       setLoading(true);
-      const fetchedPost = await getBlogPostBySlug(params.slug);
+      const fetchedPost = await getBlogPostBySlug(slug);
       
       if (fetchedPost) {
         setPost(fetchedPost);
         
         // Increment views
-        incrementViews(params.slug);
+        incrementViews(slug);
         
         // Fetch related posts
         if (fetchedPost.tags && fetchedPost.tags.length > 0) {
-          const related = await getRelatedPosts(params.slug, fetchedPost.tags, 3);
+          const related = await getRelatedPosts(slug, fetchedPost.tags, 3);
           setRelatedPosts(related);
         }
       }
@@ -777,7 +780,7 @@ export default function BlogPostContent() {
     }
     
     fetchPost();
-  }, [params?.slug]);
+  }, [slug]);
 
   const handleShare = async () => {
     if (navigator.share) {
