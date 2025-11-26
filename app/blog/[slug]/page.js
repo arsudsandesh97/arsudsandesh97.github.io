@@ -5,19 +5,33 @@ export async function generateStaticParams() {
   const fs = require('fs');
   const path = require('path');
   
+  console.log('=== generateStaticParams for blog posts STARTED ===');
+  console.log('CWD:', process.cwd());
+  
   try {
     const filePath = path.join(process.cwd(), 'public', 'data', 'blogs.json');
+    console.log('Reading from:', filePath);
+    console.log('File exists?', fs.existsSync(filePath));
+    
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const json = JSON.parse(fileContent);
     const posts = json.data || [];
     
-    console.log(`Generating ${posts.length} blog posts for static export`);
+    console.log('Blog posts found:', posts.length);
+    console.log('Blog slugs:', posts.map(p => p.slug));
     
-    return posts.map((post) => ({
+    const params = posts.map((post) => ({
       slug: post.slug,
     }));
+    
+    console.log('Returning params:', params);
+    console.log('=== generateStaticParams for blog posts FINISHED ===');
+    
+    return params;
   } catch (error) {
-    console.error('ERROR in generateStaticParams:', error);
+    console.error('=== ERROR in generateStaticParams ===');
+    console.error('Error:', error);
+    console.error('Stack:', error.stack);
     return [];
   }
 }
