@@ -266,16 +266,25 @@ const HomeLink = styled(Link)`
   }
 `;
 
-export default function BlogClient() {
-  const [posts, setPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
-  const [featuredPosts, setFeaturedPosts] = useState([]);
-  const [tags, setTags] = useState([]);
+export default function BlogClient({ initialPosts, initialTags, initialFeatured }) {
+  const [posts, setPosts] = useState(initialPosts || []);
+  const [filteredPosts, setFilteredPosts] = useState(initialPosts || []);
+  const [featuredPosts, setFeaturedPosts] = useState(initialFeatured || []);
+  const [tags, setTags] = useState(initialTags || []);
   const [selectedTag, setSelectedTag] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialPosts);
 
   useEffect(() => {
+    if (initialPosts) {
+      setPosts(initialPosts);
+      setFilteredPosts(initialPosts);
+      setTags(initialTags || []);
+      setFeaturedPosts(initialFeatured || []);
+      setLoading(false);
+      return;
+    }
+
     async function fetchData() {
       setLoading(true);
       
@@ -295,7 +304,7 @@ export default function BlogClient() {
     }
     
     fetchData();
-  }, []);
+  }, [initialPosts, initialTags, initialFeatured]);
 
   useEffect(() => {
     let filtered = posts;

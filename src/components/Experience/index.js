@@ -67,10 +67,15 @@ const TimelineSection = styled.div`
   gap: 12px;
 `;
 
-const Experience = () => {
-  const [experiences, setExperiences] = useState([]);
+const Experience = ({ initialData }) => {
+  const [experiences, setExperiences] = useState(initialData || []);
 
   useEffect(() => {
+    if (initialData) {
+      setExperiences(initialData);
+      return;
+    }
+
     const getExperienceData = async () => {
       // Try loading from local JSON first
       try {
@@ -95,7 +100,7 @@ const Experience = () => {
       }
     };
     getExperienceData();
-  }, []);
+  }, [initialData]);
 
   return (
     <Container id="experience">

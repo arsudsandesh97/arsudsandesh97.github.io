@@ -139,12 +139,18 @@ const SkillImage = styled.img`
   }
 `;
 
-const Skills = () => {
-  const [skillsData, setSkillsData] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Skills = ({ initialData }) => {
+  const [skillsData, setSkillsData] = useState(initialData || []);
+  const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (initialData) {
+      setSkillsData(initialData);
+      setLoading(false);
+      return;
+    }
+
     const fetchSkills = async () => {
       try {
         setLoading(true);
@@ -179,7 +185,7 @@ const Skills = () => {
     };
 
     fetchSkills();
-  }, []);
+  }, [initialData]);
 
   // Animation variants
   const containerVariants = {

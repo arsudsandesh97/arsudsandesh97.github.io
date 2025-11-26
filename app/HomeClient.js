@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
 `;
 
-export default function HomeClient({ bioData }) {
+export default function HomeClient({ bioData, skills, experience, projects, education }) {
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   const pathname = usePathname();
 
@@ -94,19 +94,19 @@ export default function HomeClient({ bioData }) {
 
   return (
     <Body>
-      <Navbar />
+      <Navbar bioData={bioData} />
       <MobileBottomNav />
       <AnimatePresence>
         <div>
           <HeroSection bioData={bioData} />
           <Wrapper>
-            <Skills />
-            <Experience />
+            <Skills initialData={skills} />
+            <Experience initialData={experience} />
           </Wrapper>
-          <Projects openModal={openModal} setOpenModal={setOpenModal} />
+          <Projects openModal={openModal} setOpenModal={setOpenModal} initialData={projects} />
           <Wrapper>
             <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
-              <Education />
+              <Education initialData={education} />
             </Suspense>
             <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
               <Contact />

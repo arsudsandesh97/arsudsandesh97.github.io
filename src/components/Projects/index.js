@@ -172,9 +172,9 @@ const Divider = styled.div`
   }
 `;
 
-const Projects = ({ openModal, setOpenModal }) => {
+const Projects = ({ openModal, setOpenModal, initialData }) => {
   const [toggle, setToggle] = useState("All");
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(initialData || []);
   const toggleGroupRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -225,6 +225,11 @@ const Projects = ({ openModal, setOpenModal }) => {
   };
 
   useEffect(() => {
+    if (initialData) {
+      setProjects(initialData);
+      return;
+    }
+
     const fetchProjectsData = async () => {
       // Try loading from local JSON first
       try {
@@ -251,7 +256,7 @@ const Projects = ({ openModal, setOpenModal }) => {
       }
     };
     fetchProjectsData();
-  }, []);
+  }, [initialData]);
 
   const checkScroll = () => {
     if (toggleGroupRef.current) {

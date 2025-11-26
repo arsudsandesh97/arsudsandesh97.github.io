@@ -37,6 +37,24 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ProjectExplanationPage({ params }) {
-  return <ProjectExplanationContent id={params.id} />;
+export default async function ProjectExplanationPage({ params }) {
+  // Await params for Next.js 15+ compatibility
+  const resolvedParams = await Promise.resolve(params);
+  const { id } = resolvedParams;
+
+  // Fetch data server-side for instant loading
+  const { fetchSingleProject, fetchProjectExplanation } = await import('@/lib/api/supabase');
+  
+  const [projectResult, explanationResult] = await Promise.all([
+    fetchSingleProject(id),
+    fetchProjectExplanation(id)
+  ]);
+
+  return (
+    <ProjectExplanationContent 
+      id={id} 
+      initialProject={projectResult.data}
+      initialExplanation={explanationResult.data}
+    />
+  );
 }

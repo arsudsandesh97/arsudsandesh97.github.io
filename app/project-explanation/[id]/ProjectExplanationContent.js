@@ -603,11 +603,11 @@ const Spinner = styled(motion.div)`
   border-radius: 50%;
 `;
 
-export default function ProjectExplanationContent({ id }) {
+export default function ProjectExplanationContent({ id, initialProject = null, initialExplanation = null }) {
   const router = useRouter();
-  const [project, setProject] = useState(null);
-  const [markdownContent, setMarkdownContent] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [project, setProject] = useState(initialProject);
+  const [markdownContent, setMarkdownContent] = useState(initialExplanation?.markdown_content || "");
+  const [loading, setLoading] = useState(!initialProject);
   const [error, setError] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -629,6 +629,19 @@ export default function ProjectExplanationContent({ id }) {
   }, []);
 
   useEffect(() => {
+    // If we have initial data, we don't need to fetch
+    if (initialProject) {
+      if (!initialProject) {
+        setError("Project not found");
+      } else if (!initialExplanation) {
+        // It's possible to have a project but no explanation yet
+        // We don't necessarily want to show an error, maybe just empty content or a message
+        // But if the server returned null for explanation, we can assume it's not there
+      }
+      setLoading(false);
+      return;
+    }
+
     const fetchData = async () => {
       try {
         setLoading(true);
@@ -662,7 +675,7 @@ export default function ProjectExplanationContent({ id }) {
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, [id, initialProject, initialExplanation]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

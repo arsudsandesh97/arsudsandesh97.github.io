@@ -46,10 +46,15 @@ const Title = styled.div`
   }
 `;
 
-const Education = () => {
-  const [educationData, setEducationData] = useState([]);
+const Education = ({ initialData }) => {
+  const [educationData, setEducationData] = useState(initialData || []);
 
   useEffect(() => {
+    if (initialData) {
+      setEducationData(initialData);
+      return;
+    }
+
     const fetchEducation = async () => {
       // Try loading from local JSON first
       try {
@@ -76,7 +81,7 @@ const Education = () => {
       }
     };
     fetchEducation();
-  }, []);
+  }, [initialData]);
 
   return (
     <Container id="education">

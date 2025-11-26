@@ -1,5 +1,11 @@
 import HomeClient from "./HomeClient";
-import { getBioData } from "@/lib/api/server-fetch";
+import { 
+  fetchBioData, 
+  fetchSkillsWithCategories, 
+  fetchExperiences, 
+  fetchProjects, 
+  fetchEducation 
+} from "@/lib/api/supabase";
 
 export const metadata = {
   title: "Sandesh Arsud | Data Analyst",
@@ -38,7 +44,28 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const bioData = await getBioData();
+  // Fetch all data in parallel for performance
+  const [
+    { data: bioData },
+    { data: skills },
+    { data: experience },
+    { data: projects },
+    { data: education }
+  ] = await Promise.all([
+    fetchBioData(),
+    fetchSkillsWithCategories(),
+    fetchExperiences(),
+    fetchProjects(),
+    fetchEducation()
+  ]);
 
-  return <HomeClient bioData={bioData} />;
+  return (
+    <HomeClient 
+      bioData={bioData} 
+      skills={skills}
+      experience={experience}
+      projects={projects}
+      education={education}
+    />
+  );
 }

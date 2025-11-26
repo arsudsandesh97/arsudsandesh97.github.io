@@ -20,14 +20,21 @@ import { Close, CloseRounded, OpenInNew, Person, Code, Work, Apps, School, Artic
 import { useTheme } from "styled-components";
 import { fetchBioDataClient } from "@/lib/api/supabase-client";
 
-const Navbar = () => {
+const Navbar = ({ bioData: initialBioData }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [bioData, setBioData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [bioData, setBioData] = useState(initialBioData || null);
+  const [loading, setLoading] = useState(!initialBioData);
   const theme = useTheme();
   const pathname = usePathname();
 
   useEffect(() => {
+    // If we already have bioData from props, we don't need to fetch
+    if (initialBioData) {
+      setBioData(initialBioData);
+      setLoading(false);
+      return;
+    }
+
     const getBioData = async () => {
       try {
         setLoading(true);
@@ -42,7 +49,7 @@ const Navbar = () => {
       }
     };
     getBioData();
-  }, []);
+  }, [initialBioData]);
 
   // Handle navigation click
   const handleNavClick = (e, targetId) => {
