@@ -713,13 +713,13 @@ const LoadingSkeleton = styled.div`
   }
 `;
 
-export default function BlogPostContent({ slug: propSlug }) {
+export default function BlogPostContent({ slug: propSlug, initialPost = null }) {
   const params = useParams();
   const router = useRouter();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(initialPost);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [bioData, setBioData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialPost);
   const [readingProgress, setReadingProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -754,18 +754,25 @@ export default function BlogPostContent({ slug: propSlug }) {
     async function fetchPost() {
       if (!slug) return;
       
-      setLoading(true);
-      const { data: fetchedPost, error } = await fetchBlogPostClient(slug);
-      
-      if (fetchedPost && !error) {
-        setPost(fetchedPost);
+      // Only fetch if we don't have the post data yet
+      if (!post) {
+        setLoading(true);
+        const { data: fetchedPost, error } = await fetchBlogPostClient(slug);
         
-        // Increment views
+        if (fetchedPost && !error) {
+          setPost(fetchedPost);
+        }
+        setLoading(false);
+      }
+      
+      // Always increment views and fetch related data (these can happen in background)
+      if (post || slug) {
         incrementViews(slug);
         
-        // Fetch related posts
-        if (fetchedPost.tags && fetchedPost.tags.length > 0) {
-          const related = await getRelatedPosts(slug, fetchedPost.tags, 3);
+        // Use post tags if available, otherwise wait for fetch
+        const tags = post?.tags;
+        if (tags && tags.length > 0) {
+          const related = await getRelatedPosts(slug, tags, 3);
           setRelatedPosts(related);
         }
       }
@@ -775,12 +782,10 @@ export default function BlogPostContent({ slug: propSlug }) {
       if (bio) {
         setBioData(bio);
       }
-      
-      setLoading(false);
     }
     
     fetchPost();
-  }, [slug]);
+  }, [slug, post]);
 
   const handleShare = async () => {
     if (navigator.share) {

@@ -59,6 +59,9 @@ export default async function Page({ params }) {
   // Await params for Next.js 15+ compatibility
   const resolvedParams = await Promise.resolve(params);
   
-  // Pass the slug to the client component
-  return <BlogPostContent slug={resolvedParams.slug} />;
+  // Fetch the full post data server-side for instant loading (SSG)
+  const { data: post } = await fetchSingleBlogPost(resolvedParams.slug);
+  
+  // Pass the slug and the initial post data to the client component
+  return <BlogPostContent slug={resolvedParams.slug} initialPost={post} />;
 }
