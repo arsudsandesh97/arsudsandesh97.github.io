@@ -44,6 +44,9 @@ jobs:
           NEXT_PUBLIC_BLOGS_JSON_URL: ${{ secrets.NEXT_PUBLIC_BLOGS_JSON_URL }}
         run: npm run build
       
+      - name: Create .nojekyll file
+        run: touch ./out/.nojekyll
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
