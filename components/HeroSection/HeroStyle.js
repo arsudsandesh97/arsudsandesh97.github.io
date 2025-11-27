@@ -81,7 +81,7 @@ export const HeroLeftContainer = styled.div`
   }
 
   @media (max-width: 640px) {
-    order: 1; /* Prioritize text on mobile */
+    order: 2; /* Image first on mobile too */
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -107,7 +107,7 @@ export const HeroRightContainer = styled.div`
   }
 
   @media (max-width: 640px) {
-    order: 2; /* Image below text on mobile */
+    order: 1; /* Image first on mobile too */
     margin-bottom: 30px;
     justify-content: center;
   }
