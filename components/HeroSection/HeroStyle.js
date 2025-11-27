@@ -17,19 +17,16 @@ export const HeroContainer = styled.div`
   justify-content: center;
   position: relative;
   padding: 80px 30px;
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
+
   @media (max-width: 960px) {
     padding: 66px 16px;
   }
-  @media (max-width: 640px) {
-    padding: 32px 16px 80px 16px;
-  }
-  z-index: 1;
-
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
   
   @media (max-width: 640px) {
+    padding: 32px 16px 60px 16px;
     clip-path: none;
-    padding: 32px 16px 40px 16px;
   }
 `;
 
@@ -74,6 +71,7 @@ export const HeroInnerContainer = styled.div`
 export const HeroLeftContainer = styled.div`
   width: 100%;
   order: 1;
+  
   @media (max-width: 960px) {
     order: 2;
     margin-bottom: 30px;
@@ -83,7 +81,7 @@ export const HeroLeftContainer = styled.div`
   }
 
   @media (max-width: 640px) {
-    order: 2;
+    order: 1; /* Prioritize text on mobile */
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -100,6 +98,7 @@ export const HeroRightContainer = styled.div`
   order: 2;
   justify-content: end;
   gap: 12px;
+  
   @media (max-width: 960px) {
     order: 1;
     justify-content: center;
@@ -108,7 +107,9 @@ export const HeroRightContainer = styled.div`
   }
 
   @media (max-width: 640px) {
+    order: 2; /* Image below text on mobile */
     margin-bottom: 30px;
+    justify-content: center;
   }
 `;
 
@@ -120,21 +121,11 @@ export const Img = styled.img`
   max-width: 400px;
   max-height: 400px;
   object-fit: cover;
-  border: 4px solid ${({ theme }) => theme.primary + "20"};
-  padding: 8px;
-  background: linear-gradient(
-    225deg,
-    ${({ theme }) => theme.primary + "20"} 0%,
-    ${({ theme }) => theme.primary + "10"} 100%
-  );
-  box-shadow: 0 0 20px ${({ theme }) => theme.primary + "50"};
+  border: 2px solid ${({ theme }) => theme.primary + "50"}; /* Lighter border */
+  padding: 6px;
+  background: ${({ theme }) => theme.card_light};
+  box-shadow: 0 0 40px ${({ theme }) => theme.primary + "30"}; /* Softer shadow */
   transition: all 0.3s ease-in-out;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.primary + "50"};
-    box-shadow: 0 0 30px ${({ theme }) => theme.primary + "80"};
-    transform: scale(1.02);
-  }
 
   @media (max-width: 768px) {
     max-width: 300px;
@@ -142,8 +133,8 @@ export const Img = styled.img`
   }
 
   @media (max-width: 640px) {
-    max-width: 280px;
-    max-height: 280px;
+    max-width: 250px; /* Smaller on mobile */
+    max-height: 250px;
   }
 `;
 
@@ -151,19 +142,18 @@ export const Title = styled.div`
   font-weight: 700;
   font-size: 50px;
   color: ${({ theme }) => theme.text_primary};
-  line-height: 68px;
+  line-height: 1.2;
+  
   @media (max-width: 960px) {
     text-align: center;
   }
 
   @media (max-width: 640px) {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 40px; /* Increased for mobile */
+    line-height: 1.2;
     margin-bottom: 8px;
     width: 100%;
     max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
     padding: 0 4px;
   }
 `;
@@ -192,17 +182,20 @@ export const TextLoop = styled.div`
   display: flex;
   gap: 12px;
   color: ${({ theme }) => theme.text_primary};
-  line-height: 68px;
+  line-height: 1.5;
   flex-wrap: wrap;
   justify-content: flex-start;
+  min-height: 68px; /* Prevent layout shift */
+  
   @media (max-width: 960px) {
     text-align: center;
     justify-content: center;
   }
   @media (max-width: 640px) {
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 22px;
+    line-height: 1.5;
     margin-bottom: 16px;
+    min-height: 48px;
   }
 `;
 
@@ -266,9 +259,6 @@ export const CTAContainer = styled.div`
 `;
 
 export const ResumeButton = styled.a`
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
     text-decoration: none;
     flex: 1;
     text-align: center;
@@ -276,47 +266,47 @@ export const ResumeButton = styled.a`
     color:${({ theme }) => theme.white};
     border-radius: 50px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    transition: all 0.4s ease-in-out !important;
-    background: hsla(271, 100%, 50%, 1);
+    transition: all 0.3s ease;
+    background: ${({ theme }) => theme.primary};
     background: linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
     box-shadow: 0 4px 20px rgba(133, 76, 230, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    border: none;
     
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 30px rgba(133, 76, 230, 0.6);
         filter: brightness(1.1);
-    }    
+    }
+    
+    &:focus-visible {
+        outline: 2px solid ${({ theme }) => theme.text_primary};
+        outline-offset: 2px;
+    }
     
     @media (max-width: 640px) {
         width: 100%;
-        padding: 16px 24px;
+        padding: 14px 20px;
         font-size: 16px;
-        border-radius: 16px;
-        box-shadow: 0 4px 16px rgba(133, 76, 230, 0.3);
     } 
 `;
 
 export const ContactButton = styled.a`
-  appearance: button;
   text-decoration: none;
   flex: 1;
   text-align: center;
   padding: 16px 24px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   border-radius: 50px;
   color: ${({ theme }) => theme.primary};
-  background: ${({ theme }) => theme.card_light}50;
-  backdrop-filter: blur(10px);
-  border: 2px solid ${({ theme }) => theme.primary};
+  background: transparent;
+  border: 1.5px solid ${({ theme }) => theme.primary};
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -325,17 +315,19 @@ export const ContactButton = styled.a`
   gap: 8px;
   
   &:hover {
-    background: ${({ theme }) => theme.primary}20;
+    background: ${({ theme }) => theme.primary}10;
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px ${({ theme }) => theme.primary}40;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.text_primary};
+    outline-offset: 2px;
   }
 
   @media (max-width: 640px) {
     width: 100%;
-    padding: 16px 24px;
+    padding: 14px 20px;
     font-size: 16px;
-    border-radius: 16px;
-    background: ${({ theme }) => theme.card_light};
   }
 `;
 
@@ -343,21 +335,8 @@ export const FloatingImage = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: float 6s ease-in-out infinite;
   position: relative;
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.25));
-
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
 `;
 
 export const LoadingContainer = styled.div`

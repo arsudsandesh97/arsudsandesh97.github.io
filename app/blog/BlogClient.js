@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Search as SearchIcon, ArrowBack } from '@mui/icons-material';
-import BlogCard from '@/components/Blog/BlogCard';
+import { ArrowBack } from '@mui/icons-material';
 import { getAllBlogPosts, getAllTags, getFeaturedPosts } from '@/lib/supabase/blog';
 import { motion } from 'framer-motion';
+
+// Import subcomponents
+import HeroSection from '@/components/Blog/HeroSection';
+import SearchBar from '@/components/Blog/SearchBar';
+import TagPills from '@/components/Blog/TagPills';
+import FeaturedSection from '@/components/Blog/FeaturedSection';
+import BlogGrid from '@/components/Blog/BlogGrid';
+import EmptyState from '@/components/Blog/EmptyState';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -57,78 +64,12 @@ const InnerWrapper = styled.div`
   }
 `;
 
-const HeroSection = styled(motion.div)`
-  text-align: center;
+const Controls = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   margin-bottom: 60px;
-  position: relative;
-  padding: 20px 0;
-`;
-
-const Title = styled.h1`
-  font-size: 52px;
-  text-align: center;
-  font-weight: 700;
-  margin-top: 20px;
-  margin-bottom: 8px;
-  background: linear-gradient(
-    135deg,
-    ${({ theme }) => theme.text_primary} 0%,
-    ${({ theme }) => theme.primary} 50%,
-    ${({ theme }) => theme.text_primary} 100%
-  );
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  position: relative;
-  letter-spacing: -1px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, ${({ theme }) => theme.primary}, transparent);
-    border-radius: 2px;
-  }
-
-  @media (max-width: 768px) {
-      margin-top: 16px;
-      font-size: 38px;
-      letter-spacing: -0.5px;
-
-      &::after {
-        bottom: -8px;
-        width: 60px;
-        height: 3px;
-      }
-  }
-`;
-
-const Subtitle = styled.p`
-  font-size: 19px;
-  text-align: center;
-  max-width: 650px;
-  margin: 0 auto;
-  line-height: 1.6;
-  color: ${({ theme }) => theme.text_secondary};
-  margin-top: 24px;
-  letter-spacing: 0.2px;
-  font-weight: 400;
-  
-  @media (max-width: 768px) {
-    font-size: 17px;
-    margin-top: 20px;
-    max-width: 90%;
-    line-height: 1.5;
-  }
-`;
-
-const FeaturedSection = styled(motion.div)`
-  margin-bottom: 80px;
+  align-items: center;
 `;
 
 const SectionTitle = styled.h2`
@@ -138,116 +79,6 @@ const SectionTitle = styled.h2`
   margin-bottom: 24px;
   display: flex;
   align-items: center;
-`;
-
-const Controls = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-bottom: 60px;
-  align-items: center;
-`;
-
-const SearchBar = styled.div`
-  position: relative;
-  max-width: 500px;
-  width: 100%;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 16px 50px 16px 20px;
-  border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.primary + '25'};
-  background: ${({ theme }) => theme.card_light + '50'};
-  color: ${({ theme }) => theme.text_primary};
-  font-size: 16px;
-  transition: all 0.3s ease;
-  
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.primary};
-    background: ${({ theme }) => theme.card_light};
-  }
-  
-  &::placeholder {
-    color: ${({ theme }) => theme.text_secondary + '80'};
-  }
-`;
-
-const SearchIconWrapper = styled.div`
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: ${({ theme }) => theme.text_secondary};
-  pointer-events: none;
-`;
-
-const TagsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  max-width: 800px;
-`;
-
-const TagFilter = styled.button`
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme, $active }) => $active ? theme.primary : theme.primary + '25'};
-  background: ${({ theme, $active }) => $active ? theme.primary + '25' : 'transparent'};
-  color: ${({ theme, $active }) => $active ? theme.primary : theme.text_secondary};
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    border-color: ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.primary};
-    background: ${({ theme }) => theme.primary + '15'};
-  }
-`;
-
-const BlogGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-  gap: 32px;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-`;
-
-const EmptyState = styled.div`
-  text-align: center;
-  padding: 60px 20px;
-  color: ${({ theme }) => theme.text_secondary};
-  
-  h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: ${({ theme }) => theme.text_primary};
-  }
-  
-  p {
-    font-size: 16px;
-  }
-`;
-
-const LoadingSkeleton = styled.div`
-  background: ${({ theme }) => theme.card_light + '50'};
-  border-radius: 20px;
-  height: 400px;
-  animation: pulse 1.5s ease-in-out infinite;
-  border: 1px solid ${({ theme }) => theme.primary + '15'};
-  
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
 `;
 
 const HomeLink = styled(Link)`
@@ -286,17 +117,16 @@ const HomeLink = styled(Link)`
 
 export default function BlogClient({ initialPosts, initialTags, initialFeatured }) {
   const [posts, setPosts] = useState(initialPosts || []);
-  const [filteredPosts, setFilteredPosts] = useState(initialPosts || []);
   const [featuredPosts, setFeaturedPosts] = useState(initialFeatured || []);
   const [tags, setTags] = useState(initialTags || []);
   const [selectedTag, setSelectedTag] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(!initialPosts);
 
+  // Fetch data if not provided initially (client-side fallback)
   useEffect(() => {
     if (initialPosts) {
       setPosts(initialPosts);
-      setFilteredPosts(initialPosts);
       setTags(initialTags || []);
       setFeaturedPosts(initialFeatured || []);
       setLoading(false);
@@ -305,34 +135,34 @@ export default function BlogClient({ initialPosts, initialTags, initialFeatured 
 
     async function fetchData() {
       setLoading(true);
-      
-      // Fetch data in parallel
-      const [allPostsData, tagsData, featuredData] = await Promise.all([
-        getAllBlogPosts(100, 0),
-        getAllTags(),
-        getFeaturedPosts(3)
-      ]);
-      
-      setPosts(allPostsData.posts);
-      setFilteredPosts(allPostsData.posts);
-      setTags(tagsData);
-      setFeaturedPosts(featuredData);
-      
-      setLoading(false);
+      try {
+        const [allPostsData, tagsData, featuredData] = await Promise.all([
+          getAllBlogPosts(100, 0),
+          getAllTags(),
+          getFeaturedPosts(3)
+        ]);
+        
+        setPosts(allPostsData.posts || []);
+        setTags(tagsData || []);
+        setFeaturedPosts(featuredData || []);
+      } catch (error) {
+        console.error("Failed to fetch blog data:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     
     fetchData();
   }, [initialPosts, initialTags, initialFeatured]);
 
-  useEffect(() => {
+  // Filter posts based on search and tag
+  const filteredPosts = useMemo(() => {
     let filtered = posts;
     
-    // Filter by tag
     if (selectedTag) {
       filtered = filtered.filter(post => post.tags && post.tags.includes(selectedTag));
     }
     
-    // Filter by search query
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(post =>
@@ -342,112 +172,63 @@ export default function BlogClient({ initialPosts, initialTags, initialFeatured 
       );
     }
     
-    setFilteredPosts(filtered);
-  }, [selectedTag, searchQuery, posts]);
+    return filtered;
+  }, [posts, selectedTag, searchQuery]);
 
-  const handleTagClick = (tag) => {
+  const handleTagSelect = (tag) => {
     setSelectedTag(selectedTag === tag ? null : tag);
   };
 
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
+
+  const showFeatured = !loading && featuredPosts.length > 0 && !searchQuery && !selectedTag;
 
   return (
     <Container>
-      <HomeLink href="/">
+      <HomeLink href="/" aria-label="Back to Home">
         <ArrowBack style={{ fontSize: '20px' }} />
         Back to Home
       </HomeLink>
+      
       <Wrapper>
         <InnerWrapper>
-          <HeroSection
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Title>Blog</Title>
-            <Subtitle>
-              Thoughts, tutorials, and insights on development and design.
-            </Subtitle>
-          </HeroSection>
+          <HeroSection />
 
           <Controls
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <SearchBar>
-              <SearchInput
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={handleSearch}
-              />
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-            </SearchBar>
-
-            {tags.length > 0 && (
-              <TagsContainer>
-                {tags.map((tag) => (
-                  <TagFilter
-                    key={tag}
-                    $active={selectedTag === tag}
-                    onClick={() => handleTagClick(tag)}
-                  >
-                    {tag}
-                  </TagFilter>
-                ))}
-              </TagsContainer>
-            )}
+            <SearchBar onSearch={handleSearch} />
+            <TagPills 
+              tags={tags} 
+              selectedTag={selectedTag} 
+              onTagSelect={handleTagSelect} 
+            />
           </Controls>
 
-          {!loading && featuredPosts.length > 0 && !searchQuery && !selectedTag && (
-            <FeaturedSection
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <SectionTitle>Featured</SectionTitle>
-              <BlogGrid>
-                {featuredPosts.map((post) => (
-                  <BlogCard key={post.id} post={post} />
-                ))}
-              </BlogGrid>
-            </FeaturedSection>
+          {/* Live Region for Screen Readers */}
+          <div aria-live="polite" className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>
+            {loading ? 'Loading posts...' : `Showing ${filteredPosts.length} posts`}
+          </div>
+
+          {showFeatured && (
+            <FeaturedSection posts={featuredPosts} />
           )}
 
           <SectionTitle>
             {searchQuery || selectedTag ? 'Search Results' : 'Latest Posts'}
           </SectionTitle>
 
-          {loading ? (
-            <BlogGrid>
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <LoadingSkeleton key={i} />
-              ))}
-            </BlogGrid>
-          ) : filteredPosts.length > 0 ? (
-            <BlogGrid
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {filteredPosts.map((post) => (
-                <BlogCard key={post.id} post={post} />
-              ))}
-            </BlogGrid>
+          {filteredPosts.length > 0 || loading ? (
+            <BlogGrid posts={filteredPosts} loading={loading} />
           ) : (
-            <EmptyState>
-              <h3>No posts found</h3>
-              <p>
-                {searchQuery || selectedTag
-                  ? 'Try adjusting your search or filters'
-                  : 'Check back soon for new content!'}
-              </p>
-            </EmptyState>
+            <EmptyState 
+              message={searchQuery ? `No results for "${searchQuery}"` : "No posts found"}
+              subMessage={searchQuery || selectedTag ? "Try adjusting your search or filters" : "Check back soon for new content!"}
+            />
           )}
         </InnerWrapper>
       </Wrapper>

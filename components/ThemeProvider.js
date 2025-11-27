@@ -3,8 +3,6 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "@/utils/themes";
-import { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 // Create Theme Context
 const ThemeContext = createContext();
@@ -42,12 +40,7 @@ export default function ThemeProviderWrapper({ children }) {
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       <ThemeProvider theme={theme}>
-        <SkeletonTheme 
-          baseColor={isDarkMode ? "#202020" : "#ebebeb"} 
-          highlightColor={isDarkMode ? "#444" : "#f5f5f5"}
-        >
-          {children}
-        </SkeletonTheme>
+        {children}
       </ThemeProvider>
     </ThemeContext.Provider>
   );

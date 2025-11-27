@@ -63,7 +63,7 @@ const Navbar = () => {
           window.history.pushState(null, "", "/");
         }}>
           <h3 style={{ color: `white` }}>
-            {loading ? "Loading..." : bioData?.name || "Portfolio"}
+            {loading ? "Sandesh Arsud" : bioData?.name || "Sandesh Arsud"}
           </h3>
         </NavLogo>
         <MobileIcon>

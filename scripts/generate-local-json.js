@@ -20,7 +20,35 @@ const SECTIONS = {
   },
   projects: async () => {
     const { data } = await supabase.from('projects').select('*, members(*), associations(*)');
-    return data;
+    
+    // Optimize data size by selecting only used fields and removing heavy base64 images
+    return (data || []).map(project => ({
+      id: project.id,
+      title: project.title,
+      date: project.date,
+      description: project.description,
+      description2: project.description2,
+      description3: project.description3,
+      image: project.image,
+      tags: project.tags,
+      category: project.category,
+      github: project.github,
+      dashboard: project.dashboard,
+      members: (project.members || []).map(m => ({
+        id: m.id,
+        name: m.name,
+        // Remove base64 images to save space, frontend handles fallback
+        img: (m.img && m.img.startsWith('data:')) ? null : m.img,
+        github: m.github,
+        linkedin: m.linkedin
+      })),
+      associations: (project.associations || []).map(a => ({
+        id: a.id,
+        name: a.name,
+        // Remove base64 images to save space
+        img: (a.img && a.img.startsWith('data:')) ? null : a.img
+      }))
+    }));
   },
   skills: async () => {
     const { data: categories } = await supabase.from('skill_categories').select('*').order('id', { ascending: false });
@@ -34,7 +62,8 @@ const SECTIONS = {
         .map(skill => ({
           id: skill.id,
           name: skill.name,
-          image: skill.image,
+          // Remove base64 images to save space
+          image: (skill.image && skill.image.startsWith('data:')) ? null : skill.image,
         })),
     }));
   },

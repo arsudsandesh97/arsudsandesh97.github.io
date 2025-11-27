@@ -1,15 +1,27 @@
 // Service Worker for PWA - Performance Optimization
 // Cache-first strategy for static assets, Network-first for API calls
 
-const CACHE_NAME = 'sandesh-portfolio-v1';
-const RUNTIME_CACHE = 'runtime-cache-v1';
+const CACHE_NAME = 'sandesh-portfolio-v2';
+const RUNTIME_CACHE = 'runtime-cache-v2';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
   '/',
   '/offline.html',
   '/manifest.json',
+  '/favicon.ico',
 ];
+
+// Limit cache size to prevent excessive storage usage
+const limitCacheSize = (name, size) => {
+  caches.open(name).then((cache) => {
+    cache.keys().then((keys) => {
+      if (keys.length > size) {
+        cache.delete(keys[0]).then(() => limitCacheSize(name, size));
+      }
+    });
+  });
+};
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
@@ -52,7 +64,7 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip cross-origin requests
+  // Skip cross-origin requests (except Supabase images if needed, but usually better to let browser handle)
   if (url.origin !== location.origin) {
     return;
   }
@@ -62,27 +74,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Network-first strategy for API calls (Supabase)
-  if (url.hostname.includes('supabase.co')) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          // Clone the response before caching
-          const responseToCache = response.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => {
-            cache.put(request, responseToCache);
-          });
-          return response;
-        })
-        .catch(() => {
-          // Return cached version if network fails
-          return caches.match(request);
-        })
-    );
-    return;
-  }
-
   // Cache-first strategy for static assets (JS, CSS, images, fonts)
+  // These usually have hashed filenames in Next.js, so they are immutable.
   if (
     request.destination === 'script' ||
     request.destination === 'style' ||
@@ -92,23 +85,21 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
         if (cachedResponse) {
-          // Return cached version and update cache in background
-          fetch(request).then((response) => {
-            caches.open(RUNTIME_CACHE).then((cache) => {
-              cache.put(request, response);
-            });
-          }).catch(() => {
-            // Ignore network errors in background update
-          });
           return cachedResponse;
         }
 
-        // If not in cache, fetch from network and cache it
         return fetch(request).then((response) => {
+          // Check if we received a valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
           const responseToCache = response.clone();
           caches.open(RUNTIME_CACHE).then((cache) => {
             cache.put(request, responseToCache);
+            limitCacheSize(RUNTIME_CACHE, 50); // Limit to 50 items
           });
+
           return response;
         });
       })
@@ -116,14 +107,15 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for HTML pages
-  if (request.destination === 'document') {
+  // Stale-while-revalidate for HTML pages (navigation)
+  if (request.mode === 'navigate') {
     event.respondWith(
       caches.match(request).then((cachedResponse) => {
         const fetchPromise = fetch(request).then((response) => {
           const responseToCache = response.clone();
           caches.open(RUNTIME_CACHE).then((cache) => {
             cache.put(request, responseToCache);
+            limitCacheSize(RUNTIME_CACHE, 10); // Limit pages to 10
           });
           return response;
         }).catch(() => {
@@ -131,14 +123,13 @@ self.addEventListener('fetch', (event) => {
           return caches.match('/offline.html');
         });
 
-        // Return cached version immediately if available, fetch in background
         return cachedResponse || fetchPromise;
       })
     );
     return;
   }
 
-  // Default: network-first with cache fallback
+  // Default: Network first, fall back to cache
   event.respondWith(
     fetch(request)
       .then((response) => {
@@ -149,9 +140,7 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => {
-        return caches.match(request).then((cachedResponse) => {
-          return cachedResponse || caches.match('/offline.html');
-        });
+        return caches.match(request);
       })
   );
 });

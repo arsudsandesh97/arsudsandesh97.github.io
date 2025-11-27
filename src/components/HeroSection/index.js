@@ -1,8 +1,6 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 import styled, { useTheme } from "styled-components";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { fetchBioData } from "../../api/supabase";
 // import _default from "../../themes/default";
 import {
@@ -23,22 +21,8 @@ import {
   SubTitle,
   ResumeButton,
   FloatingImage,
-  LoadingContainer,
   ImageContainer,
 } from "./HeroStyle";
-
-// Styled components for skeletons
-const TextSkeleton = styled(Skeleton)`
-  height: 2em;
-  width: 200px;
-  margin-bottom: 1em;
-`;
-
-const ImageSkeleton = styled(Skeleton)`
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-`;
 
 // Lazy load non-critical components
 const Typewriter = React.lazy(() => import("typewriter-effect"));
@@ -128,35 +112,33 @@ const HeroSection = ({ bioData: initialBioData }) => {
               <HeroLeftContainer>
                 <motion.div {...headTextAnimation}>
                   <Title>
-                    {bioData.name ? (
+                    {bioData.name && (
                       <>
                         Hi, I am <br /> {bioData.name}
                       </>
-                    ) : (
-                      <TextSkeleton />
                     )}
                   </Title>
                   <TextLoop>
                     <Span>
-                      <Suspense fallback={<TextSkeleton />}>
-                        <Typewriter
-                          options={{
-                            strings: bioData.roles || [],
-                            autoStart: true,
-                            loop: true,
-                            delay: 50,
-                          }}
-                        />
+                      <Suspense fallback={null}>
+                        {bioData.roles && (
+                          <Typewriter
+                            options={{
+                              strings: bioData.roles || [],
+                              autoStart: true,
+                              loop: true,
+                              delay: 50,
+                            }}
+                          />
+                        )}
                       </Suspense>
                     </Span>
                   </TextLoop>
                 </motion.div>
 
                 <motion.div {...headContentAnimation}>
-                  {bioData.description ? (
+                  {bioData.description && (
                     <SubTitle>{bioData.description}</SubTitle>
-                  ) : (
-                    <TextSkeleton count={3} />
                   )}
                 </motion.div>
 
@@ -171,7 +153,7 @@ const HeroSection = ({ bioData: initialBioData }) => {
 
               <HeroRightContainer>
                 <motion.div {...headContentAnimation}>
-                  <Suspense fallback={<ImageSkeleton />}>
+                  <Suspense fallback={null}>
                     <Tilt options={{ max: 25, scale: 1.05 }}>
                       <FloatingImage
                         initial={{ opacity: 0, scale: 0.5, y: 20 }}
@@ -182,7 +164,7 @@ const HeroSection = ({ bioData: initialBioData }) => {
                           <Img
                             src={imageError ? placeholderImage : bioData.Image}
                             alt={bioData.name || "Profile"}
-                            loading="lazy"
+                            loading="eager"
                             width="400"
                             height="400"
                             onError={(e) => {

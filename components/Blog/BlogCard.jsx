@@ -2,10 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { CalendarMonth, AccessTime, Visibility } from '@mui/icons-material';
+import { CalendarMonth, AccessTime } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-const Card = styled(motion.div)`
+const Card = styled(motion.article)`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.card_light + "70"};
@@ -31,6 +32,11 @@ const Card = styled(motion.div)`
       0 24px 60px -10px ${({ theme }) => theme.primary + "50"},
       0 12px 30px -8px ${({ theme }) => theme.primary + "30"},
       inset 0 1px 1px ${({ theme }) => theme.primary + "25"};
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.primary};
+    outline-offset: 4px;
   }
 
   &::before {
@@ -85,15 +91,15 @@ const ImageContainer = styled.div`
   overflow: hidden;
   border-radius: 12px 12px 0 0;
   flex-shrink: 0;
+  background-color: ${({ theme }) => theme.card_light};
 `;
 
-const CoverImage = styled.div`
+const CoverImage = styled.img`
   width: 100%;
   height: 100%;
-  background-image: url(${({ $url }) => $url});
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
   
   ${Card}:hover & {
     transform: scale(1.1);
@@ -198,8 +204,9 @@ const Tag = styled.span`
   }
 `;
 
-export default function BlogCard({ post }) {
+const BlogCard = ({ post, featured = false }) => {
   const router = useRouter();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -210,20 +217,40 @@ export default function BlogCard({ post }) {
     });
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    // Allow opening in new tab with Ctrl/Cmd + Click
+    if (e.metaKey || e.ctrlKey) return;
+    e.preventDefault();
     router.push(`/blog/${post.slug}`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      router.push(`/blog/${post.slug}`);
+    }
   };
 
   return (
     <Card 
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="link"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
+      aria-label={`Read article: ${post.title}`}
     >
       {post.cover_image && (
         <ImageContainer>
-          <CoverImage $url={post.cover_image} />
+          <CoverImage 
+            src={post.cover_image} 
+            alt={post.title} 
+            loading="lazy"
+            onLoad={() => setImageLoaded(true)}
+            $loaded={imageLoaded}
+          />
           <ImageOverlay />
         </ImageContainer>
       )}
@@ -259,4 +286,6 @@ export default function BlogCard({ post }) {
       </Content>
     </Card>
   );
-}
+};
+
+export default React.memo(BlogCard);
