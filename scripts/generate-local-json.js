@@ -82,6 +82,10 @@ const SECTIONS = {
   'project-explanations': async () => {
     const { data } = await supabase.from('project_explanations').select('*');
     return data;
+  },
+  copyright: async () => {
+    const { data } = await supabase.from('copyright').select('copyright').single();
+    return data;
   }
 };
 

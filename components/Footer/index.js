@@ -5,7 +5,7 @@ import styled from "styled-components";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { fetchBioDataClient } from "@/lib/api/supabase-client";
+import { fetchBioDataClient, fetchCopyrightClient } from "@/lib/api/supabase-client";
 import { supabase } from "@/lib/supabase/client";
 
 const FooterContainer = styled.div`
@@ -99,7 +99,7 @@ const Footer = () => {
         // Fetch both bio and copyright data in parallel
         const [bioResponse, copyrightResponse] = await Promise.all([
           fetchBioDataClient(),
-          supabase.from("copyright").select("copyright").single(),
+          fetchCopyrightClient(),
         ]);
 
         if (!bioResponse.error && bioResponse.data) {
