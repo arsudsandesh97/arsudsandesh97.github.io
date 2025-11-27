@@ -128,13 +128,19 @@ const TimelineSection = styled.div`
   }
 `;
 
-const Experience = () => {
+const Experience = ({ initialData }) => {
   const theme = useTheme();
-  const [experiences, setExperiences] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [experiences, setExperiences] = useState(initialData || []);
+  const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (initialData) {
+      setExperiences(initialData);
+      setLoading(false);
+      return;
+    }
+
     const getExperienceData = async () => {
       try {
         setLoading(true);
@@ -164,7 +170,7 @@ const Experience = () => {
       }
     };
     getExperienceData();
-  }, []);
+  }, [initialData]);
 
 
 

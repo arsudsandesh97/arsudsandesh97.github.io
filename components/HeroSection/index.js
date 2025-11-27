@@ -32,8 +32,8 @@ import {
   ImageContainer,
 } from "./HeroStyle";
 
-const HeroSection = () => {
-  const [bioData, setBioData] = useState({});
+const HeroSection = ({ bioData: initialBioData }) => {
+  const [bioData, setBioData] = useState(initialBioData || {});
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const theme = useTheme();
@@ -43,9 +43,18 @@ const HeroSection = () => {
     bioData.name?.charAt(0) || "?"
   }`;
 
-  // Prefetch and cache bio data
+  // Update state if prop changes (though usually static for SSG)
+  useEffect(() => {
+    if (initialBioData) {
+      setBioData(initialBioData);
+    }
+  }, [initialBioData]);
+
+  // Prefetch and cache bio data (only if not provided or to refresh)
   useEffect(() => {
     const preFetchData = async () => {
+      if (initialBioData) return; // Skip if we have data from props
+
       if (typeof window !== "undefined") {
         const cachedData = sessionStorage.getItem("bioData");
         if (cachedData) {
@@ -64,7 +73,7 @@ const HeroSection = () => {
     };
 
     preFetchData();
-  }, []);
+  }, [initialBioData]);
 
   // Preload hero image
   useEffect(() => {

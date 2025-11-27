@@ -128,13 +128,19 @@ const TimelineSection = styled.div`
   }
 `;
 
-const Education = () => {
+const Education = ({ initialData }) => {
   const theme = useTheme();
-  const [educationData, setEducationData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [educationData, setEducationData] = useState(initialData || []);
+  const [loading, setLoading] = useState(!initialData);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (initialData) {
+      setEducationData(initialData);
+      setLoading(false);
+      return;
+    }
+
     const fetchEducation = async () => {
       try {
         setLoading(true);
@@ -164,7 +170,7 @@ const Education = () => {
       }
     };
     fetchEducation();
-  }, []);
+  }, [initialData]);
 
 
 

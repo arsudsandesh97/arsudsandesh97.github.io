@@ -206,10 +206,10 @@ const SkeletonElement = styled.div`
 `;
 
 
-const Projects = ({ openModal, setOpenModal }) => {
+const Projects = ({ openModal, setOpenModal, initialData }) => {
   const [toggle, setToggle] = useState("All");
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState(initialData || []);
+  const [loading, setLoading] = useState(!initialData);
   const toggleGroupRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -270,6 +270,12 @@ const Projects = ({ openModal, setOpenModal }) => {
   };
 
   useEffect(() => {
+    if (initialData) {
+      setProjects(initialData);
+      setLoading(false);
+      return;
+    }
+
     const fetchProjectsData = async () => {
       try {
         console.log("Starting to fetch projects, setting loading to true");
@@ -292,7 +298,7 @@ const Projects = ({ openModal, setOpenModal }) => {
       }
     };
     fetchProjectsData();
-  }, []);
+  }, [initialData]);
 
   const checkScroll = () => {
     if (toggleGroupRef.current) {
@@ -323,38 +329,37 @@ const Projects = ({ openModal, setOpenModal }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // TEMPORARILY DISABLED FOR DEBUGGING
-  // if (loading) {
-  //   return (
-  //     <Container id="projects">
-  //       <Wrapper>
-  //         <Title>Projects</Title>
-  //         <ToggleButtonGroup>
-  //           <SkeletonElement width="80px" height="40px" radius="12px" />
-  //           <Divider />
-  //           <SkeletonElement width="100px" height="40px" radius="12px" />
-  //           <Divider />
-  //           <SkeletonElement width="90px" height="40px" radius="12px" />
-  //         </ToggleButtonGroup>
-  //         <CardContainer>
-  //           {[1, 2, 3, 4, 5, 6].map((i) => (
-  //             <SkeletonCard key={i}>
-  //               <SkeletonElement height="200px" radius="12px" />
-  //               <SkeletonElement width="80%" height="24px" />
-  //               <SkeletonElement width="100%" height="16px" />
-  //               <SkeletonElement width="90%" height="16px" />
-  //               <div style={{ display: "flex", gap: "8px", marginTop: "auto" }}>
-  //                 <SkeletonElement width="60px" height="28px" radius="50px" />
-  //                 <SkeletonElement width="70px" height="28px" radius="50px" />
-  //                 <SkeletonElement width="65px" height="28px" radius="50px" />
-  //               </div>
-  //             </SkeletonCard>
-  //           ))}
-  //         </CardContainer>
-  //       </Wrapper>
-  //     </Container>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <Container id="projects">
+        <Wrapper>
+          <Title>Projects</Title>
+          <ToggleButtonGroup>
+            <SkeletonElement width="80px" height="40px" radius="12px" />
+            <Divider />
+            <SkeletonElement width="100px" height="40px" radius="12px" />
+            <Divider />
+            <SkeletonElement width="90px" height="40px" radius="12px" />
+          </ToggleButtonGroup>
+          <CardContainer>
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCard key={i}>
+                <SkeletonElement height="200px" radius="12px" />
+                <SkeletonElement width="80%" height="24px" />
+                <SkeletonElement width="100%" height="16px" />
+                <SkeletonElement width="90%" height="16px" />
+                <div style={{ display: "flex", gap: "8px", marginTop: "auto" }}>
+                  <SkeletonElement width="60px" height="28px" radius="50px" />
+                  <SkeletonElement width="70px" height="28px" radius="50px" />
+                  <SkeletonElement width="65px" height="28px" radius="50px" />
+                </div>
+              </SkeletonCard>
+            ))}
+          </CardContainer>
+        </Wrapper>
+      </Container>
+    );
+  }
 
   return (
     <Container id="projects">
