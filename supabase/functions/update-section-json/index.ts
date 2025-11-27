@@ -34,6 +34,7 @@ const TABLE_TO_SECTION: Record<string, string> = {
   associations: "projects", // Related to projects
   blog_posts: "blogs",
   project_explanations: "project-explanations",
+  copyright: "copyright",
 };
 
 serve(async (req) => {
@@ -368,6 +369,21 @@ async function fetchSectionData(supabase: any, section: string): Promise<any> {
       return { data: data || [], generatedAt };
     }
 
+    case "copyright": {
+      // Fetch copyright
+      const { data, error } = await supabase
+        .from("copyright")
+        .select("copyright")
+        .single();
+
+      if (error) {
+        console.error("Error fetching copyright:", error);
+        return null;
+      }
+
+      return { data, generatedAt };
+    }
+
     default:
       console.warn(`Unknown section: ${section}`);
       return null;
@@ -384,6 +400,7 @@ function getPathsForSections(sections: string[]): string[] {
     skills: ["/", "/skills"],
     experience: ["/", "/experience"],
     education: ["/", "/education"],
+    copyright: ["/"],
   };
 
   const paths = new Set<string>();
