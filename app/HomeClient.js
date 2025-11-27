@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";
 import Navbar from "@/components/Navbar";
@@ -11,11 +11,9 @@ import Footer from "@/components/Footer";
 import Experience from "@/components/Experience";
 import { AnimatePresence } from "framer-motion";
 import MobileBottomNav from "@/components/MobileBottomNav";
-
-// Lazy load heavy components for better performance
-const ProjectDetails = lazy(() => import("@/components/ProjectDetails"));
-const Contact = lazy(() => import("@/components/Contact"));
-const Education = lazy(() => import("@/components/Education"));
+import ProjectDetails from "@/components/ProjectDetails";
+import Contact from "@/components/Contact";
+import Education from "@/components/Education";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -80,7 +78,7 @@ export default function HomeClient({ bioData, skills, experience, projects, educ
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
           }
-        }, 300); // Increased timeout to ensure content is loaded
+        }, 100); // Reduced timeout since we removed lazy loading
         
         return () => clearTimeout(timeoutId);
       } else if (!section || section === '') {
@@ -105,22 +103,16 @@ export default function HomeClient({ bioData, skills, experience, projects, educ
           </Wrapper>
           <Projects openModal={openModal} setOpenModal={setOpenModal} initialData={projects} />
           <Wrapper>
-            <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
-              <Education initialData={education} />
-            </Suspense>
-            <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
-              <Contact />
-            </Suspense>
+            <Education initialData={education} />
+            <Contact />
           </Wrapper>
           <Footer />
 
           {openModal.state && (
-            <Suspense fallback={null}>
-              <ProjectDetails
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-              />
-            </Suspense>
+            <ProjectDetails
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+            />
           )}
         </div>
       </AnimatePresence>

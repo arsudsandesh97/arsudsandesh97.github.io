@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, LazyMotion, domAnimation } from "framer-motion";
 import styled, { useTheme } from "styled-components";
 import { fetchBioDataClient } from "@/lib/api/supabase-client";
 import { ArticleOutlined, Email } from "@mui/icons-material";
+import Typewriter from "typewriter-effect";
+import HeroBgAnimation from "../HeroBgAnimation";
+import StarCanvas from "../canvas/Stars";
+import SkillsShowcase from "./SkillsShowcase";
 import {
   headContainerAnimation,
   headContentAnimation,
@@ -27,12 +31,6 @@ import {
   FloatingImage,
   ImageContainer,
 } from "./HeroStyle";
-
-// Lazy load non-critical components
-const Typewriter = React.lazy(() => import("typewriter-effect"));
-const HeroBgAnimation = React.lazy(() => import("../HeroBgAnimation"));
-const StarCanvas = React.lazy(() => import("../canvas/Stars"));
-const SkillsShowcase = React.lazy(() => import("./SkillsShowcase"));
 
 const HeroSection = () => {
   const [bioData, setBioData] = useState({});
@@ -89,10 +87,8 @@ const HeroSection = () => {
       <div id="about">
         <HeroContainer>
           <HeroBg>
-            <Suspense fallback={null}>
-              {!shouldReduceMotion && <StarCanvas />}
-              <HeroBgAnimation />
-            </Suspense>
+            {!shouldReduceMotion && <StarCanvas />}
+            <HeroBgAnimation />
           </HeroBg>
 
           <motion.div {...headContainerAnimation}>
@@ -109,16 +105,14 @@ const HeroSection = () => {
                   <TextLoop aria-live="polite" aria-atomic="true">
                     I am a
                     <Span>
-                      <Suspense fallback={null}>
-                        <Typewriter
-                          options={{
-                            strings: bioData.roles || [],
-                            autoStart: true,
-                            loop: true,
-                            delay: 50,
-                          }}
-                        />
-                      </Suspense>
+                      <Typewriter
+                        options={{
+                          strings: bioData.roles || [],
+                          autoStart: true,
+                          loop: true,
+                          delay: 50,
+                        }}
+                      />
                     </Span>
                   </TextLoop>
                 </motion.div>
@@ -129,9 +123,7 @@ const HeroSection = () => {
                   )}
                 </motion.div>
 
-                <Suspense fallback={null}>
-                  <SkillsShowcase />
-                </Suspense>
+                <SkillsShowcase />
 
                 <CTAContainer>
                   <ResumeButton
@@ -151,51 +143,49 @@ const HeroSection = () => {
 
               <HeroRightContainer>
                 <motion.div {...headContentAnimation}>
-                  <Suspense fallback={null}>
-                    <FloatingImage
-                      initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                      animate={{ 
-                        opacity: 1, 
-                        scale: 1, 
-                        y: shouldReduceMotion ? 0 : [0, -20, 0] 
-                      }}
-                      transition={{ 
-                        duration: 0.8, 
-                        ease: "easeOut",
-                        y: {
-                          duration: 6,
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }
-                      }}
-                      whileHover={!shouldReduceMotion ? { 
-                        rotateX: 5, 
-                        rotateY: 5,
-                        scale: 1.05,
-                        transition: { duration: 0.2 }
-                      } : {}}
-                    >
-                      <ImageContainer>
-                        <Img
-                          src={imageError ? placeholderImage : bioData.Image}
-                          alt={bioData.name || "Profile"}
-                          loading="eager"
-                          fetchPriority="high"
-                          width="400"
-                          height="400"
-                          onError={(e) => {
-                            e.target.src = placeholderImage;
-                            setImageError(true);
-                          }}
-                          style={{
-                            opacity: imageLoaded ? 1 : 0,
-                            transition: "opacity 0.3s ease-in-out",
-                            backgroundColor: theme.card_light,
-                          }}
-                        />
-                      </ImageContainer>
-                    </FloatingImage>
-                  </Suspense>
+                  <FloatingImage
+                    initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1, 
+                      y: shouldReduceMotion ? 0 : [0, -20, 0] 
+                    }}
+                    transition={{ 
+                      duration: 0.8, 
+                      ease: "easeOut",
+                      y: {
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }
+                    }}
+                    whileHover={!shouldReduceMotion ? { 
+                      rotateX: 5, 
+                      rotateY: 5,
+                      scale: 1.05,
+                      transition: { duration: 0.2 }
+                    } : {}}
+                  >
+                    <ImageContainer>
+                      <Img
+                        src={imageError ? placeholderImage : bioData.Image}
+                        alt={bioData.name || "Profile"}
+                        loading="eager"
+                        fetchPriority="high"
+                        width="400"
+                        height="400"
+                        onError={(e) => {
+                          e.target.src = placeholderImage;
+                          setImageError(true);
+                        }}
+                        style={{
+                          opacity: imageLoaded ? 1 : 0,
+                          transition: "opacity 0.3s ease-in-out",
+                          backgroundColor: theme.card_light,
+                        }}
+                      />
+                    </ImageContainer>
+                  </FloatingImage>
                 </motion.div>
               </HeroRightContainer>
             </HeroInnerContainer>
