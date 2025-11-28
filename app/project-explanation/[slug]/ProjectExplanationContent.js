@@ -774,6 +774,108 @@ const CodeLanguage = styled.span`
   text-transform: uppercase;
 `;
 
+// Custom renderer for code blocks with copy button
+const CodeBlock = ({ children, className, ...props }) => {
+  const match = /language-(\w+)/.exec(className || '');
+  const language = match ? match[1] : 'text';
+  const codeString = String(children).replace(/\n$/, '');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeString);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div style={{ position: 'relative', margin: '40px 0' }}>
+      <CodeHeader>
+        <CodeLanguage>{language}</CodeLanguage>
+        <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
+          {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
+        </CopyButton>
+      </CodeHeader>
+      <pre style={{ margin: 0, borderRadius: '0 0 16px 16px', borderTop: 'none' }}>
+        <code className={className} {...props}>
+          {children}
+        </code>
+      </pre>
+    </div>
+  );
+};
+
+// Custom renderer for images with lightbox
+const ImageRenderer = ({ src, alt, onZoom }) => {
+  const [hasError, setHasError] = useState(false);
+
+  // Reset error state when src changes
+  useEffect(() => {
+    setHasError(false);
+  }, [src]);
+
+  if (hasError) {
+    return (
+      <div style={{ 
+        padding: '40px', 
+        background: 'rgba(255,255,255,0.05)', 
+        border: '1px dashed rgba(255,255,255,0.2)', 
+        borderRadius: '12px', 
+        textAlign: 'center',
+        margin: '40px 0',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <FaTimes style={{ fontSize: '24px', color: '#ff6b6b' }} />
+        <p style={{ color: '#ff6b6b', fontSize: '14px', margin: 0 }}>Failed to load image</p>
+        {alt && <p style={{ fontSize: '12px', color: '#888', margin: 0 }}>{alt}</p>}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => onZoom && onZoom(src)}>
+      <img 
+        src={src} 
+        alt={alt} 
+        onError={() => setHasError(true)}
+        loading="lazy"
+      />
+      <div style={{ 
+        position: 'absolute', 
+        bottom: '20px', 
+        right: '20px', 
+        background: 'rgba(0,0,0,0.6)', 
+        color: 'white', 
+        padding: '8px', 
+        borderRadius: '8px',
+        pointerEvents: 'none',
+        backdropFilter: 'blur(4px)'
+      }}>
+        <FaSearchPlus />
+      </div>
+    </div>
+  );
+};
+
+// Custom renderer for headings to add IDs
+const HeadingRenderer = ({ level, children }) => {
+  const text = children?.[0] || '';
+  const id = typeof text === 'string' ? text.toLowerCase().replace(/[^\w]+/g, '-') : '';
+  const Tag = `h${level}`;
+  return <Tag id={id}>{children}</Tag>;
+};
+
+// Custom renderer for paragraphs to avoid <div> inside <p> (hydration error)
+const ParagraphRenderer = ({ node, children, ...props }) => {
+  const hasImage = node?.children?.some((child) => child.type === "element" && child.tagName === "img");
+  if (hasImage) {
+    return <div {...props}>{children}</div>;
+  }
+  return <p {...props}>{children}</p>;
+};
+
 export default function ProjectExplanationContent({ id, initialProject = null, initialExplanation = null }) {
   const router = useRouter();
   const [project, setProject] = useState(initialProject);
@@ -783,6 +885,16 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const contentRef = useRef(null);
+
+  // Memoize components to prevent re-renders on scroll
+  const components = React.useMemo(() => ({
+    code: CodeBlock,
+    img: (props) => <ImageRenderer {...props} onZoom={setLightboxImage} />,
+    p: ParagraphRenderer,
+    h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
+    h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
+    h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
+  }), []); // Empty dependency array as setLightboxImage is stable from useState
 
   // Scroll progress
   useEffect(() => {
@@ -897,108 +1009,6 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
-  };
-
-  // Custom renderer for code blocks with copy button
-  const CodeBlock = ({ children, className, ...props }) => {
-    const match = /language-(\w+)/.exec(className || '');
-    const language = match ? match[1] : 'text';
-    const codeString = String(children).replace(/\n$/, '');
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = () => {
-      copyCode(codeString);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    };
-
-    return (
-      <div style={{ position: 'relative', margin: '40px 0' }}>
-        <CodeHeader>
-          <CodeLanguage>{language}</CodeLanguage>
-          <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
-            {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
-          </CopyButton>
-        </CodeHeader>
-        <pre style={{ margin: 0, borderRadius: '0 0 16px 16px', borderTop: 'none' }}>
-          <code className={className} {...props}>
-            {children}
-          </code>
-        </pre>
-      </div>
-    );
-  };
-
-  // Custom renderer for images with lightbox
-  const ImageRenderer = ({ src, alt }) => {
-    const [hasError, setHasError] = useState(false);
-
-    // Reset error state when src changes
-    useEffect(() => {
-      setHasError(false);
-    }, [src]);
-
-    if (hasError) {
-      return (
-        <div style={{ 
-          padding: '40px', 
-          background: 'rgba(255,255,255,0.05)', 
-          border: '1px dashed rgba(255,255,255,0.2)', 
-          borderRadius: '12px', 
-          textAlign: 'center',
-          margin: '40px 0',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '12px'
-        }}>
-          <FaTimes style={{ fontSize: '24px', color: '#ff6b6b' }} />
-          <p style={{ color: '#ff6b6b', fontSize: '14px', margin: 0 }}>Failed to load image</p>
-          {alt && <p style={{ fontSize: '12px', color: '#888', margin: 0 }}>{alt}</p>}
-        </div>
-      );
-    }
-
-    return (
-      <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => setLightboxImage(src)}>
-        <img 
-          src={src} 
-          alt={alt} 
-          onError={() => setHasError(true)}
-          loading="lazy"
-        />
-        <div style={{ 
-          position: 'absolute', 
-          bottom: '20px', 
-          right: '20px', 
-          background: 'rgba(0,0,0,0.6)', 
-          color: 'white', 
-          padding: '8px', 
-          borderRadius: '8px',
-          pointerEvents: 'none',
-          backdropFilter: 'blur(4px)'
-        }}>
-          <FaSearchPlus />
-        </div>
-      </div>
-    );
-  };
-
-  // Custom renderer for headings to add IDs
-  const HeadingRenderer = ({ level, children }) => {
-    const text = children?.[0] || '';
-    const id = typeof text === 'string' ? text.toLowerCase().replace(/[^\w]+/g, '-') : '';
-    const Tag = `h${level}`;
-    return <Tag id={id}>{children}</Tag>;
-  };
-
-  // Custom renderer for paragraphs to avoid <div> inside <p> (hydration error)
-  const ParagraphRenderer = ({ node, children, ...props }) => {
-    const hasImage = node?.children?.some((child) => child.type === "element" && child.tagName === "img");
-    if (hasImage) {
-      return <div {...props}>{children}</div>;
-    }
-    return <p {...props}>{children}</p>;
   };
 
   if (loading) {
@@ -1119,14 +1129,7 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              components={{
-                code: CodeBlock,
-                img: ImageRenderer,
-                p: ParagraphRenderer,
-                h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
-                h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
-                h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
-              }}
+              components={components}
             >
               {markdownContent}
             </ReactMarkdown>
