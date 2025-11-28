@@ -4,7 +4,7 @@ export default function robots() {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
+        disallow: ['/api/'],
       },
       // Allow AI crawlers specifically
       {
@@ -32,6 +32,6 @@ export default function robots() {
         allow: '/',
       },
     ],
-    sitemap: 'https://arsudsandesh97.github.io/sitemap-v2.xml',
+    sitemap: 'https://arsudsandesh97.github.io/sitemap.xml',
   };
 }
