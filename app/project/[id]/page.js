@@ -3,9 +3,11 @@ import ProjectContent from "./ProjectContent";
 
 export async function generateStaticParams() {
   const { data: projects } = await fetchProjectIds();
-  return (projects || []).map((project) => ({
-    id: project.id,
-  }));
+  return (projects || [])
+    .filter((project) => project.id && project.id.trim() !== '')
+    .map((project) => ({
+      id: project.id,
+    }));
 }
 
 export default function ProjectPage({ params }) {

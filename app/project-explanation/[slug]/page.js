@@ -3,9 +3,11 @@ import { fetchProjectSlugs } from "@/lib/api/supabase";
 
 export async function generateStaticParams() {
   const { data: slugs } = await fetchProjectSlugs();
-  return (slugs || []).map((item) => ({
-    slug: item.slug,
-  }));
+  return (slugs || [])
+    .filter((item) => item.slug && item.slug.trim() !== '')
+    .map((item) => ({
+      slug: item.slug,
+    }));
 }
 
 export async function generateMetadata({ params }) {

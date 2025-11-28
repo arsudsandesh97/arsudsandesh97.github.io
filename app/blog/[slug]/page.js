@@ -8,9 +8,11 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   const { data: posts } = await fetchBlogSlugs();
   
-  return (posts || []).map((post) => ({
-    slug: post.slug,
-  }));
+  return (posts || [])
+    .filter((post) => post.slug && post.slug.trim() !== '')
+    .map((post) => ({
+      slug: post.slug,
+    }));
 }
 
 // Generate metadata for each blog post
