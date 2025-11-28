@@ -930,23 +930,59 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
   };
 
   // Custom renderer for images with lightbox
-  const ImageRenderer = ({ src, alt }) => (
-    <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => setLightboxImage(src)}>
-      <img src={src} alt={alt} />
-      <div style={{ 
-        position: 'absolute', 
-        bottom: '20px', 
-        right: '20px', 
-        background: 'rgba(0,0,0,0.6)', 
-        color: 'white', 
-        padding: '8px', 
-        borderRadius: '8px',
-        pointerEvents: 'none'
-      }}>
-        <FaSearchPlus />
+  const ImageRenderer = ({ src, alt }) => {
+    const [hasError, setHasError] = useState(false);
+
+    // Reset error state when src changes
+    useEffect(() => {
+      setHasError(false);
+    }, [src]);
+
+    if (hasError) {
+      return (
+        <div style={{ 
+          padding: '40px', 
+          background: 'rgba(255,255,255,0.05)', 
+          border: '1px dashed rgba(255,255,255,0.2)', 
+          borderRadius: '12px', 
+          textAlign: 'center',
+          margin: '40px 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
+          <FaTimes style={{ fontSize: '24px', color: '#ff6b6b' }} />
+          <p style={{ color: '#ff6b6b', fontSize: '14px', margin: 0 }}>Failed to load image</p>
+          {alt && <p style={{ fontSize: '12px', color: '#888', margin: 0 }}>{alt}</p>}
+        </div>
+      );
+    }
+
+    return (
+      <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => setLightboxImage(src)}>
+        <img 
+          src={src} 
+          alt={alt} 
+          onError={() => setHasError(true)}
+          loading="lazy"
+        />
+        <div style={{ 
+          position: 'absolute', 
+          bottom: '20px', 
+          right: '20px', 
+          background: 'rgba(0,0,0,0.6)', 
+          color: 'white', 
+          padding: '8px', 
+          borderRadius: '8px',
+          pointerEvents: 'none',
+          backdropFilter: 'blur(4px)'
+        }}>
+          <FaSearchPlus />
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Custom renderer for headings to add IDs
   const HeadingRenderer = ({ level, children }) => {
