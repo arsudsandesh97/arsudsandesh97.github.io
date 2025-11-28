@@ -97,15 +97,16 @@ const ToggleButtonGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
   background: ${({ theme }) => theme.card};
   border: 1.5px solid ${({ theme }) => theme.primary + "40"};
   color: ${({ theme }) => theme.primary};
   font-size: 16px;
   border-radius: 16px;
-  padding: 8px;
+  padding: 12px;
   margin: 28px auto;
-  max-width: 800px;
+  max-width: 1100px;
   position: relative;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -115,6 +116,7 @@ const ToggleButtonGroup = styled.div`
     padding: 12px;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: nowrap;
   }
 `;
 
@@ -160,6 +162,7 @@ const ToggleButton = styled(motion.button).withConfig({
   overflow: hidden;
   transition: all 0.3s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 
   @media (max-width: 768px) {
     padding: 8px 16px;
@@ -170,8 +173,10 @@ const ToggleButton = styled(motion.button).withConfig({
 // Update the Divider styling
 const Divider = styled.div`
   width: 1.5px;
+  height: 24px;
   background: ${({ theme }) => theme.primary};
   flex-shrink: 0;
+  opacity: 0.5;
 
   @media (max-width: 768px) {
     height: 20px;
