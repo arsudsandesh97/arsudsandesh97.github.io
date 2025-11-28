@@ -103,20 +103,7 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Sandesh Arsud",
-    "url": "https://arsudsandesh97.github.io",
-    "image": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg",
-    "jobTitle": "Data Analyst",
-    "description": "Data Analytics Professional specializing in Business Intelligence, Data Science, Python, SQL, and Power BI",
-    "knowsAbout": ["Data Analytics", "Business Intelligence", "Data Science", "Python", "SQL", "Power BI", "Machine Learning", "Data Visualization"],
-    "sameAs": [
-      "https://github.com/arsudsandesh97",
-      "https://linkedin.com/in/sandesh-arsud"
-    ]
-  };
+
 
   return (
     <html lang="en" className={`${poppins.variable} ${spaceMono.variable}`}>
@@ -136,7 +123,47 @@ export default function RootLayout({ children }) {
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "name": "Sandesh Arsud",
+                  "givenName": "Sandesh",
+                  "familyName": "Arsud",
+                  "url": "https://arsudsandesh97.github.io",
+                  "image": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg",
+                  "jobTitle": "Data Analyst",
+                  "description": "Data Analytics Professional specializing in Business Intelligence, Data Science, Python, SQL, and Power BI",
+                  "knowsAbout": ["Data Analytics", "Business Intelligence", "Data Science", "Python", "SQL", "Power BI", "Machine Learning", "Data Visualization"],
+                  "alumniOf": [
+                    {
+                      "@type": "CollegeOrUniversity",
+                      "name": "International Center of Excellence in Engineering and Management"
+                    },
+                    {
+                      "@type": "EducationalOrganization",
+                      "name": "Nath Polytechnic"
+                    }
+                  ],
+                  "sameAs": [
+                    "https://github.com/arsudsandesh97",
+                    "https://www.linkedin.com/in/sandesharsud"
+                  ]
+                },
+                {
+                  "@type": "WebSite",
+                  "name": "Sandesh Arsud Portfolio",
+                  "url": "https://arsudsandesh97.github.io",
+                  "author": {
+                    "@type": "Person",
+                    "name": "Sandesh Arsud"
+                  }
+                }
+              ]
+            })
+          }}
         />
         
         {/* Google Site Verification */}

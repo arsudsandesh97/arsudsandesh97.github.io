@@ -39,7 +39,11 @@ export const metadata = {
       },
     ],
     locale: "en_US",
-    type: "website",
+    type: "profile",
+    firstName: "Sandesh",
+    lastName: "Arsud",
+    username: "arsudsandesh97",
+    gender: "male",
   },
 };
 
