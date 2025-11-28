@@ -1,5 +1,7 @@
 import StyledComponentsRegistry from "./registry";
 import ThemeProviderWrapper from "@/components/ThemeProvider";
+import ChunkLoadErrorHandler from "@/components/ChunkLoadErrorHandler";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import { Poppins, Space_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -111,6 +113,11 @@ export default function RootLayout({ children }) {
         {/* Favicon links for better browser compatibility */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-icon.png" />
+
+        {/* Prevent caching of the main HTML file to avoid chunk load errors */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
         
         {/* Preconnect to external domains for faster loading */}
         <link rel="preconnect" href="https://ogcljpmtozblkwdvycro.supabase.co" />
@@ -170,6 +177,8 @@ export default function RootLayout({ children }) {
         <meta name="google-site-verification" content="B6nmRq9pR4Ds1JxT4l5CuZDT5dKzq8rtjdwUB8XcFMg" />
       </head>
       <body>
+        <ChunkLoadErrorHandler />
+        <ServiceWorkerRegister />
         <StyledComponentsRegistry>
           <ThemeProviderWrapper>
             {children}

@@ -860,6 +860,7 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
 
   const ImageRenderer = ({ src, alt }) => (
     <div style={{ position: 'relative', cursor: 'zoom-in' }} onClick={() => setLightboxImage(src)}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} />
       <div style={{ 
         position: 'absolute', 

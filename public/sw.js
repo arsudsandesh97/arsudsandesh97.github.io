@@ -1,8 +1,8 @@
 // Service Worker for PWA - Performance Optimization
 // Cache-first strategy for static assets, Network-first for API calls
 
-const CACHE_NAME = 'sandesh-portfolio-v2';
-const RUNTIME_CACHE = 'runtime-cache-v2';
+const CACHE_NAME = 'sandesh-portfolio-v3';
+const RUNTIME_CACHE = 'runtime-cache-v3';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
@@ -107,24 +107,34 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for HTML pages (navigation)
+  // Network-first strategy for HTML pages (navigation) to ensure latest version
+  // This prevents "Loading chunk failed" errors caused by stale HTML pointing to deleted chunks
   if (request.mode === 'navigate') {
     event.respondWith(
-      caches.match(request).then((cachedResponse) => {
-        const fetchPromise = fetch(request).then((response) => {
+      fetch(request)
+        .then((response) => {
+          // Check if valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+          }
+
           const responseToCache = response.clone();
           caches.open(RUNTIME_CACHE).then((cache) => {
             cache.put(request, responseToCache);
-            limitCacheSize(RUNTIME_CACHE, 10); // Limit pages to 10
+            limitCacheSize(RUNTIME_CACHE, 10);
           });
           return response;
-        }).catch(() => {
-          // If offline and no cache, show offline page
-          return caches.match('/offline.html');
-        });
-
-        return cachedResponse || fetchPromise;
-      })
+        })
+        .catch(() => {
+          // If offline, try cache
+          return caches.match(request).then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // If no cache, show offline page
+            return caches.match('/offline.html');
+          });
+        })
     );
     return;
   }
