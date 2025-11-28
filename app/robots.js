@@ -32,6 +32,9 @@ export default function robots() {
         allow: '/',
       },
     ],
-    sitemap: 'https://arsudsandesh97.github.io/sitemap.xml',
+    sitemap: [
+      'https://arsudsandesh97.github.io/sitemap.xml',
+      'https://arsudsandesh97.github.io/sitemap_index.xml',
+    ],
   };
 }
