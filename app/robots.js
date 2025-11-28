@@ -35,7 +35,6 @@ export default function robots() {
     sitemap: [
       'https://arsudsandesh97.github.io/sitemap.xml',
       'https://arsudsandesh97.github.io/sitemap_index.xml',
-      'https://arsudsandesh97.github.io/sitemap-v2/sitemap.xml',
     ],
   };
 }
