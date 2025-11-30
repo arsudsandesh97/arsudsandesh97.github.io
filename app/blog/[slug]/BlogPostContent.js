@@ -24,6 +24,8 @@ import {
   FaCopy,
   FaArrowUp
 } from 'react-icons/fa';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { toast } from 'react-hot-toast';
 import BlogCard from '@/components/Blog/BlogCard';
 import MarkdownTable from "@/components/shared/MarkdownTable";
@@ -829,11 +831,24 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
             {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
           </CopyButton>
         </CodeHeader>
-        <pre style={{ margin: 0, borderRadius: '0 0 16px 16px', borderTop: 'none', background: '#1e1e1e', padding: '24px' }}>
-          <code className={className} {...props} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', lineHeight: '1.6' }}>
-            {children}
-          </code>
-        </pre>
+        <div style={{ borderRadius: '0 0 16px 16px', overflow: 'hidden' }}>
+          <SyntaxHighlighter
+            language={language}
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: '24px',
+              background: '#1e1e1e',
+              fontSize: '14px',
+              lineHeight: '1.6',
+              fontFamily: "'JetBrains Mono', monospace",
+            }}
+            wrapLines={true}
+            wrapLongLines={true}
+          >
+            {codeString}
+          </SyntaxHighlighter>
+        </div>
       </div>
     );
   };

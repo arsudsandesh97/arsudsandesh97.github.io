@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaArrowUp, FaCopy, FaCheck, FaListUl, FaTimes, FaSearchPlus } from "react-icons/fa";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { fetchSingleProjectClient, fetchProjectExplanationClient } from "@/lib/api/supabase-client";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -726,34 +728,47 @@ const CodeLanguage = styled.span`
 `;
 
 // Custom renderer for code blocks with copy button
-const CodeBlock = ({ children, className, ...props }) => {
-  const match = /language-(\w+)/.exec(className || '');
-  const language = match ? match[1] : 'text';
-  const codeString = String(children).replace(/\n$/, '');
-  const [copied, setCopied] = useState(false);
+  const CodeBlock = ({ children, className, ...props }) => {
+    const match = /language-(\w+)/.exec(className || '');
+    const language = match ? match[1] : 'text';
+    const codeString = String(children).replace(/\n$/, '');
+    const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(codeString);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const handleCopy = () => {
+      navigator.clipboard.writeText(codeString);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+      <div style={{ position: 'relative', margin: '40px 0' }}>
+        <CodeHeader>
+          <CodeLanguage>{language}</CodeLanguage>
+          <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
+            {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
+          </CopyButton>
+        </CodeHeader>
+        <div style={{ borderRadius: '0 0 16px 16px', overflow: 'hidden' }}>
+          <SyntaxHighlighter
+            language={language}
+            style={vscDarkPlus}
+            customStyle={{
+              margin: 0,
+              padding: '24px',
+              background: '#1e1e1e',
+              fontSize: '14px',
+              lineHeight: '1.6',
+              fontFamily: "'JetBrains Mono', monospace",
+            }}
+            wrapLines={true}
+            wrapLongLines={true}
+          >
+            {codeString}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+    );
   };
-
-  return (
-    <div style={{ position: 'relative', margin: '40px 0' }}>
-      <CodeHeader>
-        <CodeLanguage>{language}</CodeLanguage>
-        <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
-          {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
-        </CopyButton>
-      </CodeHeader>
-      <pre style={{ margin: 0, borderRadius: '0 0 16px 16px', borderTop: 'none' }}>
-        <code className={className} {...props}>
-          {children}
-        </code>
-      </pre>
-    </div>
-  );
-};
 
 // Custom renderer for images with lightbox
 const ImageRenderer = ({ src, alt, onZoom }) => {
