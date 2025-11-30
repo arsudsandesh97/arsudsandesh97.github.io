@@ -728,50 +728,79 @@ const CodeLanguage = styled.span`
 `;
 
 // Custom renderer for code blocks with copy button
-  const CodeBlock = ({ children, className, ...props }) => {
-    const match = /language-(\w+)/.exec(className || '');
-    const language = match ? match[1] : 'text';
-    const codeString = String(children).replace(/\n$/, '');
-    const [copied, setCopied] = useState(false);
+// Custom renderer for code blocks with copy button
+const InlineCode = ({ children, className, ...props }) => {
+  return (
+    <code className={className} {...props} style={{ 
+      background: 'rgba(255, 255, 255, 0.1)',
+      padding: '2px 6px',
+      borderRadius: '4px',
+      fontFamily: "'JetBrains Mono', monospace",
+      fontSize: '0.9em'
+    }}>
+      {children}
+    </code>
+  );
+};
 
-    const handleCopy = () => {
-      navigator.clipboard.writeText(codeString);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    };
+const PreBlock = ({ children, ...props }) => {
+  const codeElement = children;
+  const codeProps = codeElement?.props || {};
+  const className = codeProps.className || '';
+  const match = /language-(\w+)/.exec(className);
+  const language = match ? match[1] : 'text';
+  const codeString = String(codeProps.children || '').replace(/\n$/, '');
+  const [copied, setCopied] = useState(false);
 
-    return (
-      <div style={{ position: 'relative', margin: '40px 0' }}>
-        <CodeHeader>
-          <CodeLanguage>{language}</CodeLanguage>
-          <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
-            {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
-          </CopyButton>
-        </CodeHeader>
-        <div style={{ borderRadius: '0 0 16px 16px', overflow: 'hidden' }}>
-          <SyntaxHighlighter
-            language={language}
-            style={vscDarkPlus}
-            customStyle={{
-              margin: 0,
-              padding: '24px',
-              background: '#1e1e1e',
-              fontSize: '14px',
-              lineHeight: '1.6',
-              fontFamily: "'JetBrains Mono', monospace",
-            }}
-            wrapLines={true}
-            wrapLongLines={true}
-          >
-            {codeString}
-          </SyntaxHighlighter>
-        </div>
-      </div>
-    );
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeString);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
-// Custom renderer for images with lightbox
-const ImageRenderer = ({ src, alt, onZoom }) => {
+  return (
+    <div style={{ position: 'relative', margin: '40px 0' }}>
+      <CodeHeader>
+        <CodeLanguage>{language}</CodeLanguage>
+        <CopyButton onClick={handleCopy} style={{ position: 'static', padding: '6px 12px' }}>
+          {copied ? <><FaCheck /> Copied!</> : <><FaCopy /> Copy</>}
+        </CopyButton>
+      </CodeHeader>
+      <div style={{ borderRadius: '0 0 16px 16px', overflow: 'hidden' }}>
+        <SyntaxHighlighter
+          language={language}
+          style={vscDarkPlus}
+          customStyle={{
+            margin: 0,
+            padding: '24px',
+            background: '#1e1e1e',
+            fontSize: '14px',
+            lineHeight: '1.6',
+            fontFamily: "'JetBrains Mono', monospace",
+          }}
+          wrapLines={true}
+          wrapLongLines={true}
+        >
+          {codeString}
+        </SyntaxHighlighter>
+      </div>
+    </div>
+  );
+};
+
+  const ParagraphRenderer = ({ node, children, ...props }) => {
+    const hasBlockElement = node?.children?.some(child => 
+      child.type === "element" && 
+      (child.tagName === "img" || child.tagName === "div" || child.tagName === "pre")
+    );
+    
+    if (hasBlockElement) {
+      return <div {...props}>{children}</div>;
+    }
+    return <p {...props}>{children}</p>;
+  };
+
+  const ImageRenderer = ({ src, alt, onZoom }) => {
   const [hasError, setHasError] = useState(false);
 
   // Reset error state when src changes
@@ -850,19 +879,6 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
   const [error, setError] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const contentRef = useRef(null);
-
-  // Memoize components to prevent re-renders on scroll
-  const components = React.useMemo(() => ({
-    code: CodeBlock,
-    img: (props) => <ImageRenderer {...props} onZoom={setLightboxImage} />,
-    p: ParagraphRenderer,
-    h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
-    h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
-    h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
-    table: MarkdownTable,
-  }), []); // Empty dependency array as setLightboxImage is stable from useState
-
   // Scroll progress
   useEffect(() => {
     const handleScroll = () => {

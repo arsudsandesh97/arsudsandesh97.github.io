@@ -811,10 +811,29 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
   };
 
   // Custom renderers
-  const CodeBlock = ({ children, className, ...props }) => {
-    const match = /language-(\w+)/.exec(className || '');
+  const InlineCode = ({ children, className, ...props }) => {
+    return (
+      <code className={className} {...props} style={{ 
+        background: 'rgba(255, 255, 255, 0.1)',
+        padding: '2px 6px',
+        borderRadius: '4px',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: '0.9em'
+      }}>
+        {children}
+      </code>
+    );
+  };
+
+  const PreBlock = ({ children, ...props }) => {
+    // Extract code content and language from the nested <code> element
+    const codeElement = children;
+    const codeProps = codeElement?.props || {};
+    const className = codeProps.className || '';
+    const match = /language-(\w+)/.exec(className);
     const language = match ? match[1] : 'text';
-    const codeString = String(children).replace(/\n$/, '');
+    const codeString = String(codeProps.children || '').replace(/\n$/, '');
+    
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
@@ -880,8 +899,12 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
   };
 
   const ParagraphRenderer = ({ node, children, ...props }) => {
-    const hasImage = node?.children?.some((child) => child.type === "element" && child.tagName === "img");
-    if (hasImage) {
+    const hasBlockElement = node?.children?.some(child => 
+      child.type === "element" && 
+      (child.tagName === "img" || child.tagName === "div" || child.tagName === "pre")
+    );
+    
+    if (hasBlockElement) {
       return <div {...props}>{children}</div>;
     }
     return <p {...props}>{children}</p>;
@@ -928,7 +951,7 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
         <HeroContent>
           <BlogTitle>{post.title}</BlogTitle>
           <MetaInfo>
-            <div><FaCalendarAlt /> {new Date(post.published_at).toLocaleDateString()}</div>
+            <div suppressHydrationWarning><FaCalendarAlt /> {new Date(post.published_at).toLocaleDateString('en-US')}</div>
             <div><FaClock /> {post.reading_time} min read</div>
             <div><FaUser /> {post.author}</div>
           </MetaInfo>
@@ -950,7 +973,8 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                code: CodeBlock,
+                code: InlineCode,
+                pre: PreBlock,
                 img: ImageRenderer,
                 p: ParagraphRenderer,
                 h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
