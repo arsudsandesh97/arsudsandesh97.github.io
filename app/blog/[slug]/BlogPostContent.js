@@ -26,6 +26,7 @@ import {
 } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import BlogCard from '@/components/Blog/BlogCard';
+import MarkdownTable from "@/components/shared/MarkdownTable";
 import { incrementViews, getRelatedPosts } from '@/lib/supabase/blog';
 import { fetchBioDataClient, fetchBlogPostClient } from '@/lib/api/supabase-client';
 
@@ -347,28 +348,7 @@ const MarkdownContainer = styled(motion.div)`
     background-image: linear-gradient(to right, ${({ theme }) => theme.primary}40, ${({ theme }) => theme.primary}40);
     background-size: 100% 2px;
 
-    th {
-      background: ${({ theme }) => theme.primary}15;
-      color: ${({ theme }) => theme.text_primary};
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 0.5px;
-      position: sticky;
-      top: 0;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:nth-child(even) {
-      background: ${({ theme }) => theme.primary}05;
-    }
-
-    tr:hover {
-      background: ${({ theme }) => theme.primary}10;
-    }
+    background-size: 100% 2px;
   }
 
   hr {
@@ -961,6 +941,7 @@ export default function BlogPostContent({ slug: propSlug, initialPost = null }) 
                 h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
                 h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
                 h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
+                table: MarkdownTable,
               }}
             >
               {post.content}

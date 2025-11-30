@@ -8,6 +8,7 @@ import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCode, FaArrowUp, FaCopy, Fa
 import { fetchSingleProjectClient, fetchProjectExplanationClient } from "@/lib/api/supabase-client";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import MarkdownTable from "@/components/shared/MarkdownTable";
 import { toast } from 'react-hot-toast';
 
 const Container = styled.div`
@@ -463,7 +464,7 @@ const MarkdownContainer = styled(motion.div)`
     }
   }
 
-  img {
+    img {
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -480,56 +481,6 @@ const MarkdownContainer = styled(motion.div)`
     @media (max-width: 768px) {
       margin: 24px 0;
       border-radius: 8px;
-    }
-  }
-
-  table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin: 36px 0;
-    font-size: 15px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
-    border: 1px solid ${({ theme }) => theme.primary}20;
-
-    @media (max-width: 768px) {
-      margin: 24px 0;
-      font-size: 13px;
-    }
-
-    th, td {
-      padding: 16px 20px;
-      text-align: left;
-      border-bottom: 1px solid ${({ theme }) => theme.primary}15;
-      
-      @media (max-width: 768px) {
-        padding: 12px 16px;
-      }
-    }
-
-    th {
-      background: ${({ theme }) => theme.primary}15;
-      color: ${({ theme }) => theme.text_primary};
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 0.5px;
-      position: sticky;
-      top: 0;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:nth-child(even) {
-      background: ${({ theme }) => theme.primary}05;
-    }
-
-    tr:hover {
-      background: ${({ theme }) => theme.primary}10;
     }
   }
 
@@ -894,6 +845,7 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
     h1: ({node, ...props}) => <HeadingRenderer level={1} {...props} />,
     h2: ({node, ...props}) => <HeadingRenderer level={2} {...props} />,
     h3: ({node, ...props}) => <HeadingRenderer level={3} {...props} />,
+    table: MarkdownTable,
   }), []); // Empty dependency array as setLightboxImage is stable from useState
 
   // Scroll progress
