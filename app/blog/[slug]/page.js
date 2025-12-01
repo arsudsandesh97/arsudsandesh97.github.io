@@ -63,7 +63,41 @@ export default async function Page({ params }) {
   
   // Fetch the full post data server-side for instant loading (SSG)
   const { data: post } = await fetchSingleBlogPost(resolvedParams.slug);
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post?.title,
+    description: post?.excerpt,
+    image: post?.cover_image ? [post.cover_image] : [],
+    datePublished: post?.published_at,
+    dateModified: post?.updated_at || post?.published_at,
+    author: {
+      '@type': 'Person',
+      name: post?.author || 'Sandesh Arsud',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Sandesh Arsud',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg'
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://arsudsandesh97.github.io/blog/${resolvedParams.slug}`
+    }
+  };
   
   // Pass the slug and the initial post data to the client component
-  return <BlogPostContent slug={resolvedParams.slug} initialPost={post} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogPostContent slug={resolvedParams.slug} initialPost={post} />
+    </>
+  );
 }

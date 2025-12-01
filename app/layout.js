@@ -167,6 +167,29 @@ export default function RootLayout({ children }) {
                     "@type": "Person",
                     "name": "Sandesh Arsud"
                   }
+                },
+                {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "name": "Home",
+                      "item": "https://arsudsandesh97.github.io"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "name": "Blog",
+                      "item": "https://arsudsandesh97.github.io/blog"
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 3,
+                      "name": "Projects",
+                      "item": "https://arsudsandesh97.github.io/projects"
+                    }
+                  ]
                 }
               ]
             })
