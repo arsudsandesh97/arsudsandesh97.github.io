@@ -10,7 +10,8 @@ const SECTIONS = [
   'experience',
   'education',
   'blogs',
-  'project-explanations'
+  'project-explanations',
+  'dashboards'
 ];
 
 const BASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL.replace('https://', '').split('.')[0];

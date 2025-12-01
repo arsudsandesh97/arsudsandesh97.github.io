@@ -35,6 +35,7 @@ const TABLE_TO_SECTION: Record<string, string> = {
   blog_posts: "blogs",
   project_explanations: "project-explanations",
   copyright: "copyright",
+  dashboards: "dashboards",
 };
 
 serve(async (req) => {
@@ -384,6 +385,23 @@ async function fetchSectionData(supabase: any, section: string): Promise<any> {
       return { data, generatedAt };
     }
 
+
+
+    case "dashboards": {
+      // Fetch all dashboards
+      const { data, error } = await supabase
+        .from("dashboards")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Error fetching dashboards:", error);
+        return null;
+      }
+
+      return { data: data || [], generatedAt };
+    }
+
     default:
       console.warn(`Unknown section: ${section}`);
       return null;
@@ -400,7 +418,9 @@ function getPathsForSections(sections: string[]): string[] {
     skills: ["/", "/skills"],
     experience: ["/", "/experience"],
     education: ["/", "/education"],
+
     copyright: ["/"],
+    dashboards: ["/dashboards"],
   };
 
   const paths = new Set<string>();

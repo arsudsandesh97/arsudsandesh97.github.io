@@ -298,3 +298,55 @@ add column if not exists is_featured boolean default false;
 -- 5. (Optional) Set a few posts as featured for testing
 -- Replace 'YOUR_POST_ID' with actual IDs from your blog_posts table if you want to test immediately
 -- update public.blog_posts set is_featured = true where id = 'YOUR_POST_ID';
+
+-- Create dashboards table
+CREATE TABLE IF NOT EXISTS dashboards (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    slug TEXT UNIQUE NOT NULL,
+    description TEXT,
+    embed_url TEXT NOT NULL,
+    author TEXT DEFAULT 'Sandesh Arsud',
+    image_url TEXT,
+    tags TEXT[],
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Create index for slug lookup
+CREATE INDEX IF NOT EXISTS idx_dashboards_slug ON dashboards(slug);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE dashboards ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policy: Allow public read access
+CREATE POLICY "Allow public read access"
+ON dashboards
+FOR SELECT
+TO public
+USING (true);
+
+-- RLS Policy: Allow authenticated users to insert/update/delete (for admin)
+CREATE POLICY "Allow authenticated users to manage dashboards"
+ON dashboards
+FOR ALL
+TO authenticated
+USING (true)
+WITH CHECK (true);
+
+-- Trigger to update updated_at column
+CREATE TRIGGER update_dashboards_updated_at
+BEFORE UPDATE ON dashboards
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+-- Insert a sample dashboard
+INSERT INTO dashboards (title, slug, description, embed_url, image_url, tags)
+VALUES (
+    'Sales Performance Dashboard',
+    'sales-performance',
+    'A comprehensive view of sales performance across different regions and product categories.',
+    'https://app.powerbi.com/view?r=eyJrIjoi...', -- Replace with actual URL
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    ARRAY['Sales', 'Business', 'Power BI']
+) ON CONFLICT (slug) DO NOTHING;

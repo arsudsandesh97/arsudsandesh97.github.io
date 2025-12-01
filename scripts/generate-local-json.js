@@ -86,6 +86,10 @@ const SECTIONS = {
   copyright: async () => {
     const { data } = await supabase.from('copyright').select('copyright').single();
     return data;
+  },
+  dashboards: async () => {
+    const { data } = await supabase.from('dashboards').select('*').order('created_at', { ascending: false });
+    return data;
   }
 };
 
