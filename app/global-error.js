@@ -50,6 +50,12 @@ const ResetButton = styled.button`
 export default function GlobalError({ error, reset }) {
   useEffect(() => {
     console.error('Global Error:', error);
+    
+    // Check for chunk load errors
+    if (error.message && (error.message.includes('Loading chunk') || error.message.includes('minified react error'))) {
+      console.log('Chunk load error detected, reloading page...');
+      window.location.reload();
+    }
   }, [error]);
 
   return (
