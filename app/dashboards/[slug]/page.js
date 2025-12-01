@@ -1,6 +1,13 @@
 import DashboardView from "./DashboardView";
 import { fetchDashboards } from "@/lib/api/supabase";
 
+export async function generateStaticParams() {
+  const { data: dashboards } = await fetchDashboards();
+  return dashboards?.map((dashboard) => ({
+    slug: dashboard.slug,
+  })) || [];
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = params;
   
