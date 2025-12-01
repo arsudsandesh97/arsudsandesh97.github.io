@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -728,7 +728,6 @@ const CodeLanguage = styled.span`
 `;
 
 // Custom renderer for code blocks with copy button
-// Custom renderer for code blocks with copy button
 const InlineCode = ({ children, className, ...props }) => {
   return (
     <code className={className} {...props} style={{ 
@@ -788,19 +787,7 @@ const PreBlock = ({ children, ...props }) => {
   );
 };
 
-  const ParagraphRenderer = ({ node, children, ...props }) => {
-    const hasBlockElement = node?.children?.some(child => 
-      child.type === "element" && 
-      (child.tagName === "img" || child.tagName === "div" || child.tagName === "pre")
-    );
-    
-    if (hasBlockElement) {
-      return <div {...props}>{children}</div>;
-    }
-    return <p {...props}>{children}</p>;
-  };
-
-  const ImageRenderer = ({ src, alt, onZoom }) => {
+const ImageRenderer = ({ src, alt, onZoom }) => {
   const [hasError, setHasError] = useState(false);
 
   // Reset error state when src changes
@@ -874,11 +861,13 @@ const ParagraphRenderer = ({ node, children, ...props }) => {
 export default function ProjectExplanationContent({ id, initialProject = null, initialExplanation = null }) {
   const router = useRouter();
   const [project, setProject] = useState(initialProject);
+  // Safely handle missing initialExplanation
   const [markdownContent, setMarkdownContent] = useState(initialExplanation?.markdown_content || "");
   const [loading, setLoading] = useState(!initialProject);
   const [error, setError] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  
   // Scroll progress
   useEffect(() => {
     const handleScroll = () => {
@@ -901,8 +890,6 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
         setError("Project not found");
       } else if (!initialExplanation) {
         // It's possible to have a project but no explanation yet
-        // We don't necessarily want to show an error, maybe just empty content or a message
-        // But if the server returned null for explanation, we can assume it's not there
       }
       setLoading(false);
       return;
@@ -950,6 +937,17 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
   const [toc, setToc] = useState([]);
   const [activeId, setActiveId] = useState("");
   const [lightboxImage, setLightboxImage] = useState(null);
+
+  const components = useMemo(() => ({
+    code: InlineCode,
+    pre: PreBlock,
+    img: (props) => <ImageRenderer {...props} onZoom={setLightboxImage} />,
+    h1: (props) => <HeadingRenderer level={1} {...props} />,
+    h2: (props) => <HeadingRenderer level={2} {...props} />,
+    h3: (props) => <HeadingRenderer level={3} {...props} />,
+    p: ParagraphRenderer,
+    table: MarkdownTable,
+  }), []);
 
   // Generate TOC from markdown content
   useEffect(() => {
@@ -1104,7 +1102,7 @@ export default function ProjectExplanationContent({ id, initialProject = null, i
       )}
 
       <MainContent>
-        <ArticleContainer ref={contentRef}>
+        <ArticleContainer>
           <MarkdownContainer
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
