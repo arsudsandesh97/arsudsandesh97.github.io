@@ -46,9 +46,9 @@ const Navbar = () => {
 
   // Handle navigation click
   const handleNavClick = (e, targetId) => {
-    e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
+      e.preventDefault();
       element.scrollIntoView({ behavior: "smooth" });
       window.history.pushState(null, "", `/${targetId}`);
     }
