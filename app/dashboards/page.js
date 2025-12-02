@@ -214,7 +214,7 @@ export default function DashboardsPage() {
   useEffect(() => {
     async function fetchDashboards() {
       try {
-        const response = await fetch("/data/dashboards.json");
+        const response = await fetch(`/data/dashboards.json?t=${new Date().getTime()}`);
         if (response.ok) {
           const data = await response.json();
           setDashboards(data.data || []);

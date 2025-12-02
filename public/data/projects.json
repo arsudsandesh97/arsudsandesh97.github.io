@@ -52,28 +52,6 @@
       "associations": []
     },
     {
-      "id": "54ab6f4f-cceb-43cb-96e7-b3ec8faa8953",
-      "title": "Onyx Data - DataDNA Dataset Challenge - Business Financial",
-      "description": "Onyx Data - DataDNA Dataset Challenge - Business Financial",
-      "description2": "",
-      "description3": "",
-      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Business%20Line%20Insights.jpg?alt=media&token=4beef829-76a1-44ed-bd80-d3911b8c17ef",
-      "tags": [
-        "Power Bi"
-      ],
-      "category": "Dataset Challenges",
-      "github": "",
-      "dashboard": "https://app.powerbi.com/view?r=eyJrIjoiOGVhYTY1Y2ItNzBiZC00ZDIzLTkxMTAtNjdjMTUxNTRhMmQ5IiwidCI6ImEzNGI0MmU1LTI2MDgtNGJhNS04MDk4LTQ1NTFkMjdhNmRiNSJ9",
-      "members": [],
-      "associations": [
-        {
-          "id": "ef53b8b4-5d71-437e-bc6f-03c390192ff9",
-          "name": "Onyx Data",
-          "img": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Icons%2Fonyxdata_logo.jpg?alt=media&token=3f3e7f03-293c-4b35-8275-75d23e338fa9"
-        }
-      ]
-    },
-    {
       "id": "39d7a96b-a182-471a-a66f-20289f5ffe00",
       "title": "End to end Airbnb Data Analysis",
       "description": "This project focuses on preparing the Airbnb Listings Dataset for structured analysis. The work includes data exploration, cleaning, handling missing values, and feature engineering to ensure the dataset is reliable for analytical or predictive tasks.",
@@ -132,5 +110,5 @@
       ]
     }
   ],
-  "generatedAt": "2025-12-01T12:43:35.084Z"
+  "generatedAt": "2025-12-02T09:13:19.520Z"
 }
