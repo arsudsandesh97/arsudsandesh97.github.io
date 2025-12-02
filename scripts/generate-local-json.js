@@ -19,7 +19,7 @@ const SECTIONS = {
     return data;
   },
   projects: async () => {
-    const { data } = await supabase.from('projects').select('*, members(*), associations(*)');
+    const { data } = await supabase.from('projects').select('*, members(*), associations(*)').eq('is_published', true);
     
     // Optimize data size by selecting only used fields and removing heavy base64 images
     return (data || []).map(project => ({
@@ -68,11 +68,11 @@ const SECTIONS = {
     }));
   },
   experience: async () => {
-    const { data } = await supabase.from('experiences').select('*');
+    const { data } = await supabase.from('experiences').select('*').eq('is_published', true);
     return data;
   },
   education: async () => {
-    const { data } = await supabase.from('education').select('*');
+    const { data } = await supabase.from('education').select('*').eq('is_published', true);
     return data;
   },
   blogs: async () => {
@@ -88,7 +88,7 @@ const SECTIONS = {
     return data;
   },
   dashboards: async () => {
-    const { data } = await supabase.from('dashboards').select('*').order('created_at', { ascending: false });
+    const { data } = await supabase.from('dashboards').select('*').eq('is_published', true).order('created_at', { ascending: false });
     return data;
   }
 };

@@ -15,7 +15,7 @@ import {
   MobileMenu,
   MobileLink,
 } from "./NavbarStyledComponent";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaGithub } from "react-icons/fa";
 import { Close, CloseRounded, OpenInNew, Person, Code, Work, Apps, School, Article } from "@mui/icons-material";
 import { useTheme } from "styled-components";
 import { fetchBioDataClient } from "@/lib/api/supabase-client";
@@ -58,9 +58,11 @@ const Navbar = () => {
     <Nav>
       <NavbarContainer>
         <NavLogo as={Link} href="/" onClick={(e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          window.history.pushState(null, "", "/");
+          if (pathname === "/") {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            window.history.pushState(null, "", "/");
+          }
         }}>
           <h3 style={{ color: `white` }}>
             {loading ? "Sandesh Arsud" : bioData?.name || "Sandesh Arsud"}
@@ -86,7 +88,10 @@ const Navbar = () => {
             rel="noopener noreferrer"
             disabled={!bioData?.github}
           >
-            Github Profile
+            <FaGithub style={{ fontSize: '20px' }} />
+            <span style={{ marginLeft: '8px', display: 'inline-block' }} className="github-text">
+              Github Profile
+            </span>
           </GitHubButton>
         </ButtonContainer>
         {isOpen && (

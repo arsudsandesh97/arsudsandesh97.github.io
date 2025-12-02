@@ -8,7 +8,8 @@
       "date": "Dec 2021 - Present",
       "grade": "74.00%",
       "description": "I am currently pursuing a Bachelor's degree in Electrical and Electronics Engineering at INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT.",
-      "degree": "Bachelor of Engineering - BE, Electrical and Electronics Engineering"
+      "degree": "Bachelor of Engineering - BE, Electrical and Electronics Engineering",
+      "is_published": true
     },
     {
       "0": null,
@@ -18,8 +19,9 @@
       "date": "Mar 2017 - Nov 2021",
       "grade": "75.00%",
       "description": "I have completed my Diploma in Electrical Engineering from Nath Polytechnic.",
-      "degree": "Diploma In Electrical Engineering"
+      "degree": "Diploma In Electrical Engineering",
+      "is_published": true
     }
   ],
-  "generatedAt": "2025-12-02T09:13:20.523Z"
+  "generatedAt": "2025-12-02T09:27:53.509Z"
 }

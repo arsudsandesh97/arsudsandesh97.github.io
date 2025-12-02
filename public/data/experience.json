@@ -14,7 +14,8 @@
         "Power Bi",
         "Python"
       ],
-      "doc": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d"
+      "doc": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d",
+      "is_published": true
     },
     {
       "id": "0ab0159a-f7fa-428a-8a2e-45faeb6e6946",
@@ -31,8 +32,9 @@
         "Exploratory Data Analysis",
         "Microsoft Excel"
       ],
-      "doc": "https://verified.sertifier.com/en/verify/39573752145086"
+      "doc": "https://verified.sertifier.com/en/verify/39573752145086",
+      "is_published": true
     }
   ],
-  "generatedAt": "2025-12-02T09:13:20.300Z"
+  "generatedAt": "2025-12-02T09:27:53.288Z"
 }

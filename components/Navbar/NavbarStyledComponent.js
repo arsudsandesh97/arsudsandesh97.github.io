@@ -42,6 +42,8 @@ export const NavLogo = styled.div`
     text-decoration: none;
     @media (max-width: 640px) {
       padding: 0 0px;
+      width: auto;
+      flex: 1;
   }
 `;
 
@@ -121,7 +123,12 @@ export const GitHubButton = styled.a`
       color: ${({ theme }) => theme.white};     
     }
     @media screen and (max-width: 768px) { 
-    font-size: 14px;
+      font-size: 14px;
+      padding: 0 10px;
+      
+      .github-text {
+        display: none !important;
+      }
     }
 `;
 
@@ -133,7 +140,9 @@ export const ButtonContainer = styled.div`
   align-items: center;
   padding: 0 6px;
   @media screen and (max-width: 768px) {
-    display: none;
+    display: flex;
+    width: auto;
+    justify-content: center;
   }
 `;
 
