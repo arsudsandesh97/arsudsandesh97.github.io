@@ -396,7 +396,7 @@ export default function DashboardView({ dashboard }) {
       <Navbar />
       <MobileBottomNav />
       <ContentWrapper>
-        <BackButton onClick={() => router.back()}>
+        <BackButton onClick={() => router.push('/dashboards')}>
           <FaArrowLeft /> Back to Dashboards
         </BackButton>
 

@@ -35,23 +35,6 @@
       "associations": []
     },
     {
-      "id": "509c365f-7e04-47c2-a88a-545d75346b3b",
-      "title": "Walmart Sales Dashboard",
-      "description": "• Increased profitability by 34% in 2014, generating $251k in profit from a total revenue of $725.46k, achieving the highest profit year-to-date",
-      "description2": "• Led product category optimization, boosting profits in Binders to $16.1k, while maintaining Phones as the top-selling category with 35% of total sales.",
-      "description3": "• Maximized seasonal performance, driving December profits to $13.26k, the highest monthly profitability, contributing significantly to overallrevenue.",
-      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard%202.0.jpg?alt=media&token=08986a7d-3d53-4814-9b70-d2c637ff4739",
-      "tags": [
-        "Microsoft Power Bi",
-        "Figma"
-      ],
-      "category": "Power Bi Dashboard",
-      "github": "https://github.com/arsudsandesh97/Walmart-Sales-Dashboard",
-      "dashboard": "https://www.novypro.com/project/walmart-sales-dashboard",
-      "members": [],
-      "associations": []
-    },
-    {
       "id": "39d7a96b-a182-471a-a66f-20289f5ffe00",
       "title": "End to end Airbnb Data Analysis",
       "description": "This project focuses on preparing the Airbnb Listings Dataset for structured analysis. The work includes data exploration, cleaning, handling missing values, and feature engineering to ensure the dataset is reliable for analytical or predictive tasks.",
@@ -108,7 +91,24 @@
           "img": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/almabetter.png?alt=media&token=f177331b-4528-40a0-9f0e-6c59dadf1db8"
         }
       ]
+    },
+    {
+      "id": "509c365f-7e04-47c2-a88a-545d75346b3b",
+      "title": "Walmart Sales Dashboard",
+      "description": "• Increased profitability by 34% in 2014, generating $251k in profit from a total revenue of $725.46k, achieving the highest profit year-to-date",
+      "description2": "• Led product category optimization, boosting profits in Binders to $16.1k, while maintaining Phones as the top-selling category with 35% of total sales.",
+      "description3": "• Maximized seasonal performance, driving December profits to $13.26k, the highest monthly profitability, contributing significantly to overallrevenue.",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard%202.0.jpg?alt=media&token=08986a7d-3d53-4814-9b70-d2c637ff4739",
+      "tags": [
+        "Microsoft Power Bi",
+        "Figma"
+      ],
+      "category": "Power Bi Dashboard",
+      "github": "https://github.com/arsudsandesh97/Walmart-Sales-Dashboard",
+      "dashboard": "https://arsudsandesh97.github.io/dashboards/walmart-sales-dashboard",
+      "members": [],
+      "associations": []
     }
   ],
-  "generatedAt": "2025-12-02T09:27:52.605Z"
+  "generatedAt": "2025-12-02T11:27:54.633Z"
 }

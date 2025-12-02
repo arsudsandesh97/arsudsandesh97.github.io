@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import Footer from "@/components/Footer";
-import { FaChartBar, FaArrowRight } from "react-icons/fa";
+import { FaChartBar, FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -32,6 +33,27 @@ const ContentWrapper = styled.div`
 
   @media (max-width: 768px) {
     padding: 100px 16px 80px;
+  }
+`;
+
+const BackButton = styled.button`
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.text_secondary};
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px 0;
+  transition: all 0.3s ease;
+  width: fit-content;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    transform: translateX(-4px);
   }
 `;
 
@@ -208,6 +230,7 @@ const LoadingState = styled.div`
 `;
 
 export default function DashboardsPage() {
+  const router = useRouter();
   const [dashboards, setDashboards] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -236,6 +259,9 @@ export default function DashboardsPage() {
       <Navbar />
       <MobileBottomNav />
       <ContentWrapper>
+        <BackButton onClick={() => router.push('/')}>
+          <FaArrowLeft /> Back to Home
+        </BackButton>
         <HeaderSection>
           <Title>Power BI Dashboards</Title>
           <Subtitle>
