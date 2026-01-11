@@ -226,3 +226,117 @@ export const fetchCopyrightData = async () => {
     return { data: null, error };
   }
 };
+
+// ========================================
+// Open To Work Settings Functions
+// ========================================
+
+/**
+ * Fetch OpenToWork settings from Supabase
+ * @returns {Promise<{data: Object|null, error: Error|null}>}
+ */
+export const fetchOpenToWorkSettings = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("open_to_work_settings")
+      .select("*")
+      .single();
+
+    if (error) {
+      // If table doesn't exist or no data, return default settings
+      if (error.code === "PGRST116" || error.code === "42P01") {
+        console.warn("OpenToWork settings table not found or empty");
+        return { data: { is_visible: false }, error: null };
+      }
+      throw error;
+    }
+    return { data, error: null };
+  } catch (error) {
+    console.error("Error fetching OpenToWork settings:", error);
+    return { data: { is_visible: false }, error };
+  }
+};
+
+/**
+ * Update OpenToWork visibility state
+ * @param {boolean} isVisible - Whether the widget should be visible
+ * @returns {Promise<{data: Object|null, error: Error|null}>}
+ */
+export const updateOpenToWorkVisibility = async (isVisible) => {
+  try {
+    // First try to update existing row
+    const { data: existingData } = await supabase
+      .from("open_to_work_settings")
+      .select("id")
+      .single();
+
+    if (existingData) {
+      // Update existing row
+      const { data, error } = await supabase
+        .from("open_to_work_settings")
+        .update({ is_visible: isVisible, updated_at: new Date().toISOString() })
+        .eq("id", existingData.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { data, error: null };
+    } else {
+      // Insert new row if none exists
+      const { data, error } = await supabase
+        .from("open_to_work_settings")
+        .insert([{ is_visible: isVisible }])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { data, error: null };
+    }
+  } catch (error) {
+    console.error("Error updating OpenToWork visibility:", error);
+    return { data: null, error };
+  }
+};
+
+/**
+ * Update OpenToWork settings (full update)
+ * @param {Object} settings - Settings object to update
+ * @returns {Promise<{data: Object|null, error: Error|null}>}
+ */
+export const updateOpenToWorkSettings = async (settings) => {
+  try {
+    const { data: existingData } = await supabase
+      .from("open_to_work_settings")
+      .select("id")
+      .single();
+
+    const updateData = {
+      ...settings,
+      updated_at: new Date().toISOString(),
+    };
+
+    if (existingData) {
+      const { data, error } = await supabase
+        .from("open_to_work_settings")
+        .update(updateData)
+        .eq("id", existingData.id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { data, error: null };
+    } else {
+      const { data, error } = await supabase
+        .from("open_to_work_settings")
+        .insert([updateData])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { data, error: null };
+    }
+  } catch (error) {
+    console.error("Error updating OpenToWork settings:", error);
+    return { data: null, error };
+  }
+};

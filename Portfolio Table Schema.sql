@@ -350,3 +350,224 @@ VALUES (
     'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
     ARRAY['Sales', 'Business', 'Power BI']
 ) ON CONFLICT (slug) DO NOTHING;
+
+-- ========================================
+-- Open To Work Settings Table
+-- ========================================
+-- This table stores visibility state and contact info for the "Open to Work" widget
+
+CREATE TABLE IF NOT EXISTS open_to_work_settings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    is_visible BOOLEAN DEFAULT false,
+    custom_message TEXT DEFAULT 'I''m currently available for new opportunities and excited to connect with recruiters and hiring managers.',
+    contact_email TEXT,
+    linkedin_url TEXT,
+    twitter_url TEXT,
+    position TEXT DEFAULT 'bottom-right' CHECK (position IN ('bottom-left', 'bottom-right')),
+    job_types TEXT[] DEFAULT ARRAY['Full-time', 'Contract'],
+    preferred_roles TEXT[] DEFAULT ARRAY['Data Analyst', 'Business Analyst'],
+    available_from DATE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE open_to_work_settings ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policy: Allow public read access
+CREATE POLICY "Allow public read access on open_to_work_settings"
+ON open_to_work_settings FOR SELECT TO public USING (true);
+
+-- RLS Policy: Allow authenticated users to manage
+CREATE POLICY "Allow authenticated users to manage open_to_work_settings"
+ON open_to_work_settings FOR ALL TO authenticated 
+USING (true) WITH CHECK (true);
+
+-- Trigger to update updated_at column
+CREATE TRIGGER update_open_to_work_settings_updated_at
+BEFORE UPDATE ON open_to_work_settings
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+-- Insert default settings (singleton pattern - only one row needed)
+INSERT INTO open_to_work_settings (is_visible, position)
+VALUES (false, 'bottom-right')
+ON CONFLICT DO NOTHING;
+
+-- Enable real-time for instant widget updates
+-- ALTER PUBLICATION supabase_realtime ADD TABLE open_to_work_settings;
+
+-- Open To Work Settings Table
+-- This table stores the visibility state and contact information for the "Open to Work" widget
+-- Safe to run multiple times (uses IF NOT EXISTS and DROP IF EXISTS)
+
+-- Drop existing policies if they exist (to allow re-running this script)
+DROP POLICY IF EXISTS "Allow public read access on open_to_work_settings" ON open_to_work_settings;
+DROP POLICY IF EXISTS "Allow authenticated users to insert open_to_work_settings" ON open_to_work_settings;
+DROP POLICY IF EXISTS "Allow authenticated users to update open_to_work_settings" ON open_to_work_settings;
+DROP POLICY IF EXISTS "Allow authenticated users to delete open_to_work_settings" ON open_to_work_settings;
+
+-- Drop existing trigger if it exists
+DROP TRIGGER IF EXISTS update_open_to_work_settings_updated_at ON open_to_work_settings;
+
+-- Create the table (if not exists)
+CREATE TABLE IF NOT EXISTS open_to_work_settings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    is_visible BOOLEAN DEFAULT false,
+    
+    -- Profile Information
+    custom_message TEXT DEFAULT 'I''m currently available for new opportunities and excited to connect with recruiters and hiring managers.',
+    
+    -- Location & Experience (configurable from Supabase)
+    location TEXT DEFAULT 'India',
+    experience_type TEXT DEFAULT 'fresher' CHECK (experience_type IN ('fresher', 'entry', 'junior', 'mid', 'senior', 'lead', 'custom')),
+    experience_display TEXT DEFAULT 'Fresher',  -- What to show on widget (e.g., "Fresher", "1 Year", "2+ Years", etc.)
+    
+    -- Contact Information
+    contact_email TEXT,
+    linkedin_url TEXT,
+    twitter_url TEXT,
+    
+    -- Widget Settings
+    position TEXT DEFAULT 'bottom-right' CHECK (position IN ('bottom-left', 'bottom-right')),
+    
+    -- Job Preferences
+    job_types TEXT[] DEFAULT ARRAY['Full-time', 'Internship', 'Remote'],
+    preferred_roles TEXT[] DEFAULT ARRAY['Data Analyst', 'Business Analyst', 'BI Developer'],
+    skills TEXT[] DEFAULT ARRAY['Power BI', 'SQL', 'Python', 'Excel', 'Tableau'],
+    
+    -- Availability
+    availability TEXT DEFAULT 'Immediate',  -- "Immediate", "2 Weeks", "1 Month", etc.
+    available_from DATE,
+    
+    -- Timestamps
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Add new columns if table already exists (safe to run multiple times)
+DO $$ 
+BEGIN
+    -- Add location column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'open_to_work_settings' AND column_name = 'location') THEN
+        ALTER TABLE open_to_work_settings ADD COLUMN location TEXT DEFAULT 'India';
+    END IF;
+    
+    -- Add experience_type column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'open_to_work_settings' AND column_name = 'experience_type') THEN
+        ALTER TABLE open_to_work_settings ADD COLUMN experience_type TEXT DEFAULT 'fresher';
+    END IF;
+    
+    -- Add experience_display column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'open_to_work_settings' AND column_name = 'experience_display') THEN
+        ALTER TABLE open_to_work_settings ADD COLUMN experience_display TEXT DEFAULT 'Fresher';
+    END IF;
+    
+    -- Add skills column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'open_to_work_settings' AND column_name = 'skills') THEN
+        ALTER TABLE open_to_work_settings ADD COLUMN skills TEXT[] DEFAULT ARRAY['Power BI', 'SQL', 'Python', 'Excel', 'Tableau'];
+    END IF;
+    
+    -- Add availability column if it doesn't exist
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns 
+                   WHERE table_name = 'open_to_work_settings' AND column_name = 'availability') THEN
+        ALTER TABLE open_to_work_settings ADD COLUMN availability TEXT DEFAULT 'Immediate';
+    END IF;
+END $$;
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE open_to_work_settings ENABLE ROW LEVEL SECURITY;
+
+-- Create RLS Policies (newly created after dropping old ones)
+CREATE POLICY "Allow public read access on open_to_work_settings"
+ON open_to_work_settings
+FOR SELECT
+TO public
+USING (true);
+
+CREATE POLICY "Allow authenticated users to insert open_to_work_settings"
+ON open_to_work_settings
+FOR INSERT
+TO authenticated
+WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated users to update open_to_work_settings"
+ON open_to_work_settings
+FOR UPDATE
+TO authenticated
+USING (true)
+WITH CHECK (true);
+
+CREATE POLICY "Allow authenticated users to delete open_to_work_settings"
+ON open_to_work_settings
+FOR DELETE
+TO authenticated
+USING (true);
+
+-- Create or replace the trigger function
+CREATE OR REPLACE FUNCTION update_open_to_work_updated_at()
+RETURNS TRIGGER AS $$
+BEGIN
+   NEW.updated_at = NOW();
+   RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- Create the trigger
+CREATE TRIGGER update_open_to_work_settings_updated_at
+BEFORE UPDATE ON open_to_work_settings
+FOR EACH ROW
+EXECUTE FUNCTION update_open_to_work_updated_at();
+
+-- Insert default settings if no row exists
+INSERT INTO open_to_work_settings (
+    is_visible,
+    custom_message,
+    location,
+    experience_type,
+    experience_display,
+    position,
+    job_types,
+    preferred_roles,
+    skills,
+    availability
+) 
+SELECT 
+    false,
+    'Passionate Data Analyst seeking my first professional opportunity. Eager to apply my analytical skills and drive data-driven insights.',
+    'India',
+    'fresher',
+    'Fresher',
+    'bottom-right',
+    ARRAY['Full-time', 'Internship', 'Remote'],
+    ARRAY['Data Analyst', 'Business Analyst', 'Junior Data Analyst'],
+    ARRAY['Power BI', 'SQL', 'Python', 'Excel', 'Tableau'],
+    'Immediate'
+WHERE NOT EXISTS (SELECT 1 FROM open_to_work_settings LIMIT 1);
+
+-- ========================================
+-- IMPORTANT: Enable Real-time for this table
+-- ========================================
+-- To enable real-time updates, run this command:
+-- ALTER PUBLICATION supabase_realtime ADD TABLE open_to_work_settings;
+
+-- ========================================
+-- Quick Commands to Control the Widget
+-- ========================================
+
+-- Show the widget:
+-- UPDATE open_to_work_settings SET is_visible = true;
+
+-- Hide the widget:
+-- UPDATE open_to_work_settings SET is_visible = false;
+
+-- Update your details:
+-- UPDATE open_to_work_settings SET 
+--   location = 'Mumbai, India',
+--   experience_display = 'Fresher • Ready to Learn',
+--   skills = ARRAY['Power BI', 'SQL', 'Python', 'Excel', 'Data Visualization'];
+

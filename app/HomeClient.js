@@ -14,6 +14,7 @@ import MobileBottomNav from "@/components/MobileBottomNav";
 import ProjectDetails from "@/components/ProjectDetails";
 import Contact from "@/components/Contact";
 import Education from "@/components/Education";
+import OpenToWork from "@/components/OpenToWork";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -116,6 +117,12 @@ export default function HomeClient({ bioData, skills, experience, projects, educ
           )}
         </div>
       </AnimatePresence>
+
+      {/* Open to Work Widget - Floating CTA for recruiters */}
+      <OpenToWork
+        position="bottom-right"
+        bioData={bioData}
+      />
     </Body>
   );
 }
