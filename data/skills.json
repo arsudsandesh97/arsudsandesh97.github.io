@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "id": "7e9dc64d-1c50-4386-968c-973f2cde6d78",
+      "title": "Languages",
+      "skills": [
+        {
+          "id": "4b27631a-c003-4a96-bcdf-c361bed30406",
+          "name": "SQL",
+          "image": null
+        },
+        {
+          "id": "bbb694e2-5bf2-4d1e-8c2e-c1d3efa0e8bd",
+          "name": "Python",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+        }
+      ]
+    },
+    {
+      "id": "4dd74129-791d-4de2-a935-e68f383172df",
+      "title": "Platforms And Tools",
+      "skills": [
+        {
+          "id": "0aecefac-62cb-4beb-8c54-d41bc3567bd0",
+          "name": "PyCharm",
+          "image": "https://resources.jetbrains.com/storage/logos/web/pycharm/pycharm.svg"
+        },
+        {
+          "id": "539ce735-ba2b-4b27-95e9-a3d26be19984",
+          "name": "Google Colab",
+          "image": "https://colab.research.google.com/img/colab_favicon_256px.png"
+        },
+        {
+          "id": "c546b683-02be-4b61-b582-6de2a78349ab",
+          "name": "Jupyter Notebook",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png"
+        }
+      ]
+    },
+    {
+      "id": "2b3b8000-f21b-4113-ae0c-d67be8730c0b",
+      "title": "Data Manipulation",
+      "skills": [
+        {
+          "id": "0ebee47b-92fb-4041-9fa9-a09926149401",
+          "name": "Power Query Editor",
+          "image": null
+        },
+        {
+          "id": "2cac5ea6-57cf-4202-919c-e65cb048e82f",
+          "name": "Numpy",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg"
+        },
+        {
+          "id": "c9b057d1-ae38-49c1-b0cc-83a67b331b5e",
+          "name": "Pandas",
+          "image": null
+        }
+      ]
+    },
+    {
+      "id": "0b552937-8894-4be8-ac62-e4a2653cd390",
+      "title": "Data Analysis And Visualization Tools",
+      "skills": [
+        {
+          "id": "152ae9ea-fb74-4197-875d-ef790a5d5fb9",
+          "name": "Tableau",
+          "image": null
+        },
+        {
+          "id": "796f2253-0379-4054-8fcd-2d098af45d06",
+          "name": "Microsoft Excel",
+          "image": null
+        },
+        {
+          "id": "eacefaf4-c783-42a8-ad4d-bad27924fb54",
+          "name": "Microsoft Power BI",
+          "image": null
+        }
+      ]
+    }
+  ],
+  "generatedAt": "2026-01-13T18:09:45.203Z"
+}

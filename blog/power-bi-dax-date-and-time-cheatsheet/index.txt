@@ -1,0 +1,72 @@
+3:I[4707,[],""]
+5:I[36423,[],""]
+7:I[82884,["124","static/chunks/124-3d9aa00222656508.js","185","static/chunks/app/layout-57daa1de7b6660f4.js"],"default"]
+8:I[53633,["124","static/chunks/124-3d9aa00222656508.js","185","static/chunks/app/layout-57daa1de7b6660f4.js"],"default"]
+9:I[57028,["124","static/chunks/124-3d9aa00222656508.js","185","static/chunks/app/layout-57daa1de7b6660f4.js"],"default"]
+a:I[43844,["124","static/chunks/124-3d9aa00222656508.js","185","static/chunks/app/layout-57daa1de7b6660f4.js"],"default"]
+b:I[43334,["124","static/chunks/124-3d9aa00222656508.js","601","static/chunks/app/error-d26f39e36ceab5c4.js"],"default"]
+c:I[66359,["124","static/chunks/124-3d9aa00222656508.js","160","static/chunks/app/not-found-9be3eae23c16c10e.js"],"default"]
+4:["slug","power-bi-dax-date-and-time-cheatsheet","d"]
+6:T535,{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Sandesh Arsud","givenName":"Sandesh","familyName":"Arsud","url":"https://arsudsandesh97.github.io","image":"https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg","jobTitle":"Data Analyst","description":"Data Analytics Professional specializing in Business Intelligence, Data Science, Python, SQL, and Power BI","knowsAbout":["Data Analytics","Business Intelligence","Data Science","Python","SQL","Power BI","Machine Learning","Data Visualization"],"alumniOf":[{"@type":"CollegeOrUniversity","name":"International Center of Excellence in Engineering and Management"},{"@type":"EducationalOrganization","name":"Nath Polytechnic"}],"sameAs":["https://github.com/arsudsandesh97","https://www.linkedin.com/in/sandesharsud"]},{"@type":"WebSite","name":"Sandesh Arsud Portfolio","url":"https://arsudsandesh97.github.io","author":{"@type":"Person","name":"Sandesh Arsud"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://arsudsandesh97.github.io"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://arsudsandesh97.github.io/blog"},{"@type":"ListItem","position":3,"name":"Projects","item":"https://arsudsandesh97.github.io/projects"}]}]}0:["FxgNyqwKZof7tCLRRoH_Y",[[["",{"children":["blog",{"children":[["slug","power-bi-dax-date-and-time-cheatsheet","d"],{"children":["__PAGE__?{\"slug\":\"power-bi-dax-date-and-time-cheatsheet\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["blog",{"children":[["slug","power-bi-dax-date-and-time-cheatsheet","d"],{"children":["__PAGE__",{},[["$L1","$L2",null],null],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children","$4","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[null,["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children","blog","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ae2aad09abde75c5.css","precedence":"next","crossOrigin":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_9b9fd1 __variable_a5bf43","children":[["$","head",null,{"children":[["$","link",null,{"rel":"icon","href":"/favicon.ico","sizes":"any"}],["$","link",null,{"rel":"apple-touch-icon","href":"/apple-icon.png"}],["$","meta",null,{"httpEquiv":"Cache-Control","content":"no-cache, no-store, must-revalidate"}],["$","meta",null,{"httpEquiv":"Pragma","content":"no-cache"}],["$","meta",null,{"httpEquiv":"Expires","content":"0"}],["$","link",null,{"rel":"preconnect","href":"https://ogcljpmtozblkwdvycro.supabase.co"}],["$","link",null,{"rel":"dns-prefetch","href":"https://ogcljpmtozblkwdvycro.supabase.co"}],["$","link",null,{"rel":"preload","as":"script","href":"/_next/static/chunks/main-app.js"}],["$","link",null,{"rel":"modulepreload","href":"/_next/static/chunks/webpack.js"}],["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"$6"}}],["$","meta",null,{"name":"google-site-verification","content":"B6nmRq9pR4Ds1JxT4l5CuZDT5dKzq8rtjdwUB8XcFMg"}]]}],["$","body",null,{"children":[["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{"children":["$","$La",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$b","errorStyles":[],"errorScripts":[],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","$Lc",null,{}],"notFoundStyles":[]}]}]}]]}]]}]],null],null],["$Ld",null]]]]
+e:I[47251,["699","static/chunks/8e1d74a4-95d8595a1a06cbdf.js","124","static/chunks/124-3d9aa00222656508.js","206","static/chunks/206-417d269ffe1e57bc.js","84","static/chunks/84-42ca2e361b752811.js","625","static/chunks/625-aae9918b0b967cc0.js","994","static/chunks/994-9bed7cad6d3b7b32.js","551","static/chunks/551-9853819d6f3357f3.js","954","static/chunks/954-2b6e0616868dd1ff.js","452","static/chunks/452-cc89b8e7fecda48e.js","257","static/chunks/257-94d40316115fe0a6.js","308","static/chunks/app/blog/%5Bslug%5D/page-69d565c9052dff3a.js"],"default"]
+f:Tb18,# Power BI DAX Date and Time Cheatsheet: A Simple Guide for Faster, Accurate Reporting
+
+Have you ever missed a meeting or shown up late because you mixed up the date? It happens to all of us. In Power BI, those mistakes don’t just cause confusion. They break dashboards, distort KPIs, and slow down decision making.
+
+While working with DAX, I often found that **date and time functions** were the biggest source of errors. That’s what pushed me to create a clean, simple **DAX Date and Time Cheatsheet** that helps you get the right results without searching online for hours.
+
+This cheatsheet is designed to be your quick reference for building reliable time intelligence in Power BI.
+
+---
+
+## What's inside
+
+Below are some of the most useful DAX functions that every analyst should know. Each one in my cheatsheet includes syntax, an example using **21 Oct 2025**, and a practical use case so you can apply it immediately.
+
+### TODAY() and NOW()
+Use these to return the current date and current timestamp. Ideal for dynamic dashboards that need live updates.
+
+### YEAR(), MONTH(), DAY()
+Extract specific components from any date. Useful for grouping by year, filtering by month, or breaking down trends at the day level.
+
+### EOMONTH()
+Instantly get the last day of any month. Perfect for financial reporting and period end calculations.
+
+### DATEDIFF()
+Calculate the time difference between two dates in days, months, or years. Critical for age analysis, time-to-resolution metrics, and project tracking.
+
+### WEEKDAY() and WEEKNUM()
+Find the day of the week or the week number for scheduling, forecasting, or pattern analysis.
+
+### EDATE()
+Move forward or backward by a given number of months. Great for rolling forecasts and time comparisons like “same period last quarter.”
+
+---
+
+## Download the Cheatsheet
+
+Want to download the full DAX Date and Time Cheatsheet?  
+You can get it directly from my LinkedIn post:
+
+[Download from here](https://www.linkedin.com/posts/sandesharsud_dax-date-time-cheatsheet-sandesh-arsud-activity-7393487473726648320-g7fO)
+
+---
+
+## Why I Built This Cheatsheet
+
+When I started learning DAX, I spent far too much time googling date formulas, reading scattered forums, and testing everything manually. Over time I realized that having a single, precise reference would save hours of effort and reduce reporting errors.
+
+So I compiled all the essentials into one cheatsheet that helps me stay accurate, consistent, and fast while building dashboards.
+
+It’s simple, practical, and something you can rely on whenever your date logic feels confusing.
+
+---
+
+## Final Tip
+
+Save this guide. You’ll find yourself using it every time you work with date and time in Power BI.
+
+If you found this useful and want more content like this, feel free to follow my work and explore more projects on my portfolio
+2:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"headline\":\"Power BI DAX Date and Time Cheatsheet For Reporting\",\"description\":\"A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions\",\"image\":[\"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200\"],\"datePublished\":\"2025-11-25T10:16:29.187+00:00\",\"dateModified\":\"2025-11-29T15:56:30.832194+00:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Sandesh Arsud\"},\"publisher\":{\"@type\":\"Person\",\"name\":\"Sandesh Arsud\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg\"}},\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://arsudsandesh97.github.io/blog/power-bi-dax-date-and-time-cheatsheet\"}}"}}],["$","$Le",null,{"slug":"power-bi-dax-date-and-time-cheatsheet","initialPost":{"id":"a891953f-c722-4213-8086-90672073d034","title":"Power BI DAX Date and Time Cheatsheet For Reporting","slug":"power-bi-dax-date-and-time-cheatsheet","excerpt":"A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions","content":"$f","cover_image":"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200","author":"Sandesh Arsud","published":true,"published_at":"2025-11-25T10:16:29.187+00:00","created_at":"2025-11-25T06:55:15.520525+00:00","updated_at":"2025-11-29T15:56:30.832194+00:00","reading_time":3,"views":0,"tags":["Power BI DAX","Power BI"],"category":"Power Bi","seo_title":"Power BI DAX Date and Time Cheatsheet | Essential Date and Time Functions Explained","seo_description":"Download a practical Power BI DAX Date and Time Cheatsheet that covers TODAY, NOW, EOMONTH, DATEDIFF, WEEKNUM, EDATE, and more. Learn how to use these functions with examples and real-world use cases to improve reporting accuracy.","seo_keywords":["Power BI DAX","DAX cheatsheet","date and time functions","Power BI date functions","DAX tutorial","business intelligence","Sandesh Arsud","data analytics","Power BI tips"],"is_featured":false}}]]
+d:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"name":"theme-color","content":"#000000"}],["$","meta","2",{"charSet":"utf-8"}],["$","title","3",{"children":"Power BI DAX Date and Time Cheatsheet For Reporting | Sandesh Arsud | Sandesh Arsud"}],["$","meta","4",{"name":"description","content":"A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions"}],["$","meta","5",{"name":"author","content":"Sandesh Arsud"}],["$","link","6",{"rel":"manifest","href":"/manifest.json","crossOrigin":"use-credentials"}],["$","meta","7",{"name":"keywords","content":"Power BI DAX,DAX cheatsheet,date and time functions,Power BI date functions,DAX tutorial,business intelligence,Sandesh Arsud,data analytics,Power BI tips"}],["$","meta","8",{"name":"creator","content":"Sandesh Arsud"}],["$","meta","9",{"name":"publisher","content":"Sandesh Arsud"}],["$","meta","10",{"name":"robots","content":"index, follow"}],["$","meta","11",{"name":"googlebot","content":"index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"}],["$","meta","12",{"name":"category","content":"portfolio"}],["$","link","13",{"rel":"canonical","href":"https://arsudsandesh97.github.io/"}],["$","meta","14",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","meta","15",{"name":"google-site-verification","content":"B6nmRq9pR4Ds1JxT4l5CuZDT5dKzq8rtjdwUB8XcFMg"}],["$","meta","16",{"property":"og:title","content":"Power BI DAX Date and Time Cheatsheet For Reporting"}],["$","meta","17",{"property":"og:description","content":"A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions"}],["$","meta","18",{"property":"og:image","content":"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200"}],["$","meta","19",{"property":"og:image:width","content":"1200"}],["$","meta","20",{"property":"og:image:height","content":"630"}],["$","meta","21",{"property":"og:image:alt","content":"Power BI DAX Date and Time Cheatsheet For Reporting"}],["$","meta","22",{"property":"og:type","content":"article"}],["$","meta","23",{"property":"article:published_time","content":"2025-11-25T10:16:29.187+00:00"}],["$","meta","24",{"property":"article:author","content":"Sandesh Arsud"}],["$","meta","25",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","26",{"name":"twitter:title","content":"Power BI DAX Date and Time Cheatsheet For Reporting"}],["$","meta","27",{"name":"twitter:description","content":"A simple and practical DAX Date and Time Cheatsheet designed to help Power BI users avoid date errors, speed up reporting, and work confidently with essential time functions"}],["$","meta","28",{"name":"twitter:image","content":"https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200"}],["$","link","29",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}],["$","link","30",{"rel":"apple-touch-icon","href":"/apple-icon.png?1af52217fc4d6f97","type":"image/png","sizes":"180x180"}],["$","meta","31",{"name":"next-size-adjust"}]]
+1:null

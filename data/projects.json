@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "id": "b9c63806-c2f5-48bf-8eed-0e15ba742bec",
+      "title": "Global Superstore Dashboard",
+      "description": "• Utilized advanced Excel tools such as Pivot Tables, VLOOKUPs, custom formatting, and charts to effectively analyze and present Superstore sales data",
+      "description2": "• Discovered technology as the highest selling category (1.4% of total sales), with phones leading the subcategory at $176.8k in sales.",
+      "description3": "• Identified 2015 as the most profitable year with $504.2k profit, and office supplies as the category with the highestreturns, totaling 533.",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Global%20Superstore%20Dashboard%20-%20Made%20with%20Clipchamp.gif?alt=media&token=7664c41f-5896-4b7c-b0a9-cd7d79ef3b28",
+      "tags": [
+        "Microsoft Excel",
+        "Figma"
+      ],
+      "category": "Excel Dashboard",
+      "github": "https://github.com/arsudsandesh97/global-superstore-report",
+      "dashboard": null,
+      "members": [],
+      "associations": []
+    },
+    {
+      "id": "39d7a96b-a182-471a-a66f-20289f5ffe00",
+      "title": "End to end Airbnb Data Analysis",
+      "description": "This project focuses on preparing the Airbnb Listings Dataset for structured analysis. The work includes data exploration, cleaning, handling missing values, and feature engineering to ensure the dataset is reliable for analytical or predictive tasks.",
+      "description2": "",
+      "description3": "",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Projects%2Fairbnb.gif?alt=media&token=65d569b1-ce90-467a-8a9c-75618bc7cb75",
+      "tags": [
+        "Python",
+        "SQL",
+        "Power BI"
+      ],
+      "category": "End-to-End Projects",
+      "github": "https://github.com/arsudsandesh97/airbnb-analysis",
+      "dashboard": "",
+      "members": [],
+      "associations": []
+    },
+    {
+      "id": "0b2c4f9a-86d2-4d78-848f-913edc10bc21",
+      "title": "EDA PROJECT ON GLOBAL TERRORISM ANALYSIS",
+      "description": "• Conducted comprehensive analysis of 47 years of global terrorism data (1970-2017) to unearth key trends.",
+      "description2": "• Analyzed data to pinpoint critical trends, highlighting the peak yearin 2014 and identifying the least active years (2008, 2010, 2011).",
+      "description3": null,
+      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/EDA%20PROJECT%20ON%20GLOBAL%20TERRORISM%20ANALYSIS.png?alt=media&token=bdd0dcd3-ae27-4448-9d7e-8e7d5444fbd0",
+      "tags": [
+        "Python",
+        "Google Colab",
+        "Microsoft Powerpoint",
+        "Microsoft Word"
+      ],
+      "category": "EDA Using Python",
+      "github": "https://github.com/arsudsandesh97/Global_Terrorism_Analysis_Capstone_Project.",
+      "dashboard": null,
+      "members": [
+        {
+          "id": "49139b6d-7f9f-4690-a02a-a8ef6eff3a64",
+          "name": "Vishal Pagare",
+          "img": "https://msnupygvsusaucyeydvj.supabase.co/storage/v1/object/sign/portfolio/Bio/vishal%20profile.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJwb3J0Zm9saW8vQmlvL3Zpc2hhbCBwcm9maWxlLmpwZyIsImlhdCI6MTczOTk1NjIzNSwiZXhwIjo0ODkzNTU2MjM1fQ.YO991fnF3HI-GCpwKxgwAWbJScuH0F-s-24dPGG8C3M",
+          "github": "https://github.com/vishal120700",
+          "linkedin": "https://www.linkedin.com/in/vishal-pagare/"
+        },
+        {
+          "id": "2f12f128-57e0-4b24-9451-49bc05c02d9d",
+          "name": "Sachin Gavande",
+          "img": null,
+          "github": "https://github.com/sachingavande4599",
+          "linkedin": "https://www.linkedin.com/in/sachingavande/"
+        }
+      ],
+      "associations": [
+        {
+          "id": "68c752b4-7eb9-40ac-a814-af8e8520af10",
+          "name": "Almabetter",
+          "img": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/almabetter.png?alt=media&token=f177331b-4528-40a0-9f0e-6c59dadf1db8"
+        }
+      ]
+    },
+    {
+      "id": "509c365f-7e04-47c2-a88a-545d75346b3b",
+      "title": "Walmart Sales Dashboard",
+      "description": "• Increased profitability by 34% in 2014, generating $251k in profit from a total revenue of $725.46k, achieving the highest profit year-to-date",
+      "description2": "• Led product category optimization, boosting profits in Binders to $16.1k, while maintaining Phones as the top-selling category with 35% of total sales.",
+      "description3": "• Maximized seasonal performance, driving December profits to $13.26k, the highest monthly profitability, contributing significantly to overallrevenue.",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Walmart%20Sales%20Dashboard%202.0.jpg?alt=media&token=08986a7d-3d53-4814-9b70-d2c637ff4739",
+      "tags": [
+        "Microsoft Power Bi",
+        "Figma"
+      ],
+      "category": "Power Bi Dashboard",
+      "github": "https://github.com/arsudsandesh97/Walmart-Sales-Dashboard",
+      "dashboard": "https://arsudsandesh97.github.io/dashboards/walmart-sales-dashboard",
+      "members": [],
+      "associations": []
+    }
+  ],
+  "generatedAt": "2026-01-13T18:09:44.623Z"
+}
