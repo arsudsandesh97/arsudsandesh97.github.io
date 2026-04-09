@@ -37,4 +37,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-*.md
+# lighthouse
+/.lighthouseci/
+
+# bundle analyzer
+/analyze/
+
+# agents
+.agents/

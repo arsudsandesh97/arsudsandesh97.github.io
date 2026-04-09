@@ -1,0 +1,13 @@
+# Lighthouse CI reports
+.lighthouseci/
+
+# Test coverage
+coverage/
+
+# Playwright
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db

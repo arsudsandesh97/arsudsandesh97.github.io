@@ -2,17 +2,6 @@
   "data": [
     {
       "0": null,
-      "id": "b11c69bd-de7c-4f37-b9f7-343827dfc9d4",
-      "img": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/ICEEM%20Logo.jpg",
-      "school": "INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT",
-      "date": "Dec 2021 - Present",
-      "grade": "74.00%",
-      "description": "I am currently pursuing a Bachelor's degree in Electrical and Electronics Engineering at INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT.",
-      "degree": "Bachelor of Engineering - BE, Electrical and Electronics Engineering",
-      "is_published": true
-    },
-    {
-      "0": null,
       "id": "50cb9ced-eb6c-495f-8dbe-9ea378ac2b51",
       "img": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/nath%20polytechnic.png",
       "school": "Nath Polytechnic",
@@ -21,7 +10,18 @@
       "description": "I have completed my Diploma in Electrical Engineering from Nath Polytechnic.",
       "degree": "Diploma In Electrical Engineering",
       "is_published": true
+    },
+    {
+      "0": null,
+      "id": "b11c69bd-de7c-4f37-b9f7-343827dfc9d4",
+      "img": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/ICEEM%20Logo.jpg",
+      "school": "INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT",
+      "date": "Dec 2021 - Aug 2025",
+      "grade": "74.00%",
+      "description": "I am currently pursuing a Bachelor's degree in Electrical and Electronics Engineering at INTERNATIONAL CENTER OF EXCELLENCE IN ENGINEERING AND MANAGEMENT.",
+      "degree": "Bachelor of Engineering - BE, Electrical and Electronics Engineering",
+      "is_published": true
     }
   ],
-  "generatedAt": "2025-12-02T11:27:55.525Z"
+  "generatedAt": "2026-04-09T05:30:08.618Z"
 }

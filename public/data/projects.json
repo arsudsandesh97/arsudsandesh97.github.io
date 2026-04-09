@@ -1,23 +1,6 @@
 {
   "data": [
     {
-      "id": "1ff6b4e6-f3c4-4909-aa46-c2f8ebe1917b",
-      "title": "Atliq Presence Insights Dashboard",
-      "description": "crafted a real-time Power BI Atliq Presence Insights dashboard, leveraging the HR Data Analytics from Codebasics YouTube channel",
-      "description2": null,
-      "description3": null,
-      "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Atliq%20Presence%20Insights.gif?alt=media&token=45c7385d-be1a-4c04-99dd-34f390c2adcd",
-      "tags": [
-        "Microsoft Powerbi",
-        "Dax"
-      ],
-      "category": "Power Bi Dashboard",
-      "github": null,
-      "dashboard": "https://www.novypro.com/project/atliq-presence-insights",
-      "members": [],
-      "associations": []
-    },
-    {
       "id": "b9c63806-c2f5-48bf-8eed-0e15ba742bec",
       "title": "Global Superstore Dashboard",
       "description": "• Utilized advanced Excel tools such as Pivot Tables, VLOOKUPs, custom formatting, and charts to effectively analyze and present Superstore sales data",
@@ -38,8 +21,8 @@
       "id": "39d7a96b-a182-471a-a66f-20289f5ffe00",
       "title": "End to end Airbnb Data Analysis",
       "description": "This project focuses on preparing the Airbnb Listings Dataset for structured analysis. The work includes data exploration, cleaning, handling missing values, and feature engineering to ensure the dataset is reliable for analytical or predictive tasks.",
-      "description2": "",
-      "description3": "",
+      "description2": null,
+      "description3": null,
       "image": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Projects%2Fairbnb.gif?alt=media&token=65d569b1-ce90-467a-8a9c-75618bc7cb75",
       "tags": [
         "Python",
@@ -47,8 +30,8 @@
         "Power BI"
       ],
       "category": "End-to-End Projects",
-      "github": "https://github.com/arsudsandesh97/airbnb-analysis",
-      "dashboard": "",
+      "github": "https://github.com/arsudsandesh97/airbnb-end-to-end-analysis",
+      "dashboard": null,
       "members": [],
       "associations": []
     },
@@ -108,7 +91,26 @@
       "dashboard": "https://arsudsandesh97.github.io/dashboards/walmart-sales-dashboard",
       "members": [],
       "associations": []
+    },
+    {
+      "id": "90a8b4c5-d6f4-4069-81d6-60fb15482611",
+      "title": "End-to-End Retail Sales Analytics using Microsoft Fabric",
+      "description": "Built a Bronze–Silver–Gold medallion pipeline in Microsoft Fabric using Python (Pandas, Spark) to clean and transform\n9,000+ retail records, bringing data reliability up by 30%",
+      "description2": "Modeled cleaned transaction data into a star schema (1 fact table, 5 dimensions) with SQL using CTEs and window\nfunctions, which cut query complexity by 40%",
+      "description3": "Designed Power BI dashboards with 10+ KPIs tracking sales profitability, shipping trends, and customer segments,\nshaving report turnaround time by 25%\n",
+      "image": "https://raw.githubusercontent.com/arsudsandesh97/retail-sales-analytics-fabric/main/Assets/End-to-End%20Retail%20Sales%20Analytics%20using%20Microsoft%20Fabric.gif",
+      "tags": [
+        "Microsoft Fabric",
+        "Power Bi",
+        "SQL",
+        "Python"
+      ],
+      "category": "End-to-End Projects",
+      "github": "https://github.com/arsudsandesh97/retail-sales-analytics-fabric",
+      "dashboard": null,
+      "members": [],
+      "associations": []
     }
   ],
-  "generatedAt": "2025-12-02T11:27:54.633Z"
+  "generatedAt": "2026-04-09T05:30:08.008Z"
 }
