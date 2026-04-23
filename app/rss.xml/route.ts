@@ -1,7 +1,11 @@
+import fs from 'fs';
+import path from 'path';
+
 export async function GET() {
-  // Fetch from local JSON file (works with static export)
-  const response = await fetch('http://localhost:3000/data/blogs.json');
-  const { data: posts } = await response.json();
+  // Read from local JSON file directly (works with static export - no server needed)
+  const filePath = path.join(process.cwd(), 'public', 'data', 'blogs.json');
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  const { data: posts } = JSON.parse(fileContent);
 
   const siteUrl = 'https://arsudsandesh97.github.io';
   const rss = generateRSS(posts || [], siteUrl);

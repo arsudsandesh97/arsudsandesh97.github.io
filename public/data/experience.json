@@ -1,25 +1,8 @@
 {
   "data": [
     {
-      "id": "7545118b-b9ad-42b1-be38-6f528fc7013e",
-      "img": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/sf.jpeg?alt=media&token=f6c04933-c72d-4843-a2f2-8c393a29893f",
-      "role": "Data Science And Business Analytics Intern",
-      "company": "THE SPARKS FOUNDATION",
-      "date": "February 2023 - March 2023",
-      "description": "Optimized data-driven decision-making with exceptional data cleaning and visualization skills. Executed exploratory analysis on 756 IPL cricket match records using Python during The Sparks Foundation internship",
-      "description2": "Developed an interactive Superstore sales dashboard, identifying corporate as the highest selling segment 48% of total sales and consumer as the most profitable 47% of total profit.",
-      "description3": "Evaluated top categories, with office supplies leading in both sales 44% and profit 54%, utilizing Power BI for data visualization.",
-      "skills": [
-        "Exploratory Data Analysis",
-        "Power Bi",
-        "Python"
-      ],
-      "doc": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d",
-      "is_published": true
-    },
-    {
       "id": "0ab0159a-f7fa-428a-8a2e-45faeb6e6946",
-      "img": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/almabetter.png?alt=media&token=f177331b-4528-40a0-9f0e-6c59dadf1db8",
+      "img": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/almabetter.png",
       "role": "Data Science Trainee",
       "company": "Almabetter",
       "date": "October 2022 - October 2023",
@@ -34,7 +17,24 @@
       ],
       "doc": "https://verified.sertifier.com/en/verify/39573752145086",
       "is_published": true
+    },
+    {
+      "id": "7545118b-b9ad-42b1-be38-6f528fc7013e",
+      "img": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Spark%20Foundation.jpeg",
+      "role": "Data Science And Business Analytics Intern",
+      "company": "THE SPARKS FOUNDATION",
+      "date": "February 2023 - March 2023",
+      "description": "Optimized data-driven decision-making with exceptional data cleaning and visualization skills. Executed exploratory analysis on 756 IPL cricket match records using Python during The Sparks Foundation internship",
+      "description2": "Developed an interactive Superstore sales dashboard, identifying corporate as the highest selling segment 48% of total sales and consumer as the most profitable 47% of total profit.",
+      "description3": "Evaluated top categories, with office supplies leading in both sales 44% and profit 54%, utilizing Power BI for data visualization.",
+      "skills": [
+        "Exploratory Data Analysis",
+        "Power Bi",
+        "Python"
+      ],
+      "doc": "https://firebasestorage.googleapis.com/v0/b/sandesh-arsud.appspot.com/o/Sparks%20Foundation%20Internship%20Certificate.jpeg?alt=media&token=c1633754-a899-4b67-85c7-4a067abe224d",
+      "is_published": true
     }
   ],
-  "generatedAt": "2026-04-09T05:30:08.457Z"
+  "generatedAt": "2026-04-23T06:58:20.141Z"
 }
