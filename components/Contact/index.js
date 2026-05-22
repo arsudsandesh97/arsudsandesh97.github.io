@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import emailjs, { init } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { supabase } from "@/lib/supabase/client";
 import { getEmailJSConfig, isEmailJSConfigured } from "./emailConfig";
@@ -190,7 +190,7 @@ const Contact = () => {
     // Read config lazily at runtime (not at module-load time)
     const config = getEmailJSConfig();
     if (config.publicKey) {
-      init(config.publicKey);
+      emailjs.init({ publicKey: config.publicKey });
     }
   }, []);
 
@@ -320,7 +320,9 @@ const Contact = () => {
           config.serviceId,
           config.templateId,
           templateParams,
-          config.publicKey
+          {
+            publicKey: config.publicKey,
+          }
         );
 
         console.log("EmailJS Response:", emailResult);

@@ -1,6 +1,32 @@
 {
   "data": [
     {
+      "id": "c118ef48-79d8-412b-9fc4-31e730bae5e0",
+      "title": "Cloud & Data Platforms",
+      "skills": [
+        {
+          "id": "3293e4ad-265c-4027-a9cb-a26fb5ae2dd4",
+          "name": "Databricks",
+          "image": "https://avatars.githubusercontent.com/u/4998052?s=200&v=4"
+        },
+        {
+          "id": "6b23061c-375b-421b-be19-ffe5a883b48d",
+          "name": "Microsoft Fabric",
+          "image": "https://davidalzamendi.com/wp-content/uploads/2023/05/Fabric_final_x256.png"
+        },
+        {
+          "id": "6cb9807c-ab5c-48dd-b364-bab115919f16",
+          "name": "Google Cloud Platform",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/googlecloud/googlecloud-plain.svg"
+        },
+        {
+          "id": "dfeb5226-71ee-4833-9bbd-dfd5f346144f",
+          "name": "AWS",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
+        }
+      ]
+    },
+    {
       "id": "7e9dc64d-1c50-4386-968c-973f2cde6d78",
       "title": "Languages",
       "skills": [
@@ -17,50 +43,24 @@
       ]
     },
     {
-      "id": "4dd74129-791d-4de2-a935-e68f383172df",
-      "title": "Platforms And Tools",
+      "id": "7920d27e-c125-4f9a-b128-e5b96064ade8",
+      "title": "Databases",
       "skills": [
         {
-          "id": "0aecefac-62cb-4beb-8c54-d41bc3567bd0",
-          "name": "PyCharm",
-          "image": "https://resources.jetbrains.com/storage/logos/web/pycharm/pycharm.svg"
+          "id": "5eff8128-bde8-4035-84eb-02632dc18db0",
+          "name": "PostgreSQL",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-plain.svg"
         },
         {
-          "id": "539ce735-ba2b-4b27-95e9-a3d26be19984",
-          "name": "Google Colab",
-          "image": "https://colab.research.google.com/img/colab_favicon_256px.png"
-        },
-        {
-          "id": "c546b683-02be-4b61-b582-6de2a78349ab",
-          "name": "Jupyter Notebook",
-          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png"
-        }
-      ]
-    },
-    {
-      "id": "2b3b8000-f21b-4113-ae0c-d67be8730c0b",
-      "title": "Data Manipulation",
-      "skills": [
-        {
-          "id": "0ebee47b-92fb-4041-9fa9-a09926149401",
-          "name": "Power Query Editor",
-          "image": null
-        },
-        {
-          "id": "2cac5ea6-57cf-4202-919c-e65cb048e82f",
-          "name": "Numpy",
-          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg"
-        },
-        {
-          "id": "c9b057d1-ae38-49c1-b0cc-83a67b331b5e",
-          "name": "Pandas",
-          "image": null
+          "id": "aa054e97-82cf-46b5-a4ec-981744ed3088",
+          "name": "MySQL",
+          "image": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg"
         }
       ]
     },
     {
       "id": "0b552937-8894-4be8-ac62-e4a2653cd390",
-      "title": "Data Analysis And Visualization Tools",
+      "title": "BI & Visualization",
       "skills": [
         {
           "id": "152ae9ea-fb74-4197-875d-ef790a5d5fb9",
@@ -80,5 +80,5 @@
       ]
     }
   ],
-  "generatedAt": "2026-04-23T06:58:20.009Z"
+  "generatedAt": "2026-05-22T00:58:20.527Z"
 }
