@@ -123,9 +123,6 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://ogcljpmtozblkwdvycro.supabase.co" />
         <link rel="dns-prefetch" href="https://ogcljpmtozblkwdvycro.supabase.co" />
         
-        {/* Preload critical resources for faster initial render */}
-        <link rel="preload" as="script" href="/_next/static/chunks/main-app.js" />
-        <link rel="modulepreload" href="/_next/static/chunks/webpack.js" />
         
         {/* Structured Data for SEO */}
         <script
