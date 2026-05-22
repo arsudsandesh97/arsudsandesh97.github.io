@@ -5,11 +5,7 @@ import styled from "styled-components";
 import emailjs, { init } from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { supabase } from "@/lib/supabase/client";
-import {
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-  EMAILJS_USER_ID,
-} from "./emailConfig";
+import { getEmailJSConfig, isEmailJSConfigured } from "./emailConfig";
 import {
   canSendEmail,
   incrementEmailCount,
@@ -191,8 +187,10 @@ const Contact = () => {
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
-    if (EMAILJS_USER_ID) {
-      init(EMAILJS_USER_ID);
+    // Read config lazily at runtime (not at module-load time)
+    const config = getEmailJSConfig();
+    if (config.publicKey) {
+      init(config.publicKey);
     }
   }, []);
 
@@ -283,6 +281,10 @@ const Contact = () => {
       created_at: new Date().toISOString(),
     };
 
+    // Read EmailJS config lazily at call time
+    const config = getEmailJSConfig();
+    const configured = isEmailJSConfigured();
+
     try {
       // Store data in Supabase
       const { error: supabaseError } = await supabase
@@ -291,23 +293,34 @@ const Contact = () => {
 
       if (supabaseError) throw supabaseError;
 
-      console.log("Sending email with data:", {
+      console.log("Sending email with config:", {
         email,
         name,
         subject,
         message,
-        serviceId: EMAILJS_SERVICE_ID,
-        templateId: EMAILJS_TEMPLATE_ID,
-        userId: EMAILJS_USER_ID,
+        serviceId: config.serviceId ? "✓ set" : "✗ missing",
+        templateId: config.templateId ? "✓ set" : "✗ missing",
+        publicKey: config.publicKey ? "✓ set" : "✗ missing",
+        configured,
       });
 
       // Send email using EmailJS
-      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_USER_ID) {
-        const emailResult = await emailjs.sendForm(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          form,
-          EMAILJS_USER_ID
+      if (configured) {
+        // Use emailjs.send() with explicit template params for reliability.
+        // sendForm() relies on form field `name` attributes matching template
+        // variables exactly, which is fragile. send() is explicit and debuggable.
+        const templateParams = {
+          from_email: email,
+          from_name: name,
+          subject: subject,
+          message: message,
+        };
+
+        const emailResult = await emailjs.send(
+          config.serviceId,
+          config.templateId,
+          templateParams,
+          config.publicKey
         );
 
         console.log("EmailJS Response:", emailResult);
@@ -326,7 +339,11 @@ const Contact = () => {
         });
       } else {
         // EmailJS not configured - still save to Supabase but notify user
-        console.warn("EmailJS not configured. Message saved to database only.");
+        console.warn("EmailJS not configured. Config values:", {
+          serviceId: config.serviceId,
+          templateId: config.templateId,
+          publicKey: config.publicKey,
+        });
         toast.success(`Message saved! Email notification not sent (EmailJS not configured)`, {
           id: loadingToast,
           duration: 5000,
