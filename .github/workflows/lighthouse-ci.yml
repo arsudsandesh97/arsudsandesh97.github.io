@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
           cache: 'npm'
 
       - name: Install dependencies
@@ -32,6 +32,16 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
+          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
+          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+          NEXT_PUBLIC_PROFILE_JSON_URL: ${{ secrets.NEXT_PUBLIC_PROFILE_JSON_URL }}
+          NEXT_PUBLIC_PROJECTS_JSON_URL: ${{ secrets.NEXT_PUBLIC_PROJECTS_JSON_URL }}
+          NEXT_PUBLIC_SKILLS_JSON_URL: ${{ secrets.NEXT_PUBLIC_SKILLS_JSON_URL }}
+          NEXT_PUBLIC_EXPERIENCE_JSON_URL: ${{ secrets.NEXT_PUBLIC_EXPERIENCE_JSON_URL }}
+          NEXT_PUBLIC_EDUCATION_JSON_URL: ${{ secrets.NEXT_PUBLIC_EDUCATION_JSON_URL }}
+          NEXT_PUBLIC_PROJECT_EXPLANATIONS_JSON_URL: ${{ secrets.NEXT_PUBLIC_PROJECT_EXPLANATIONS_JSON_URL }}
+          NEXT_PUBLIC_BLOGS_JSON_URL: ${{ secrets.NEXT_PUBLIC_BLOGS_JSON_URL }}
         run: npm run build
 
       - name: Run Lighthouse CI
