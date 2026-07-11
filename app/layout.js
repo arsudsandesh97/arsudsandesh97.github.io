@@ -133,10 +133,15 @@ export default function RootLayout({ children }) {
               "@graph": [
                 {
                   "@type": "Person",
+                  "@id": "https://arsudsandesh97.github.io/#person",
                   "name": "Sandesh Arsud",
                   "givenName": "Sandesh",
                   "familyName": "Arsud",
                   "url": "https://arsudsandesh97.github.io",
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": "https://arsudsandesh97.github.io/"
+                  },
                   "image": "https://ogcljpmtozblkwdvycro.supabase.co/storage/v1/object/public/Portfolio/Icons%20and%20Logos/Sandesh%20Arsud.jpg",
                   "jobTitle": "Data Analyst",
                   "description": "Data Analytics Professional specializing in Business Intelligence, Data Science, Python, SQL, and Power BI",
@@ -158,11 +163,14 @@ export default function RootLayout({ children }) {
                 },
                 {
                   "@type": "WebSite",
+                  "@id": "https://arsudsandesh97.github.io/#website",
                   "name": "Sandesh Arsud Portfolio",
                   "url": "https://arsudsandesh97.github.io",
+                  "publisher": {
+                    "@id": "https://arsudsandesh97.github.io/#person"
+                  },
                   "author": {
-                    "@type": "Person",
-                    "name": "Sandesh Arsud"
+                    "@id": "https://arsudsandesh97.github.io/#person"
                   }
                 },
                 {
